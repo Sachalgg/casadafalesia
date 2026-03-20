@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reserve — Casa da Falésia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/shared.css">
+  <style>
+    /* ── MAIN LAYOUT ── */
+    .reserve-wrap { padding: 72px 80px 120px; background: var(--cream); }
+    .reserve-grid { display: grid; grid-template-columns: 1fr 380px; gap: 64px; align-items: start; }
+    .reserve-left {}
+    .reserve-right { position: sticky; top: 100px; }
+
+    /* ── SECTION BLOCK ── */
+    .res-block { margin-bottom: 64px; }
+    .res-block h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px,3vw,42px); font-weight: 300; color: var(--dark); margin-bottom: 8px; }
+    .res-block p.sub { font-size: 14px; font-weight: 300; color: var(--warm-gray); line-height: 1.75; margin-bottom: 32px; }
+
+    /* ── DATE FIELDS ── */
+    .date-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+    .date-field { border: 1px solid var(--light-gray); padding: 16px 20px; background: var(--white); cursor: pointer; transition: border-color 0.3s; }
+    .date-field:hover, .date-field.active { border-color: var(--terracotta); }
+    .date-field label { display: block; font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 6px; }
+    .date-field .date-val { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--dark); }
+    .date-field .date-val.placeholder { color: var(--light-gray); font-style: italic; }
+
+    /* ── CALENDAR ── */
+    .calendar-wrap { background: var(--white); border: 1px solid var(--light-gray); padding: 24px; }
+    .cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .cal-nav-btn { background: none; border: 1px solid var(--light-gray); width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 2px; transition: all 0.3s; }
+    .cal-nav-btn:hover { background: var(--dark); border-color: var(--dark); color: var(--white); }
+    .cal-nav-btn svg { width: 16px; height: 16px; }
+    .cal-nav-title { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 400; letter-spacing: 0.05em; color: var(--dark); }
+    .cal-months { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .cal-month-name { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-gray); text-align: center; margin-bottom: 12px; }
+    .cal-dow-row { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin-bottom: 4px; }
+    .cal-dow { font-size: 9px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-align: center; color: var(--light-gray); padding: 4px 0; }
+    .cal-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+    .cal-day {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--dark);
+      cursor: pointer;
+      position: relative;
+      border-radius: 2px;
+      transition: background 0.2s, color 0.2s;
+      user-select: none;
+    }
+    .cal-day:hover:not(.past):not(.blocked):not(.selected-start):not(.selected-end) { background: rgba(196,121,90,0.15); color: var(--terracotta); }
+    .cal-day.empty { cursor: default; }
+    .cal-day.past { color: var(--light-gray); cursor: not-allowed; }
+    .cal-day.blocked { color: var(--light-gray); cursor: not-allowed; text-decoration: line-through; opacity: 0.5; }
+    .cal-day.selected-start { background: var(--terracotta) !important; color: var(--white) !important; border-radius: 2px 0 0 2px; }
+    .cal-day.selected-end { background: var(--terracotta) !important; color: var(--white) !important; border-radius: 0 2px 2px 0; }
+    .cal-day.in-range { background: rgba(196,121,90,0.12); border-radius: 0; }
+    .cal-day.today::after { content: ''; position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%); width: 3px; height: 3px; border-radius: 50%; background: var(--terracotta); }
+    /* Season dots */
+    .cal-day.season-peak::before { content: ''; position: absolute; top: 3px; right: 3px; width: 4px; height: 4px; border-radius: 50%; background: #E05C40; }
+    .cal-day.season-high::before { content: ''; position: absolute; top: 3px; right: 3px; width: 4px; height: 4px; border-radius: 50%; background: #F0A030; }
+    .cal-day.season-mid::before { content: ''; position: absolute; top: 3px; right: 3px; width: 4px; height: 4px; border-radius: 50%; background: var(--ocean); }
+
+    /* ── LEGEND ── */
+    .cal-legend { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 16px; }
+    .leg-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--warm-gray); }
+    .leg-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── PRICING GUIDE ── */
+    .pricing-guide { background: var(--dark); padding: 24px 28px; margin-top: 0; }
+    .pricing-guide h4 { font-size: 10px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
+    .price-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 12px; }
+    .price-row:last-child { border-bottom: none; }
+    .price-row .period { color: rgba(255,255,255,0.5); font-weight: 300; }
+    .price-row .rate { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--sand); }
+    .price-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── ERROR / INFO ── */
+    .cal-message { margin-top: 12px; font-size: 12px; color: var(--terracotta); min-height: 18px; }
+    .cal-instruction { margin-bottom: 16px; font-size: 13px; color: var(--warm-gray); }
+
+    /* ── BOOKING SUMMARY ── */
+    .summary-card { background: var(--white); border: 1px solid var(--light-gray); padding: 32px; }
+    .summary-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; color: var(--dark); margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--light-gray); }
+    .summary-dates { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+    .sum-date label { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--terracotta); display: block; margin-bottom: 4px; }
+    .sum-date span { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; color: var(--dark); }
+    .sum-nights { font-size: 13px; color: var(--warm-gray); margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--light-gray); }
+    .sum-nights strong { color: var(--dark); font-weight: 500; }
+    .sum-breakdown { margin-bottom: 20px; }
+    .sum-row { display: flex; justify-content: space-between; font-size: 13px; padding: 8px 0; }
+    .sum-row .sr-label { color: var(--warm-gray); font-weight: 300; }
+    .sum-row .sr-val { color: var(--dark); font-weight: 400; font-family: 'Cormorant Garamond', serif; font-size: 15px; }
+    .sum-total { display: flex; justify-content: space-between; align-items: center; padding: 16px 0 0; border-top: 1px solid var(--light-gray); }
+    .sum-total .st-label { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dark); }
+    .sum-total .st-val { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--terracotta); }
+    .sum-villa-note { margin-top: 16px; background: var(--sand); padding: 12px 14px; font-size: 11px; color: var(--warm-gray); line-height: 1.6; }
+    .hidden { display: none !important; }
+
+    /* ── ENQUIRY FORM ── */
+    .form-section { background: var(--white); border: 1px solid var(--light-gray); padding: 40px; }
+    .form-section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px,2.5vw,36px); font-weight: 300; color: var(--dark); margin-bottom: 8px; }
+    .form-section p.sub { font-size: 13px; font-weight: 300; color: var(--warm-gray); line-height: 1.7; margin-bottom: 32px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: span 2; }
+    .form-group label { font-size: 9px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--warm-gray); }
+    .form-group input, .form-group select, .form-group textarea {
+      font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 300;
+      border: 1px solid var(--light-gray); padding: 12px 16px;
+      background: var(--cream); color: var(--dark); outline: none;
+      transition: border-color 0.3s; border-radius: 2px;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--terracotta); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit { margin-top: 28px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .form-note { font-size: 11px; color: var(--warm-gray); line-height: 1.6; max-width: 320px; }
+    .success-msg { display: none; background: var(--forest); color: var(--sand); padding: 20px 24px; font-size: 14px; line-height: 1.7; margin-top: 20px; border-radius: 2px; }
+    .success-msg.show { display: block; }
+
+    @media (max-width: 1100px) {
+      .reserve-wrap { padding: 40px 28px 80px; }
+      .reserve-grid { grid-template-columns: 1fr; gap: 40px; }
+      .reserve-right { position: static; }
+      .cal-months { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-group.full { grid-column: span 1; }
+      .date-fields { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav" class="light"></nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=80')"></div>
+  <div class="page-hero-content">
+    <span class="label" data-i18n="res.hero.label">Reservations</span>
+    <h1 data-i18n="res.hero.h1">Reserve Your Stay</h1>
+    <p data-i18n="res.hero.sub">Select your dates below. Casa da Falésia is rented exclusively as a whole villa — all five suites, the pool, and the full clifftop property are yours alone.</p>
+  </div>
+</div>
+
+<div class="reserve-wrap">
+  <div class="reserve-grid">
+
+    <!-- LEFT: CALENDAR + FORM -->
+    <div class="reserve-left">
+
+      <!-- DATE SELECTION -->
+      <div class="res-block">
+        <span class="label" data-i18n="res.cal.label">Select dates</span>
+        <h2 data-i18n="res.cal.h2">Choose your dates</h2>
+        <p class="sub" data-i18n="res.min.note">Minimum stay: 3 nights</p>
+
+        <!-- Date display fields -->
+        <div class="date-fields">
+          <div class="date-field" id="field-checkin">
+            <label data-i18n="res.checkin">Check-in</label>
+            <div class="date-val placeholder" id="display-checkin">Select date</div>
+          </div>
+          <div class="date-field" id="field-checkout">
+            <label data-i18n="res.checkout">Check-out</label>
+            <div class="date-val placeholder" id="display-checkout">Select date</div>
+          </div>
+        </div>
+
+        <p class="cal-instruction" id="calInstruction">Click a date to set your check-in.</p>
+        <div class="cal-message" id="calMessage"></div>
+
+        <!-- Calendar -->
+        <div class="calendar-wrap">
+          <div class="cal-nav">
+            <button class="cal-nav-btn" onclick="Cal.prev()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <div class="cal-nav-title" id="calTitle"></div>
+            <button class="cal-nav-btn" onclick="Cal.next()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+          <div class="cal-months" id="calMonths"></div>
+          <div class="cal-legend">
+            <div class="leg-item"><div class="leg-dot" style="background:#6B6860"></div> Low season</div>
+            <div class="leg-item"><div class="leg-dot" style="background:var(--ocean)"></div> Mid season</div>
+            <div class="leg-item"><div class="leg-dot" style="background:#F0A030"></div> High season</div>
+            <div class="leg-item"><div class="leg-dot" style="background:#E05C40"></div> Peak season</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRICING GUIDE -->
+      <div class="res-block">
+        <span class="label" data-i18n="res.pricing.title">Seasonal rates</span>
+        <div class="pricing-guide">
+          <h4>Nightly rates · Full villa · Up to 10 guests</h4>
+          <div class="price-row">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="price-dot" style="background:#6B6860"></div>
+              <span class="period" data-i18n="res.season.low">Low season (May · Jun · Aug · Sep · Oct)</span>
+            </div>
+            <span class="rate">R$ 5.500</span>
+          </div>
+          <div class="price-row">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="price-dot" style="background:var(--ocean)"></div>
+              <span class="period" data-i18n="res.season.mid">Mid season (Mar · Apr · Nov)</span>
+            </div>
+            <span class="rate">R$ 7.500</span>
+          </div>
+          <div class="price-row">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="price-dot" style="background:#F0A030"></div>
+              <span class="period" data-i18n="res.season.high">High season (Jan · Jul · Dec)</span>
+            </div>
+            <span class="rate">R$ 10.500</span>
+          </div>
+          <div class="price-row">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="price-dot" style="background:#E05C40"></div>
+              <span class="period" data-i18n="res.season.peak">Peak season (New Year · Carnival)</span>
+            </div>
+            <span class="rate">R$ 13.500</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENQUIRY FORM -->
+      <div class="form-section" id="formSection">
+        <span class="label" data-i18n="res.form.label">Your details</span>
+        <h2 data-i18n="res.form.h2">Complete your enquiry</h2>
+        <p class="sub" data-i18n="res.form.sub">Fill in your details and we will confirm availability and send a personalised quote within 24 hours.</p>
+        <form id="enquiryForm" onsubmit="submitForm(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label data-i18n="res.name">Full name</label>
+              <input type="text" id="f-name" required data-i18n-ph="res.name">
+            </div>
+            <div class="form-group">
+              <label data-i18n="res.email">Email address</label>
+              <input type="email" id="f-email" required data-i18n-ph="res.email">
+            </div>
+            <div class="form-group">
+              <label data-i18n="res.phone">Phone / WhatsApp</label>
+              <input type="tel" id="f-phone" data-i18n-ph="res.phone">
+            </div>
+            <div class="form-group">
+              <label data-i18n="res.guests">Number of guests (max 10)</label>
+              <select id="f-guests">
+                <option value="">Select</option>
+                <option>2</option><option>3</option><option>4</option>
+                <option>5</option><option>6</option><option>7</option>
+                <option>8</option><option>9</option><option>10</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label data-i18n="res.notes">Special requests or questions</label>
+              <textarea id="f-notes" data-i18n-ph="res.notes"></textarea>
+            </div>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn btn-primary" data-i18n="res.submit">Send Enquiry</button>
+            <p class="form-note" data-i18n="res.note">No payment is taken at this stage. We will contact you to confirm availability.</p>
+          </div>
+        </form>
+        <div class="success-msg" id="successMsg">
+          ✓ &nbsp; Thank you — your enquiry has been received. We will be in touch within 24 hours to confirm availability and send a personalised quote.
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: STICKY SUMMARY -->
+    <div class="reserve-right">
+      <div class="summary-card">
+        <h3 data-i18n="res.summary.title">Booking summary</h3>
+
+        <div id="summaryEmpty" style="text-align:center; padding:32px 0;">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--light-gray)" stroke-width="1" style="margin:0 auto 16px; display:block;">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          <p style="font-size:13px; color:var(--light-gray); font-style:italic;">Select dates to see price</p>
+        </div>
+
+        <div id="summaryFull" class="hidden">
+          <div class="summary-dates">
+            <div class="sum-date">
+              <label data-i18n="res.summary.from">From</label>
+              <span id="sum-checkin">—</span>
+            </div>
+            <div class="sum-date">
+              <label data-i18n="res.summary.to">To</label>
+              <span id="sum-checkout">—</span>
+            </div>
+          </div>
+          <div class="sum-nights"><strong id="sum-nights">0</strong> <span data-i18n="res.nights">nights selected</span></div>
+          <div class="sum-breakdown" id="sumBreakdown"></div>
+          <div class="sum-total">
+            <span class="st-label" data-i18n="res.total.label">Estimated total</span>
+            <span class="st-val" id="sum-total">R$ —</span>
+          </div>
+          <div class="sum-villa-note" data-i18n="res.whole.villa">Whole villa · Up to 10 guests</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer id="footer"></footer>
+<div class="lb" id="lb"></div>
+
+<script>
+/* ============================================================
+   RESERVATION CALENDAR
+   ============================================================ */
+
+const RATES = { low: 5500, mid: 7500, high: 10500, peak: 13500 };
+const MONTHS_EN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const DAYS_EN   = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+
+function getSeason(date) {
+  const m = date.getMonth() + 1;
+  const d = date.getDate();
+  // Peak: Dec 20 – Jan 6, Carnival window (approx Feb 28 – Mar 7)
+  if ((m === 12 && d >= 20) || (m === 1 && d <= 6)) return 'peak';
+  // Carnival (year-agnostic approximation: late Feb / early Mar)
+  if ((m === 2 && d >= 22) || (m === 3 && d <= 8))  return 'peak';
+  if ([1, 7, 12].includes(m)) return 'high';
+  if ([2, 3, 4, 11].includes(m)) return 'mid';
+  return 'low';
+}
+
+function getRate(date) { return RATES[getSeason(date)]; }
+
+// Generate realistic blocked dates
+function makeBlocked() {
+  const blocked = new Set();
+  const y = new Date().getFullYear();
+  [
+    [new Date(y, 3, 8),  new Date(y, 3, 16)],
+    [new Date(y, 5, 20), new Date(y, 6, 4)],
+    [new Date(y, 8, 28), new Date(y, 9, 5)],
+    [new Date(y, 10,14), new Date(y, 10,22)],
+    [new Date(y, 11,20), new Date(y+1, 0, 9)],
+    [new Date(y+1, 1,28),new Date(y+1, 2, 7)],
+    [new Date(y+1, 6, 2),new Date(y+1, 6,16)],
+  ].forEach(([s, e]) => {
+    for (let d = new Date(s); d <= e; d.setDate(d.getDate()+1)) {
+      blocked.add(d.toISOString().slice(0,10));
+    }
+  });
+  return blocked;
+}
+
+const Cal = (() => {
+  const today = new Date(); today.setHours(0,0,0,0);
+  const blocked = makeBlocked();
+  let curYear = today.getFullYear();
+  let curMonth = today.getMonth();
+  let checkIn = null, checkOut = null;
+
+  function dateStr(d) { return d.toISOString().slice(0,10); }
+  function fromStr(s) { return new Date(s + 'T00:00:00'); }
+
+  function isBlocked(d) { return blocked.has(dateStr(d)); }
+  function isPast(d)    { return d < today; }
+  function isToday(d)   { return dateStr(d) === dateStr(today); }
+
+  function renderMonth(year, month) {
+    const firstDay = new Date(year, month, 1).getDay();
+    const days = new Date(year, month+1, 0).getDate();
+    const monthName = MONTHS_EN[month] + ' ' + year;
+
+    let html = `<div>
+      <div class="cal-month-name">${monthName}</div>
+      <div class="cal-dow-row">${DAYS_EN.map(d=>`<div class="cal-dow">${d}</div>`).join('')}</div>
+      <div class="cal-days">`;
+
+    for (let i=0; i<firstDay; i++) html += '<div class="cal-day empty"></div>';
+
+    for (let d=1; d<=days; d++) {
+      const date = new Date(year, month, d);
+      const ds = dateStr(date);
+      const past    = isPast(date);
+      const block   = isBlocked(date);
+      const tod     = isToday(date);
+      const season  = getSeason(date);
+      const isStart = checkIn  && dateStr(checkIn)  === ds;
+      const isEnd   = checkOut && dateStr(checkOut) === ds;
+      const inRange = checkIn && checkOut && date > checkIn && date < checkOut;
+
+      let cls = 'cal-day';
+      if (past || block)  cls += past ? ' past' : ' blocked';
+      if (tod)            cls += ' today';
+      if (!past && !block && season !== 'low') cls += ' season-' + season;
+      if (isStart)        cls += ' selected-start';
+      else if (isEnd)     cls += ' selected-end';
+      else if (inRange)   cls += ' in-range';
+
+      const clickable = !past && !block;
+      html += `<div class="${cls}" ${clickable ? `onclick="Cal.pick('${ds}')"` : ''}>${d}</div>`;
+    }
+
+    html += '</div></div>';
+    return html;
+  }
+
+  function render() {
+    const m2 = curMonth === 11 ? 0 : curMonth + 1;
+    const y2 = curMonth === 11 ? curYear + 1 : curYear;
+    document.getElementById('calMonths').innerHTML = renderMonth(curYear, curMonth) + renderMonth(y2, m2);
+    document.getElementById('calTitle').textContent = MONTHS_EN[curMonth] + ' ' + curYear + ' – ' + MONTHS_EN[m2] + ' ' + y2;
+  }
+
+  function updateDisplays() {
+    const ci = document.getElementById('display-checkin');
+    const co = document.getElementById('display-checkout');
+    const fi = document.getElementById('field-checkin');
+    const fo = document.getElementById('field-checkout');
+    const instr = document.getElementById('calInstruction');
+
+    if (checkIn) {
+      ci.textContent = checkIn.toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'});
+      ci.classList.remove('placeholder');
+      fi.classList.remove('active');
+    } else {
+      ci.textContent = 'Select date'; ci.classList.add('placeholder');
+      fi.classList.add('active');
+    }
+
+    if (checkOut) {
+      co.textContent = checkOut.toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'});
+      co.classList.remove('placeholder');
+      fo.classList.remove('active');
+      instr.textContent = 'Dates selected. Complete the form below to enquire.';
+    } else if (checkIn) {
+      co.textContent = 'Select date'; co.classList.add('placeholder');
+      fo.classList.add('active');
+      instr.textContent = 'Now click your check-out date.';
+    } else {
+      co.textContent = 'Select date'; co.classList.add('placeholder');
+      fo.classList.remove('active');
+      instr.textContent = 'Click a date to set your check-in.';
+    }
+  }
+
+  function updateSummary() {
+    const msg = document.getElementById('calMessage');
+    if (!checkIn || !checkOut) {
+      document.getElementById('summaryEmpty').classList.remove('hidden');
+      document.getElementById('summaryFull').classList.add('hidden');
+      msg.textContent = '';
+      return;
+    }
+    const nights = Math.round((checkOut - checkIn) / 86400000);
+    if (nights < 3) {
+      msg.textContent = '⚠ Minimum stay is 3 nights. Please select a later check-out.';
+      document.getElementById('summaryEmpty').classList.remove('hidden');
+      document.getElementById('summaryFull').classList.add('hidden');
+      return;
+    }
+    msg.textContent = '';
+
+    // Check for blocked nights in range
+    for (let i=0; i<nights; i++) {
+      const d = new Date(checkIn); d.setDate(d.getDate()+i);
+      if (isBlocked(d)) {
+        msg.textContent = '⚠ Your selected range includes unavailable dates. Please adjust.';
+        document.getElementById('summaryEmpty').classList.remove('hidden');
+        document.getElementById('summaryFull').classList.add('hidden');
+        return;
+      }
+    }
+
+    // Calculate breakdown
+    const breakdown = {};
+    let total = 0;
+    for (let i=0; i<nights; i++) {
+      const d = new Date(checkIn); d.setDate(d.getDate()+i);
+      const season = getSeason(d);
+      const rate = RATES[season];
+      total += rate;
+      if (!breakdown[season]) breakdown[season] = 0;
+      breakdown[season]++;
+    }
+
+    const seasonLabels = { peak:'Peak season', high:'High season', mid:'Mid season', low:'Low season' };
+    let bdHtml = '';
+    ['peak','high','mid','low'].forEach(s => {
+      if (breakdown[s]) {
+        bdHtml += `<div class="sum-row">
+          <span class="sr-label">${breakdown[s]} night${breakdown[s]>1?'s':''} × ${seasonLabels[s]}</span>
+          <span class="sr-val">R$ ${(breakdown[s]*RATES[s]).toLocaleString('pt-BR')}</span>
+        </div>`;
+      }
+    });
+
+    document.getElementById('sumBreakdown').innerHTML = bdHtml;
+    document.getElementById('sum-nights').textContent = nights;
+    document.getElementById('sum-checkin').textContent = checkIn.toLocaleDateString('en-GB', {day:'numeric',month:'short'});
+    document.getElementById('sum-checkout').textContent = checkOut.toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'});
+    document.getElementById('sum-total').textContent = 'R$ ' + total.toLocaleString('pt-BR');
+
+    document.getElementById('summaryEmpty').classList.add('hidden');
+    document.getElementById('summaryFull').classList.remove('hidden');
+  }
+
+  return {
+    init() { render(); updateDisplays(); },
+    prev() {
+      if (curMonth === 0) { curMonth = 11; curYear--; }
+      else curMonth--;
+      render();
+    },
+    next() {
+      if (curMonth === 11) { curMonth = 0; curYear++; }
+      else curMonth++;
+      render();
+    },
+    pick(ds) {
+      const d = fromStr(ds);
+      if (!checkIn || (checkIn && checkOut) || d <= checkIn) {
+        checkIn = d; checkOut = null;
+      } else {
+        checkOut = d;
+      }
+      render(); updateDisplays(); updateSummary();
+    },
+    getCheckIn()  { return checkIn; },
+    getCheckOut() { return checkOut; },
+  };
+})();
+
+// Init on load
+document.addEventListener('DOMContentLoaded', () => Cal.init());
+
+/* ── FORM SUBMIT ── */
+function submitForm(e) {
+  e.preventDefault();
+  const ci = Cal.getCheckIn();
+  const co = Cal.getCheckOut();
+  const name    = document.getElementById('f-name').value;
+  const email   = document.getElementById('f-email').value;
+  const phone   = document.getElementById('f-phone').value;
+  const guests  = document.getElementById('f-guests').value;
+  const notes   = document.getElementById('f-notes').value;
+
+  const dateInfo = ci && co
+    ? `Check-in: ${ci.toLocaleDateString('en-GB')}\nCheck-out: ${co.toLocaleDateString('en-GB')}\nNights: ${Math.round((co-ci)/86400000)}`
+    : 'Dates: Not yet selected';
+
+  const body = encodeURIComponent(
+    `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nGuests: ${guests}\n\n${dateInfo}\n\nNotes: ${notes}`
+  );
+  window.location.href = `mailto:hello@casadafalesia.com?subject=Reservation%20Enquiry%20-%20${name}&body=${body}`;
+
+  document.getElementById('successMsg').classList.add('show');
+  document.getElementById('enquiryForm').reset();
+}
+</script>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -3,722 +3,150 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Casa da Falésia — Private Villa · Trancoso, Bahia</title>
-  <meta name="description" content="An architect-designed beachfront villa in Trancoso, Bahia. Five ocean suites, direct Atlantic access, kiteboarding, yoga, and complete seclusion.">
+  <title>Casa da Falésia — Private Villa · Pipa, Brazil</title>
+  <meta name="description" content="An architect-designed beachfront villa in Pipa, Rio Grande do Norte. Five ocean suites, direct Atlantic access, kiteboarding, yoga, and complete seclusion.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/shared.css">
   <style>
-    /* ========================
-       VARIABLES & RESET
-    ======================== */
-    :root {
-      --cream: #FAF8F3;
-      --sand: #E8D5B0;
-      --sand-dark: #D4BC8A;
-      --terracotta: #C4795A;
-      --terracotta-dark: #A85F42;
-      --forest: #3A5740;
-      --ocean: #2A6B7C;
-      --dark: #1A1917;
-      --warm-gray: #6B6860;
-      --light-gray: #D4D0C8;
-      --white: #FFFFFF;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; font-size: 16px; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      color: var(--dark);
-      background: var(--cream);
-      overflow-x: hidden;
-    }
-
-    img { display: block; max-width: 100%; }
-    a { text-decoration: none; }
-
-    /* ========================
-       NAVIGATION
-    ======================== */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 28px 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: background 0.5s ease, padding 0.4s ease, box-shadow 0.4s ease;
-    }
-
-    nav.scrolled {
-      background: rgba(250, 248, 243, 0.96);
-      padding: 16px 56px;
-      box-shadow: 0 1px 0 rgba(0,0,0,0.07);
-      backdrop-filter: blur(12px);
-    }
-
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 20px;
-      font-weight: 400;
-      letter-spacing: 0.06em;
-      color: var(--white);
-      transition: color 0.4s ease;
-    }
-    nav.scrolled .nav-logo { color: var(--dark); }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 40px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.85);
-      transition: color 0.3s ease;
-    }
-    nav.scrolled .nav-links a { color: var(--warm-gray); }
-    .nav-links a:hover { color: var(--white); }
-    nav.scrolled .nav-links a:hover { color: var(--terracotta); }
-
-    .nav-cta {
-      padding: 10px 26px !important;
-      border: 1px solid rgba(255,255,255,0.6) !important;
-      border-radius: 2px;
-      color: var(--white) !important;
-      transition: background 0.3s, border-color 0.3s, color 0.3s !important;
-    }
-    .nav-cta:hover {
-      background: var(--white) !important;
-      color: var(--dark) !important;
-    }
-    nav.scrolled .nav-cta {
-      border-color: var(--terracotta) !important;
-      color: var(--terracotta) !important;
-    }
-    nav.scrolled .nav-cta:hover {
-      background: var(--terracotta) !important;
-      color: var(--white) !important;
-    }
-
-    .nav-toggle {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-    }
-    .nav-toggle span {
-      display: block;
-      width: 26px;
-      height: 1.5px;
-      background: var(--white);
-      transition: all 0.3s ease;
-    }
-    nav.scrolled .nav-toggle span { background: var(--dark); }
-
-    /* ========================
-       HERO
-    ======================== */
+    /* ── HERO ── */
     .hero {
-      position: relative;
-      height: 100vh;
-      min-height: 680px;
-      display: flex;
-      align-items: flex-end;
-      overflow: hidden;
+      position: relative; height: 100vh; min-height: 680px;
+      display: flex; align-items: flex-end; overflow: hidden;
     }
-
     .hero-bg {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2400&q=85');
-      background-size: cover;
-      background-position: center 35%;
+      background-size: cover; background-position: center 35%;
       will-change: transform;
     }
-
     .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(15, 14, 12, 0.80) 0%,
-        rgba(15, 14, 12, 0.25) 55%,
-        rgba(15, 14, 12, 0.05) 100%
-      );
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(15,14,12,0.82) 0%, rgba(15,14,12,0.22) 55%, transparent 100%);
     }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 0 80px 88px;
-    }
-
+    .hero-content { position: relative; z-index: 2; padding: 0 80px 88px; }
     .hero-eyebrow {
-      font-size: 10px;
-      font-weight: 400;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 22px;
+      font-size: 10px; font-weight: 400; letter-spacing: 0.32em;
+      text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 20px;
     }
-
     .hero h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(58px, 8vw, 108px);
-      font-weight: 300;
-      line-height: 0.95;
-      letter-spacing: -0.02em;
-      color: var(--white);
-      margin-bottom: 30px;
+      font-size: clamp(58px, 8vw, 108px); font-weight: 300;
+      line-height: 0.95; letter-spacing: -0.02em; color: var(--white); margin-bottom: 28px;
     }
     .hero h1 em { font-style: italic; }
-
     .hero-tagline {
-      font-size: 16px;
-      font-weight: 300;
-      color: rgba(255,255,255,0.72);
-      line-height: 1.75;
-      max-width: 460px;
-      margin-bottom: 44px;
+      font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.7);
+      line-height: 1.75; max-width: 460px; margin-bottom: 44px;
     }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 36px;
+    .hero-actions { display: flex; align-items: center; gap: 32px; }
+    .btn-ghost-hero {
+      color: rgba(255,255,255,0.72); font-size: 13px; font-weight: 300;
+      display: inline-flex; align-items: center; gap: 10px; transition: color 0.3s;
     }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-
-    .btn-primary {
-      padding: 17px 44px;
-      background: var(--terracotta);
-      color: var(--white);
-    }
-    .btn-primary:hover { background: var(--terracotta-dark); }
-
-    .btn-outline-white {
-      color: rgba(255,255,255,0.75);
-      font-size: 13px;
-      letter-spacing: 0.05em;
-      text-transform: none;
-      font-weight: 300;
-    }
-    .btn-outline-white svg {
-      width: 18px; height: 18px;
-      transition: transform 0.3s ease;
-    }
-    .btn-outline-white:hover { color: var(--white); }
-    .btn-outline-white:hover svg { transform: translateX(5px); }
-
+    .btn-ghost-hero svg { width: 18px; height: 18px; transition: transform 0.3s; }
+    .btn-ghost-hero:hover { color: var(--white); }
+    .btn-ghost-hero:hover svg { transform: translateX(5px); }
     .scroll-cue {
-      position: absolute;
-      right: 60px;
-      bottom: 52px;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      color: rgba(255,255,255,0.45);
-      font-size: 9px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      writing-mode: vertical-lr;
+      position: absolute; right: 60px; bottom: 52px; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      color: rgba(255,255,255,0.4); font-size: 9px; letter-spacing: 0.28em;
+      text-transform: uppercase; writing-mode: vertical-lr;
     }
-    .scroll-cue::after {
-      content: '';
-      width: 1px;
-      height: 56px;
-      background: rgba(255,255,255,0.3);
-    }
+    .scroll-cue::after { content: ''; width: 1px; height: 56px; background: rgba(255,255,255,0.28); }
 
-    /* ========================
-       INTRO SPLIT
-    ======================== */
-    .section-intro {
-      display: grid;
-      grid-template-columns: 55% 45%;
-    }
-
-    .intro-visual {
-      position: relative;
-      overflow: hidden;
-      min-height: 80vh;
-    }
-    .intro-visual img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.9s ease;
-    }
+    /* ── INTRO SPLIT ── */
+    .section-intro { display: grid; grid-template-columns: 55% 45%; }
+    .intro-visual { position: relative; overflow: hidden; min-height: 78vh; }
+    .intro-visual img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s ease; }
     .intro-visual:hover img { transform: scale(1.04); }
-
-    .intro-text {
-      background: var(--cream);
-      display: flex;
-      align-items: center;
-      padding: 100px 80px 100px 72px;
-    }
-
+    .intro-text { background: var(--cream); display: flex; align-items: center; padding: 100px 80px 100px 72px; }
     .intro-inner { max-width: 420px; }
-
-    .label {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--terracotta);
-      margin-bottom: 28px;
-      display: block;
-    }
-
     .intro-inner h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(36px, 3.2vw, 50px);
-      font-weight: 300;
-      line-height: 1.15;
-      color: var(--dark);
-      margin-bottom: 28px;
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(36px,3.2vw,50px);
+      font-weight: 300; line-height: 1.15; color: var(--dark); margin-bottom: 26px;
     }
-    .intro-inner h2 em {
-      font-style: italic;
-      color: var(--terracotta);
-    }
+    .intro-inner p { font-size: 15px; font-weight: 300; line-height: 1.85; color: var(--warm-gray); margin-bottom: 16px; }
+    .intro-inner p:last-of-type { margin-bottom: 38px; }
 
-    .intro-inner p {
-      font-size: 15px;
-      font-weight: 300;
-      line-height: 1.85;
-      color: var(--warm-gray);
-      margin-bottom: 18px;
-    }
-    .intro-inner p:last-of-type { margin-bottom: 40px; }
-
-    .text-link {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--dark);
-      border-bottom: 1px solid currentColor;
-      padding-bottom: 3px;
-      transition: color 0.3s ease;
-    }
-    .text-link:hover { color: var(--terracotta); }
-
-    /* ========================
-       STATS BAR
-    ======================== */
-    .stats-bar {
-      background: var(--dark);
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      padding: 56px 80px;
-    }
-
-    .stat {
-      text-align: center;
-      padding: 0 32px;
-      border-right: 1px solid rgba(255,255,255,0.08);
-    }
+    /* ── STATS ── */
+    .stats-bar { background: var(--dark); display: grid; grid-template-columns: repeat(4,1fr); padding: 56px 80px; }
+    .stat { text-align: center; padding: 0 28px; border-right: 1px solid rgba(255,255,255,0.08); }
     .stat:last-child { border-right: none; }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 60px; font-weight: 300; color: var(--sand); line-height: 1; margin-bottom: 10px; }
+    .stat-num span { font-size: 26px; color: var(--terracotta); }
+    .stat-lbl { font-size: 10px; font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
 
-    .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 60px;
-      font-weight: 300;
-      color: var(--sand);
-      line-height: 1;
-      margin-bottom: 10px;
-    }
-    .stat-num span { font-size: 28px; color: var(--terracotta); }
-
-    .stat-lbl {
-      font-size: 10px;
-      font-weight: 400;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-    }
-
-    /* ========================
-       VILLA SECTION
-    ======================== */
-    .villa-section {
-      padding: 128px 80px;
-      background: var(--cream);
-    }
-
-    .villa-header {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: end;
-      margin-bottom: 72px;
-    }
-
-    .villa-header h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(38px, 3.8vw, 58px);
-      font-weight: 300;
-      line-height: 1.1;
-      color: var(--dark);
-    }
-
-    .villa-header p {
-      font-size: 15px;
-      font-weight: 300;
-      line-height: 1.85;
-      color: var(--warm-gray);
-    }
-
-    .villa-grid {
-      display: grid;
-      grid-template-columns: 3fr 2fr;
-      grid-template-rows: 420px 300px;
-      gap: 14px;
-    }
-
-    .villa-img {
-      overflow: hidden;
-      position: relative;
-    }
-    .villa-img img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.8s ease;
-    }
+    /* ── VILLA ── */
+    .villa-section { padding: 128px 80px; background: var(--cream); }
+    .villa-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 72px; }
+    .villa-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px,3.8vw,56px); font-weight: 300; line-height: 1.1; color: var(--dark); }
+    .villa-header p { font-size: 15px; font-weight: 300; line-height: 1.85; color: var(--warm-gray); }
+    .villa-grid { display: grid; grid-template-columns: 3fr 2fr; grid-template-rows: 420px 300px; gap: 14px; }
+    .villa-img { overflow: hidden; position: relative; }
+    .villa-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
     .villa-img:hover img { transform: scale(1.04); }
-
     .villa-img:first-child { grid-row: 1 / 3; }
+    .villa-caption { position: absolute; bottom: 18px; left: 18px; background: rgba(250,248,243,0.88); padding: 6px 14px; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dark); backdrop-filter: blur(6px); }
 
-    .villa-caption {
-      position: absolute;
-      bottom: 18px; left: 18px;
-      background: rgba(250,248,243,0.88);
-      padding: 7px 14px;
-      font-size: 10px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--dark);
-      backdrop-filter: blur(6px);
-    }
-
-    /* ========================
-       SUITES
-    ======================== */
-    .suites-section {
-      padding: 120px 0 120px 80px;
-      overflow: hidden;
-      background: var(--cream);
-    }
-
-    .suites-top {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      padding-right: 80px;
-      margin-bottom: 52px;
-    }
-
-    .suites-top h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(36px, 3.8vw, 54px);
-      font-weight: 300;
-      line-height: 1.1;
-      color: var(--dark);
-    }
-
-    .suite-arrows {
-      display: flex;
-      gap: 8px;
-    }
-
-    .arr-btn {
-      width: 46px; height: 46px;
-      border: 1px solid var(--light-gray);
-      background: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-    .arr-btn:hover {
-      background: var(--dark);
-      border-color: var(--dark);
-      color: var(--white);
-    }
+    /* ── SUITES ── */
+    .suites-section { padding: 120px 0 120px 80px; overflow: hidden; background: var(--cream); }
+    .suites-top { display: flex; align-items: flex-end; justify-content: space-between; padding-right: 80px; margin-bottom: 52px; }
+    .suites-top h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px,3.8vw,54px); font-weight: 300; line-height: 1.1; color: var(--dark); }
+    .suite-arrows { display: flex; gap: 8px; }
+    .arr-btn { width: 46px; height: 46px; border: 1px solid var(--light-gray); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 2px; transition: all 0.3s; }
+    .arr-btn:hover { background: var(--dark); border-color: var(--dark); color: var(--white); }
     .arr-btn svg { width: 18px; height: 18px; }
-
-    .suites-rail {
-      display: flex;
-      gap: 20px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      cursor: grab;
-      padding-right: 80px;
-    }
+    .suites-rail { display: flex; gap: 20px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; cursor: grab; padding-right: 80px; }
     .suites-rail::-webkit-scrollbar { display: none; }
     .suites-rail.active { cursor: grabbing; }
-
-    .suite-card {
-      flex: 0 0 370px;
-      overflow: hidden;
-      background: var(--white);
-      transition: transform 0.35s ease;
-    }
+    .suite-card { flex: 0 0 370px; overflow: hidden; background: var(--white); transition: transform 0.35s ease; }
     .suite-card:hover { transform: translateY(-6px); }
-
-    .suite-img {
-      height: 270px;
-      overflow: hidden;
-      position: relative;
-    }
-    .suite-img img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.65s ease;
-    }
+    .suite-img { height: 270px; overflow: hidden; position: relative; }
+    .suite-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.65s ease; }
     .suite-card:hover .suite-img img { transform: scale(1.06); }
+    .suite-badge { position: absolute; top: 18px; left: 18px; font-size: 10px; letter-spacing: 0.12em; color: rgba(255,255,255,0.9); background: rgba(0,0,0,0.22); padding: 4px 10px; backdrop-filter: blur(4px); }
+    .suite-body { padding: 26px 28px 32px; }
+    .suite-body h3 { font-family: 'Cormorant Garamond', serif; font-size: 25px; font-weight: 400; color: var(--dark); margin-bottom: 8px; }
+    .suite-body p { font-size: 13px; font-weight: 300; color: var(--warm-gray); line-height: 1.7; margin-bottom: 18px; }
+    .suite-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .suite-tag { font-size: 9px; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--warm-gray); border: 1px solid var(--light-gray); padding: 4px 9px; border-radius: 2px; }
 
-    .suite-badge {
-      position: absolute;
-      top: 18px; left: 18px;
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      color: rgba(255,255,255,0.9);
-      background: rgba(0,0,0,0.22);
-      padding: 4px 10px;
-      backdrop-filter: blur(4px);
-    }
-
-    .suite-body {
-      padding: 28px 30px 34px;
-    }
-    .suite-body h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 26px;
-      font-weight: 400;
-      color: var(--dark);
-      margin-bottom: 8px;
-    }
-    .suite-body p {
-      font-size: 13px;
-      font-weight: 300;
-      color: var(--warm-gray);
-      line-height: 1.7;
-      margin-bottom: 20px;
-    }
-
-    .suite-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .suite-tag {
-      font-size: 9px;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--warm-gray);
-      border: 1px solid var(--light-gray);
-      padding: 5px 10px;
-      border-radius: 2px;
-    }
-
-    /* ========================
-       ACTIVITIES
-    ======================== */
+    /* ── ACTIVITIES ── */
     .activities-section { background: var(--dark); }
-
-    .act-intro {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: end;
-      padding: 104px 80px 64px;
-    }
-
-    .act-intro h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(40px, 4vw, 60px);
-      font-weight: 300;
-      line-height: 1.05;
-      color: var(--sand);
-    }
-
-    .act-intro p {
-      font-size: 14px;
-      font-weight: 300;
-      line-height: 1.85;
-      color: rgba(255,255,255,0.45);
-    }
-
-    .act-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: 380px 380px;
-    }
-
-    .act-item {
-      position: relative;
-      overflow: hidden;
-    }
-    .act-item img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.75s ease;
-    }
+    .act-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: end; padding: 104px 80px 64px; }
+    .act-intro h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px,4vw,60px); font-weight: 300; line-height: 1.05; color: var(--sand); }
+    .act-intro p { font-size: 14px; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.45); }
+    .act-grid { display: grid; grid-template-columns: repeat(3,1fr); grid-template-rows: 380px 380px; }
+    .act-item { position: relative; overflow: hidden; }
+    .act-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.75s ease; }
     .act-item:hover img { transform: scale(1.08); }
+    .act-dim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.08) 55%); transition: background 0.4s; }
+    .act-item:hover .act-dim { background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.18) 60%); }
+    .act-copy { position: absolute; bottom: 28px; left: 26px; right: 26px; }
+    .act-copy h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--white); margin-bottom: 4px; }
+    .act-copy p { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.6; max-height: 0; overflow: hidden; transition: max-height 0.4s, opacity 0.4s; opacity: 0; }
+    .act-item:hover .act-copy p { max-height: 60px; opacity: 1; }
 
-    .act-dim {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.08) 55%);
-      transition: background 0.4s ease;
-    }
-    .act-item:hover .act-dim {
-      background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.15) 60%);
-    }
-
-    .act-copy {
-      position: absolute;
-      bottom: 30px; left: 28px; right: 28px;
-    }
-    .act-copy h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 30px;
-      font-weight: 300;
-      color: var(--white);
-      margin-bottom: 4px;
-    }
-    .act-copy p {
-      font-size: 12px;
-      font-weight: 300;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.6;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease, opacity 0.4s ease;
-      opacity: 0;
-    }
-    .act-item:hover .act-copy p {
-      max-height: 60px;
-      opacity: 1;
-    }
-
-    /* ========================
-       EXPERIENCE STRIP
-    ======================== */
-    .experience-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .exp-panel {
-      position: relative;
-      height: 500px;
-      overflow: hidden;
-    }
-    .exp-panel img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.8s ease;
-    }
+    /* ── EXP STRIP ── */
+    .exp-strip { display: grid; grid-template-columns: repeat(3,1fr); }
+    .exp-panel { position: relative; height: 500px; overflow: hidden; }
+    .exp-panel img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
     .exp-panel:hover img { transform: scale(1.05); }
+    .exp-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%); }
+    .exp-text { position: absolute; bottom: 32px; left: 32px; }
+    .exp-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; font-style: italic; color: var(--white); line-height: 1.2; }
 
-    .exp-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 60%);
-    }
-
-    .exp-text {
-      position: absolute;
-      bottom: 32px; left: 32px; right: 32px;
-    }
-    .exp-text h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 34px;
-      font-weight: 300;
-      font-style: italic;
-      color: var(--white);
-      line-height: 1.2;
-    }
-
-    /* ========================
-       GALLERY
-    ======================== */
-    .gallery-section {
-      padding: 128px 80px;
-      background: var(--cream);
-    }
-
-    .gallery-hd {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: 52px;
-    }
-
-    .gallery-hd h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(36px, 3.5vw, 52px);
-      font-weight: 300;
-      color: var(--dark);
-    }
-
-    .gallery-hd p {
-      font-size: 13px;
-      font-weight: 300;
-      color: var(--warm-gray);
-      max-width: 260px;
-      line-height: 1.7;
-      text-align: right;
-    }
-
-    .masonry {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 12px;
-    }
-
-    .m-item {
-      overflow: hidden;
-      cursor: pointer;
-      position: relative;
-    }
-    .m-item img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-    }
+    /* ── GALLERY ── */
+    .gallery-section { padding: 128px 80px; background: var(--cream); }
+    .gallery-hd { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 52px; }
+    .gallery-hd h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px,3.5vw,52px); font-weight: 300; color: var(--dark); }
+    .gallery-hd p { font-size: 13px; font-weight: 300; color: var(--warm-gray); max-width: 240px; line-height: 1.7; text-align: right; }
+    .masonry { display: grid; grid-template-columns: repeat(12,1fr); gap: 12px; }
+    .m-item { overflow: hidden; cursor: pointer; }
+    .m-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
     .m-item:hover img { transform: scale(1.06); }
-
     .m-item:nth-child(1) { grid-column: span 5; height: 520px; grid-row: span 2; }
     .m-item:nth-child(2) { grid-column: span 4; height: 252px; }
     .m-item:nth-child(3) { grid-column: span 3; height: 252px; }
@@ -728,984 +156,340 @@
     .m-item:nth-child(7) { grid-column: span 4; height: 290px; }
     .m-item:nth-child(8) { grid-column: span 4; height: 290px; }
 
-    /* ========================
-       PULL QUOTE
-    ======================== */
-    .quote-section {
-      position: relative;
-      padding: 148px 80px;
-      background: var(--forest);
-      text-align: center;
-      overflow: hidden;
-    }
+    /* ── QUOTE ── */
+    .quote-section { position: relative; padding: 148px 80px; background: var(--forest); text-align: center; overflow: hidden; }
+    .quote-section::before { content: '\201C'; position: absolute; top: -60px; left: 50%; transform: translateX(-50%); font-family: 'Cormorant Garamond', serif; font-size: 400px; font-weight: 300; color: rgba(255,255,255,0.04); line-height: 1; pointer-events: none; }
+    .q-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(24px,3.2vw,44px); font-weight: 300; font-style: italic; line-height: 1.45; color: var(--sand); max-width: 860px; margin: 0 auto 32px; }
+    .q-attr { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
 
-    .quote-section::before {
-      content: '\201C';
-      position: absolute;
-      top: -60px; left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 400px;
-      font-weight: 300;
-      color: rgba(255,255,255,0.04);
-      line-height: 1;
-      pointer-events: none;
-    }
+    /* ── AMENITIES ── */
+    .amen-section { padding: 120px 80px; background: var(--sand); }
+    .amen-hd { margin-bottom: 60px; }
+    .amen-hd h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px,3.5vw,50px); font-weight: 300; color: var(--dark); margin-top: 14px; }
+    .amen-grid { display: grid; grid-template-columns: repeat(4,1fr); }
+    .amen-item { padding-right: 40px; border-right: 1px solid rgba(0,0,0,0.1); margin-right: 0; }
+    .amen-item:last-child { border-right: none; padding-right: 0; }
+    .amen-icon { width: 34px; height: 34px; margin-bottom: 16px; color: var(--terracotta); }
+    .amen-item h4 { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 400; color: var(--dark); margin-bottom: 8px; }
+    .amen-item p { font-size: 13px; font-weight: 300; line-height: 1.7; color: var(--warm-gray); }
 
-    .q-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(26px, 3.2vw, 46px);
-      font-weight: 300;
-      font-style: italic;
-      line-height: 1.45;
-      color: var(--sand);
-      max-width: 860px;
-      margin: 0 auto 36px;
-    }
-
-    .q-attr {
-      font-size: 10px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-    }
-
-    /* ========================
-       AMENITIES
-    ======================== */
-    .amenities-section {
-      padding: 120px 80px;
-      background: var(--sand);
-    }
-
-    .amen-hd {
-      margin-bottom: 64px;
-    }
-    .amen-hd h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(36px, 3.5vw, 52px);
-      font-weight: 300;
-      color: var(--dark);
-      margin-top: 16px;
-    }
-
-    .amen-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-    }
-
-    .amen-item {
-      padding: 36px 40px 36px 0;
-      border-right: 1px solid rgba(0,0,0,0.1);
-      margin-right: 40px;
-    }
-    .amen-item:last-child {
-      border-right: none;
-      margin-right: 0;
-    }
-
-    .amen-icon {
-      width: 36px; height: 36px;
-      margin-bottom: 16px;
-      color: var(--terracotta);
-    }
-
-    .amen-item h4 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 22px;
-      font-weight: 400;
-      color: var(--dark);
-      margin-bottom: 8px;
-    }
-
-    .amen-item p {
-      font-size: 13px;
-      font-weight: 300;
-      line-height: 1.7;
-      color: var(--warm-gray);
-    }
-
-    /* ========================
-       LOCATION
-    ======================== */
-    .location-section {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .loc-visual {
-      position: relative;
-      min-height: 70vh;
-      overflow: hidden;
-    }
-    .loc-visual img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-    }
-
-    .loc-content {
-      background: var(--cream);
-      padding: 100px 80px;
-      display: flex;
-      align-items: center;
-    }
-
+    /* ── LOCATION ── */
+    .loc-section { display: grid; grid-template-columns: 1fr 1fr; }
+    .loc-visual { position: relative; min-height: 70vh; overflow: hidden; }
+    .loc-visual img { width: 100%; height: 100%; object-fit: cover; }
+    .loc-content { background: var(--cream); padding: 100px 80px; display: flex; align-items: center; }
     .loc-inner { max-width: 440px; }
+    .loc-inner h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px,3vw,50px); font-weight: 300; line-height: 1.1; color: var(--dark); margin-bottom: 22px; }
+    .loc-inner > p { font-size: 14px; font-weight: 300; line-height: 1.85; color: var(--warm-gray); margin-bottom: 36px; }
+    .loc-facts { list-style: none; margin-bottom: 44px; border-top: 1px solid rgba(0,0,0,0.08); }
+    .loc-facts li { display: grid; grid-template-columns: 140px 1fr; gap: 12px; font-size: 13px; color: var(--warm-gray); padding: 13px 0; border-bottom: 1px solid rgba(0,0,0,0.08); }
+    .loc-facts li strong { font-weight: 500; color: var(--dark); }
 
-    .loc-inner h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(36px, 3vw, 50px);
-      font-weight: 300;
-      line-height: 1.1;
-      color: var(--dark);
-      margin-bottom: 24px;
-    }
-    .loc-inner > p {
-      font-size: 14px;
-      font-weight: 300;
-      line-height: 1.85;
-      color: var(--warm-gray);
-      margin-bottom: 40px;
-    }
+    /* ── BOOK CTA ── */
+    .book-section { position: relative; padding: 172px 80px; text-align: center; overflow: hidden; }
+    .book-photo { position: absolute; inset: 0; background-image: url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=2000&q=80'); background-size: cover; background-position: center; opacity: 0.12; }
+    .book-content { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+    .book-content h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(42px,5vw,72px); font-weight: 300; line-height: 1.05; color: var(--dark); margin-bottom: 22px; }
+    .book-content p { font-size: 15px; font-weight: 300; line-height: 1.8; color: var(--warm-gray); margin-bottom: 48px; }
+    .book-btns { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .pricing-note { margin-top: 32px; font-size: 12px; color: var(--warm-gray); }
+    .pricing-note strong { font-weight: 500; color: var(--dark); }
 
-    .loc-facts {
-      list-style: none;
-      margin-bottom: 44px;
-      border-top: 1px solid rgba(0,0,0,0.08);
-    }
-    .loc-facts li {
-      display: grid;
-      grid-template-columns: 130px 1fr;
-      gap: 12px;
-      font-size: 13px;
-      color: var(--warm-gray);
-      padding: 14px 0;
-      border-bottom: 1px solid rgba(0,0,0,0.08);
-    }
-    .loc-facts li strong {
-      font-weight: 500;
-      color: var(--dark);
-    }
-
-    /* ========================
-       BOOK CTA
-    ======================== */
-    .book-section {
-      position: relative;
-      padding: 172px 80px;
-      text-align: center;
-      overflow: hidden;
-    }
-
-    .book-photo {
-      position: absolute; inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=2000&q=80');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.13;
-    }
-
-    .book-content {
-      position: relative;
-      z-index: 1;
-      max-width: 680px;
-      margin: 0 auto;
-    }
-
-    .book-content h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(42px, 5vw, 72px);
-      font-weight: 300;
-      line-height: 1.05;
-      color: var(--dark);
-      margin-bottom: 24px;
-    }
-    .book-content h2 em {
-      font-style: italic;
-      color: var(--terracotta);
-    }
-
-    .book-content p {
-      font-size: 15px;
-      font-weight: 300;
-      line-height: 1.8;
-      color: var(--warm-gray);
-      margin-bottom: 52px;
-    }
-
-    .book-btns {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn-outline-dark {
-      padding: 17px 44px;
-      border: 1px solid var(--dark);
-      color: var(--dark);
-    }
-    .btn-outline-dark:hover {
-      background: var(--dark);
-      color: var(--white);
-    }
-
-    .pricing-note {
-      margin-top: 36px;
-      font-size: 12px;
-      color: var(--warm-gray);
-    }
-    .pricing-note strong {
-      font-weight: 500;
-      color: var(--dark);
-    }
-
-    /* ========================
-       FOOTER
-    ======================== */
-    footer {
-      background: var(--dark);
-      padding: 88px 80px 52px;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 64px;
-      padding-bottom: 72px;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-      margin-bottom: 40px;
-    }
-
-    .footer-brand h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 26px;
-      font-weight: 400;
-      color: var(--sand);
-      margin-bottom: 14px;
-    }
-    .footer-brand p {
-      font-size: 13px;
-      font-weight: 300;
-      color: rgba(255,255,255,0.35);
-      line-height: 1.75;
-      max-width: 250px;
-    }
-
-    .footer-col h4 {
-      font-size: 9px;
-      font-weight: 500;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
-      margin-bottom: 22px;
-    }
-    .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: 12px; }
-    .footer-col ul li a {
-      font-size: 13px;
-      font-weight: 300;
-      color: rgba(255,255,255,0.5);
-      transition: color 0.3s ease;
-    }
-    .footer-col ul li a:hover { color: var(--sand); }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .footer-bottom p {
-      font-size: 11px;
-      color: rgba(255,255,255,0.2);
-    }
-    .socials {
-      display: flex;
-      gap: 24px;
-    }
-    .socials a {
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
-      transition: color 0.3s ease;
-    }
-    .socials a:hover { color: var(--sand); }
-
-    /* ========================
-       LIGHTBOX
-    ======================== */
-    .lb {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      background: rgba(10,10,8,0.96);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.4s ease;
-    }
-    .lb.open { opacity: 1; pointer-events: all; }
-    .lb img {
-      max-width: 92vw;
-      max-height: 90vh;
-      object-fit: contain;
-    }
-    .lb-close {
-      position: absolute;
-      top: 20px; right: 24px;
-      font-size: 34px;
-      color: rgba(255,255,255,0.55);
-      cursor: pointer;
-      line-height: 1;
-      transition: color 0.3s ease;
-    }
-    .lb-close:hover { color: var(--white); }
-
-    /* ========================
-       REVEAL ANIMATIONS
-    ======================== */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.85s ease, transform 0.85s ease;
-    }
-    .reveal.up { opacity: 1; transform: none; }
-    .reveal-d1 { transition-delay: 0.1s; }
-    .reveal-d2 { transition-delay: 0.2s; }
-    .reveal-d3 { transition-delay: 0.3s; }
-
-    /* ========================
-       RESPONSIVE
-    ======================== */
+    /* ── RESPONSIVE ── */
     @media (max-width: 1100px) {
-      nav { padding: 20px 32px; }
-      nav.scrolled { padding: 14px 32px; }
-
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%; left: 0; right: 0;
-        background: rgba(250,248,243,0.98);
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 24px 32px;
-        gap: 20px;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-        backdrop-filter: blur(12px);
-      }
-      .nav-links.open { display: flex; }
-      .nav-links a { color: var(--warm-gray) !important; }
-      .nav-cta { border-color: var(--terracotta) !important; color: var(--terracotta) !important; }
-      .nav-toggle { display: flex; }
-
-      .hero-content { padding: 0 32px 72px; }
-      .scroll-cue { right: 32px; bottom: 32px; }
-
+      .hero-content { padding: 0 28px 68px; }
+      .scroll-cue { right: 28px; bottom: 28px; }
       .section-intro { grid-template-columns: 1fr; }
-      .intro-visual { min-height: 420px; }
-      .intro-text { padding: 64px 32px; }
-
-      .stats-bar { grid-template-columns: repeat(2, 1fr); padding: 48px 32px; gap: 0; }
-      .stat { padding: 28px 24px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .intro-visual { min-height: 400px; }
+      .intro-text { padding: 60px 28px; }
+      .stats-bar { grid-template-columns: repeat(2,1fr); padding: 44px 28px; }
+      .stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 24px; }
       .stat:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.08); }
       .stat:nth-child(3), .stat:nth-child(4) { border-bottom: none; }
-
-      .villa-section { padding: 80px 32px; }
-      .villa-header { grid-template-columns: 1fr; gap: 24px; }
+      .villa-section { padding: 80px 28px; }
+      .villa-header { grid-template-columns: 1fr; gap: 20px; }
       .villa-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 300px 220px; }
       .villa-img:first-child { grid-row: auto; }
-
-      .suites-section { padding: 80px 0 80px 32px; }
-      .suites-top { padding-right: 32px; }
-      .suites-rail { padding-right: 32px; }
-      .suite-card { flex: 0 0 320px; }
-
-      .act-intro { grid-template-columns: 1fr; padding: 80px 32px 52px; gap: 24px; }
+      .suites-section { padding: 80px 0 80px 28px; }
+      .suites-top { padding-right: 28px; }
+      .suites-rail { padding-right: 28px; }
+      .suite-card { flex: 0 0 310px; }
+      .act-intro { grid-template-columns: 1fr; padding: 80px 28px 48px; gap: 20px; }
       .act-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
       .act-item { height: 300px; }
-
-      .experience-strip { grid-template-columns: 1fr; }
-      .exp-panel { height: 380px; }
-
-      .gallery-section { padding: 80px 32px; }
+      .exp-strip { grid-template-columns: 1fr; }
+      .exp-panel { height: 360px; }
+      .gallery-section { padding: 80px 28px; }
       .masonry { grid-template-columns: 1fr 1fr; }
       .m-item { grid-column: span 1 !important; height: 220px !important; grid-row: span 1 !important; }
       .m-item:nth-child(1) { height: 300px !important; }
-
-      .quote-section { padding: 100px 32px; }
-
-      .amenities-section { padding: 80px 32px; }
-      .amen-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
-      .amen-item { border-right: none; margin-right: 0; padding-right: 0; }
-
-      .location-section { grid-template-columns: 1fr; }
-      .loc-visual { min-height: 380px; }
-      .loc-content { padding: 64px 32px; }
-
-      .book-section { padding: 100px 32px; }
-
-      footer { padding: 64px 32px 40px; }
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
-      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+      .quote-section { padding: 100px 28px; }
+      .amen-section { padding: 80px 28px; }
+      .amen-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .amen-item { border-right: none; padding-right: 0; }
+      .loc-section { grid-template-columns: 1fr; }
+      .loc-visual { min-height: 360px; }
+      .loc-content { padding: 60px 28px; }
+      .book-section { padding: 100px 28px; }
     }
-
     @media (max-width: 640px) {
-      .hero h1 { font-size: 46px; }
-      .hero-actions { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .hero h1 { font-size: 44px; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 18px; }
       .act-grid { grid-template-columns: 1fr; }
-      .stats-bar { grid-template-columns: 1fr 1fr; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .book-btns { flex-direction: column; align-items: center; }
       .amen-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAVIGATION -->
-<nav id="nav">
-  <a href="#" class="nav-logo">Casa da Falésia</a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#villa">The Villa</a></li>
-    <li><a href="#suites">Suites</a></li>
-    <li><a href="#activities">Sport & Wellness</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#location">Location</a></li>
-    <li><a href="#book" class="nav-cta">Book a Stay</a></li>
-  </ul>
-  <div class="nav-toggle" id="toggle" onclick="toggleNav()">
-    <span></span><span></span><span></span>
-  </div>
-</nav>
+<nav id="nav"></nav>
 
-<!-- ======= HERO ======= -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-bg" id="heroBg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Trancoso · Bahia · Brasil</p>
-    <h1>Casa da<br><em>Falésia</em></h1>
-    <p class="hero-tagline">A private beachfront villa at the edge of the Atlantic — built for those who need to truly disappear.</p>
+    <p class="hero-eyebrow" data-i18n="idx.eyebrow">Pipa · Rio Grande do Norte · Brasil</p>
+    <h1>Casa da<br><em data-i18n="idx.h1b">Falésia</em></h1>
+    <p class="hero-tagline" data-i18n="idx.tagline">A private beachfront villa at the edge of the Atlantic — built for those who need to truly disappear.</p>
     <div class="hero-actions">
-      <a href="#book" class="btn btn-primary">Reserve Your Stay</a>
-      <a href="#villa" class="btn btn-outline-white">
-        Discover the villa
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
+      <a href="reserve.html" class="btn btn-primary" data-i18n="idx.cta1">Reserve Your Stay</a>
+      <a href="#villa" class="btn-ghost-hero">
+        <span data-i18n="idx.cta2">Discover the villa</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
   </div>
   <div class="scroll-cue">Scroll</div>
 </section>
 
-<!-- ======= INTRO ======= -->
+<!-- INTRO SPLIT -->
 <section class="section-intro">
   <div class="intro-visual">
     <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1400&q=85" alt="Villa with pool and ocean view">
   </div>
   <div class="intro-text">
     <div class="intro-inner">
-      <span class="label">A sanctuary apart</span>
-      <h2>Where silence<br>is <em>the point</em></h2>
-      <p>Perched on the red cliffs above a deserted stretch of Atlantic coast, Casa da Falésia is an architect-designed retreat in Trancoso — one of Brazil's most extraordinary and quietly guarded beach destinations.</p>
-      <p>Five ocean-facing suites, an infinity pool that dissolves into the sea, direct beach access, and as many or as few activities as you need. This is where you remember who you are.</p>
-      <a href="#villa" class="text-link">Explore the villa →</a>
+      <span class="label" data-i18n="idx.intro.label">A sanctuary apart</span>
+      <h2 data-i18n-html="idx.intro.title">Where silence is <em>the point</em></h2>
+      <p data-i18n="idx.intro.p1">Perched on the red cliffs of Pipa above a deserted stretch of Atlantic coast, Casa da Falésia is an architect-designed retreat — one of Brazil's most extraordinary and quietly guarded destinations.</p>
+      <p data-i18n="idx.intro.p2">Five ocean-facing suites, an infinity pool that dissolves into the sea, direct beach access, and as many or as few activities as you need. This is where you remember who you are.</p>
+      <a href="villa.html" class="text-link" data-i18n="idx.intro.link">Explore the villa →</a>
     </div>
   </div>
 </section>
 
-<!-- ======= STATS BAR ======= -->
+<!-- STATS BAR -->
 <div class="stats-bar">
   <div class="stat reveal">
     <div class="stat-num">500<span>m²</span></div>
-    <div class="stat-lbl">Private villa</div>
+    <div class="stat-lbl" data-i18n="stat.villa">Private villa</div>
   </div>
   <div class="stat reveal reveal-d1">
     <div class="stat-num">5</div>
-    <div class="stat-lbl">Ocean suites</div>
+    <div class="stat-lbl" data-i18n="stat.suites">Ocean suites</div>
   </div>
   <div class="stat reveal reveal-d2">
     <div class="stat-num">10</div>
-    <div class="stat-lbl">Guests max.</div>
+    <div class="stat-lbl" data-i18n="stat.guests">Guests max.</div>
   </div>
   <div class="stat reveal reveal-d3">
     <div class="stat-num">∞</div>
-    <div class="stat-lbl">Metres of Atlantic</div>
+    <div class="stat-lbl" data-i18n="stat.sea">Metres of Atlantic</div>
   </div>
 </div>
 
-<!-- ======= THE VILLA ======= -->
+<!-- THE VILLA -->
 <section class="villa-section" id="villa">
   <div class="villa-header reveal">
-    <h2>Designed to dissolve<br>into the landscape</h2>
-    <p>Brazilian architect Rodrigo Alcântara drew from the land itself — raw laterite stone, reclaimed timber, and expansive open-air volumes that blur the line between inside and out. The result is a villa that recedes so the ocean can take centre stage.</p>
+    <h2 data-i18n="idx.villa.h2">Designed to dissolve into the landscape</h2>
+    <p data-i18n="idx.villa.body">Brazilian architect Rodrigo Alcântara drew from the land itself — raw laterite stone, reclaimed timber, open-air volumes. The result is a villa that recedes so the ocean takes centre stage.</p>
   </div>
   <div class="villa-grid">
     <div class="villa-img reveal">
       <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1400&q=85" alt="Infinity pool with Atlantic view">
-      <div class="villa-caption">Infinity pool · Atlantic view</div>
+      <div class="villa-caption" data-i18n="idx.villa.cap1">Infinity pool · Atlantic view</div>
     </div>
     <div class="villa-img reveal reveal-d1">
-      <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=85" alt="Living pavilion interior">
-      <div class="villa-caption">Open living pavilion</div>
+      <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=85" alt="Living pavilion">
+      <div class="villa-caption" data-i18n="idx.villa.cap2">Open living pavilion</div>
     </div>
     <div class="villa-img reveal reveal-d2">
       <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=900&q=85" alt="Clifftop terrace">
-      <div class="villa-caption">Clifftop terrace</div>
+      <div class="villa-caption" data-i18n="idx.villa.cap3">Clifftop terrace</div>
     </div>
   </div>
 </section>
 
-<!-- ======= SUITES ======= -->
+<!-- SUITES -->
 <section class="suites-section" id="suites">
   <div class="suites-top">
     <div>
-      <span class="label">Accommodation</span>
-      <h2>Five suites,<br>one horizon</h2>
+      <span class="label" data-i18n="idx.suites.label">Accommodation</span>
+      <h2 data-i18n="idx.suites.h2">Five suites, one horizon</h2>
     </div>
     <div class="suite-arrows">
-      <button class="arr-btn" onclick="slideSuites(-1)" title="Previous">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M19 12H5M12 19l-7-7 7-7"/>
-        </svg>
+      <button class="arr-btn" onclick="slideSuites(-1)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       </button>
-      <button class="arr-btn" onclick="slideSuites(1)" title="Next">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
+      <button class="arr-btn" onclick="slideSuites(1)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </button>
     </div>
   </div>
-
   <div class="suites-rail" id="suitesRail">
-
     <div class="suite-card">
-      <div class="suite-img">
-        <span class="suite-badge">Suite A</span>
-        <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=85" alt="Falésia Suite">
-      </div>
-      <div class="suite-body">
-        <h3>Falésia Suite</h3>
-        <p>Our clifftop master suite with a private terrace directly above the waterline. Fall asleep to the sound of the Atlantic below.</p>
-        <div class="suite-tags">
-          <span class="suite-tag">62 m²</span>
-          <span class="suite-tag">King bed</span>
-          <span class="suite-tag">Cliff terrace</span>
-          <span class="suite-tag">Rain shower</span>
-        </div>
-      </div>
+      <div class="suite-img"><span class="suite-badge">Suite A</span><img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=85" alt="Falésia Suite"></div>
+      <div class="suite-body"><h3 data-i18n="s1.name">Falésia Suite</h3><p data-i18n="s1.desc">Our clifftop master suite...</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.terrace">Cliff terrace</span><span class="suite-tag" data-i18n="suite.tag.ensuite">Ensuite</span></div></div>
     </div>
-
     <div class="suite-card">
-      <div class="suite-img">
-        <span class="suite-badge">Suite B</span>
-        <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=85" alt="Brisa Suite">
-      </div>
-      <div class="suite-body">
-        <h3>Brisa Suite</h3>
-        <p>Oriented east for extraordinary sunrise light, this suite is washed in white linen and ocean breeze from the moment you wake.</p>
-        <div class="suite-tags">
-          <span class="suite-tag">62 m²</span>
-          <span class="suite-tag">King bed</span>
-          <span class="suite-tag">Sunrise view</span>
-          <span class="suite-tag">Ensuite</span>
-        </div>
-      </div>
+      <div class="suite-img"><span class="suite-badge">Suite B</span><img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=85" alt="Brisa Suite"></div>
+      <div class="suite-body"><h3 data-i18n="s2.name">Brisa Suite</h3><p data-i18n="s2.desc">Oriented east for extraordinary sunrise light...</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.sunrise">Sunrise view</span><span class="suite-tag" data-i18n="suite.tag.ensuite">Ensuite</span></div></div>
     </div>
-
     <div class="suite-card">
-      <div class="suite-img">
-        <span class="suite-badge">Suite C</span>
-        <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=85" alt="Jardim Suite">
-      </div>
-      <div class="suite-body">
-        <h3>Jardim Suite</h3>
-        <p>Surrounded by native Atlantic Forest on three sides, this is the coolest and most fragrant suite — a room that breathes.</p>
-        <div class="suite-tags">
-          <span class="suite-tag">62 m²</span>
-          <span class="suite-tag">King bed</span>
-          <span class="suite-tag">Garden</span>
-          <span class="suite-tag">Outdoor shower</span>
-        </div>
-      </div>
+      <div class="suite-img"><span class="suite-badge">Suite C</span><img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=85" alt="Jardim Suite"></div>
+      <div class="suite-body"><h3 data-i18n="s3.name">Jardim Suite</h3><p data-i18n="s3.desc">Surrounded by native Atlantic Forest...</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.garden">Garden</span><span class="suite-tag" data-i18n="suite.tag.outdoor">Outdoor shower</span></div></div>
     </div>
-
     <div class="suite-card">
-      <div class="suite-img">
-        <span class="suite-badge">Suite D</span>
-        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=85" alt="Maré Suite">
-      </div>
-      <div class="suite-body">
-        <h3>Maré Suite</h3>
-        <p>Pool-level and low-slung, this suite steps directly onto the main terrace and the infinity pool deck with its unbroken sea view.</p>
-        <div class="suite-tags">
-          <span class="suite-tag">62 m²</span>
-          <span class="suite-tag">King bed</span>
-          <span class="suite-tag">Pool level</span>
-          <span class="suite-tag">Day bed</span>
-        </div>
-      </div>
+      <div class="suite-img"><span class="suite-badge">Suite D</span><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=85" alt="Maré Suite"></div>
+      <div class="suite-body"><h3 data-i18n="s4.name">Maré Suite</h3><p data-i18n="s4.desc">Pool-level, opening directly onto the deck...</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.pool">Pool level</span><span class="suite-tag" data-i18n="suite.tag.daybed">Day bed</span></div></div>
     </div>
-
     <div class="suite-card">
-      <div class="suite-img">
-        <span class="suite-badge">Suite E</span>
-        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=85" alt="Canto Suite">
-      </div>
-      <div class="suite-body">
-        <h3>Canto Suite</h3>
-        <p>Tucked into the north corner, Canto is the most secluded suite on the property — a true nest for guests seeking complete solitude.</p>
-        <div class="suite-tags">
-          <span class="suite-tag">62 m²</span>
-          <span class="suite-tag">King bed</span>
-          <span class="suite-tag">Double aspect</span>
-          <span class="suite-tag">Soaking tub</span>
-        </div>
-      </div>
+      <div class="suite-img"><span class="suite-badge">Suite E</span><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=85" alt="Canto Suite"></div>
+      <div class="suite-body"><h3 data-i18n="s5.name">Canto Suite</h3><p data-i18n="s5.desc">Tucked into the north corner, total solitude...</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.aspect">Double aspect</span><span class="suite-tag" data-i18n="suite.tag.tub">Soaking tub</span></div></div>
     </div>
-
   </div>
 </section>
 
-<!-- ======= ACTIVITIES ======= -->
+<!-- ACTIVITIES -->
 <section class="activities-section" id="activities">
   <div class="act-intro">
     <div>
-      <span class="label" style="color:var(--terracotta)">Sport & Wellness</span>
-      <h2>Move.<br>Breathe.<br>Be alive.</h2>
+      <span class="label" style="color:var(--terracotta)" data-i18n="idx.act.label">Sport & Wellness</span>
+      <h2 data-i18n="idx.act.h2">Move. Breathe. Be alive.</h2>
     </div>
-    <p>The coast here is one of Brazil's great natural playgrounds — steady trade winds for kiteboarding, long empty beaches for running, and Atlantic waters as clear as glass. There is a rhythm for every guest, from the ultra-active to the fully still.</p>
+    <p data-i18n="idx.act.body">The coast here is one of Brazil's great natural playgrounds — steady trade winds for kiteboarding, long empty beaches for running, and Atlantic waters as clear as glass.</p>
   </div>
-
   <div class="act-grid">
-    <div class="act-item">
-      <img src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?auto=format&fit=crop&w=800&q=80" alt="Kiteboarding">
-      <div class="act-dim"></div>
-      <div class="act-copy">
-        <h3>Kiteboarding</h3>
-        <p>The trade winds here are legendary. Equipment and instruction available directly from the villa.</p>
-      </div>
-    </div>
-    <div class="act-item">
-      <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80" alt="Sunrise yoga">
-      <div class="act-dim"></div>
-      <div class="act-copy">
-        <h3>Sunrise Yoga</h3>
-        <p>Daily sessions on the cliff terrace as the Atlantic turns gold. Private instructor available.</p>
-      </div>
-    </div>
-    <div class="act-item">
-      <img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=800&q=80" alt="Stand-up paddleboard">
-      <div class="act-dim"></div>
-      <div class="act-copy">
-        <h3>Paddleboard & SUP</h3>
-        <p>Explore sea caves, lagoons, and the coastline at your own pace. Boards always available.</p>
-      </div>
-    </div>
-    <div class="act-item">
-      <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=800&q=80" alt="Beach running">
-      <div class="act-dim"></div>
-      <div class="act-copy">
-        <h3>Beach Running</h3>
-        <p>Eight kilometres of undeveloped coastline in both directions. The finest morning run of your life.</p>
-      </div>
-    </div>
-    <div class="act-item">
-      <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=800&q=80" alt="Ocean swimming">
-      <div class="act-dim"></div>
-      <div class="act-copy">
-        <h3>Ocean Swimming</h3>
-        <p>Crystal-clear Atlantic water with calm morning conditions and reefs that shelter the bay.</p>
-      </div>
-    </div>
-    <div class="act-item">
-      <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=800&q=80" alt="Spa and recovery">
-      <div class="act-dim"></div>
-      <div class="act-copy">
-        <h3>Spa & Recovery</h3>
-        <p>In-villa massage, Reiki, sauna sessions, and holistic treatments. Recovery is part of the programme.</p>
-      </div>
-    </div>
+    <div class="act-item"><img src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?auto=format&fit=crop&w=800&q=80" alt="Kiteboarding"><div class="act-dim"></div><div class="act-copy"><h3 data-i18n="act1.name">Kiteboarding</h3><p data-i18n="act1.desc">The trade winds here are legendary.</p></div></div>
+    <div class="act-item"><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80" alt="Yoga"><div class="act-dim"></div><div class="act-copy"><h3 data-i18n="act2.name">Sunrise Yoga</h3><p data-i18n="act2.desc">Daily sessions on the cliff terrace.</p></div></div>
+    <div class="act-item"><img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=800&q=80" alt="SUP"><div class="act-dim"></div><div class="act-copy"><h3 data-i18n="act3.name">Paddleboard & SUP</h3><p data-i18n="act3.desc">Explore sea caves and lagoons.</p></div></div>
+    <div class="act-item"><img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=800&q=80" alt="Running"><div class="act-dim"></div><div class="act-copy"><h3 data-i18n="act4.name">Beach Running</h3><p data-i18n="act4.desc">Eight kilometres of undeveloped coastline.</p></div></div>
+    <div class="act-item"><img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=800&q=80" alt="Swimming"><div class="act-dim"></div><div class="act-copy"><h3 data-i18n="act5.name">Ocean Swimming</h3><p data-i18n="act5.desc">Crystal-clear Atlantic water.</p></div></div>
+    <div class="act-item"><img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=800&q=80" alt="Spa"><div class="act-dim"></div><div class="act-copy"><h3 data-i18n="act6.name">Spa & Recovery</h3><p data-i18n="act6.desc">Massage, Reiki, sauna.</p></div></div>
   </div>
 </section>
 
-<!-- ======= EXPERIENCE STRIP ======= -->
-<div class="experience-strip">
-  <div class="exp-panel">
-    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=800&q=80" alt="Tropical beach">
-    <div class="exp-overlay"></div>
-    <div class="exp-text"><h3>Deserted<br>beaches</h3></div>
-  </div>
-  <div class="exp-panel">
-    <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=800&q=80" alt="Aerial coastline">
-    <div class="exp-overlay"></div>
-    <div class="exp-text"><h3>Untouched<br>coastline</h3></div>
-  </div>
-  <div class="exp-panel">
-    <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=800&q=80" alt="Atlantic ocean">
-    <div class="exp-overlay"></div>
-    <div class="exp-text"><h3>The open<br>Atlantic</h3></div>
-  </div>
+<!-- EXPERIENCE STRIP -->
+<div class="exp-strip">
+  <div class="exp-panel"><img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=800&q=80" alt="Beach"><div class="exp-overlay"></div><div class="exp-text"><h3 data-i18n="exp1">Deserted beaches</h3></div></div>
+  <div class="exp-panel"><img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=800&q=80" alt="Coastline"><div class="exp-overlay"></div><div class="exp-text"><h3 data-i18n="exp2">Untouched coastline</h3></div></div>
+  <div class="exp-panel"><img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=800&q=80" alt="Ocean"><div class="exp-overlay"></div><div class="exp-text"><h3 data-i18n="exp3">The open Atlantic</h3></div></div>
 </div>
 
-<!-- ======= GALLERY ======= -->
+<!-- GALLERY -->
 <section class="gallery-section" id="gallery">
   <div class="gallery-hd reveal">
-    <div>
-      <span class="label">A glimpse</span>
-      <h2>Life at Casa da Falésia</h2>
-    </div>
-    <p>Click any image to view it full screen. These are real moments from the villa and its surroundings.</p>
+    <div><span class="label" data-i18n="idx.gallery.label">A glimpse</span><h2 data-i18n="idx.gallery.h2">Life at Casa da Falésia</h2></div>
+    <p data-i18n="idx.gallery.sub">Click any image to view full screen.</p>
   </div>
-
-  <div class="masonry">
-    <div class="m-item" onclick="openLb(this)">
-      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=85" alt="The beach">
-    </div>
-    <div class="m-item" onclick="openLb(this)">
-      <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=900&q=85" alt="Aerial view">
-    </div>
-    <div class="m-item" onclick="openLb(this)">
-      <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=900&q=85" alt="Suite interior">
-    </div>
-    <div class="m-item" onclick="openLb(this)">
-      <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=900&q=85" alt="Pool">
-    </div>
-    <div class="m-item" onclick="openLb(this)">
-      <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=900&q=85" alt="Yoga">
-    </div>
-    <div class="m-item" onclick="openLb(this)">
-      <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=85" alt="Ocean">
-    </div>
-    <div class="m-item" onclick="openLb(this)">
-      <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=900&q=85" alt="Infinity pool">
-    </div>
-    <div class="m-item" onclick="openLb(this)">
-      <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=85" alt="Pool at dusk">
-    </div>
+  <div class="masonry" id="masonry">
+    <div class="m-item" onclick="openLb(this,'#masonry')"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=85" alt="The beach"></div>
+    <div class="m-item" onclick="openLb(this,'#masonry')"><img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=900&q=85" alt="Ocean aerial"></div>
+    <div class="m-item" onclick="openLb(this,'#masonry')"><img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=900&q=85" alt="Suite interior"></div>
+    <div class="m-item" onclick="openLb(this,'#masonry')"><img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=900&q=85" alt="Pool"></div>
+    <div class="m-item" onclick="openLb(this,'#masonry')"><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=900&q=85" alt="Yoga"></div>
+    <div class="m-item" onclick="openLb(this,'#masonry')"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=85" alt="Ocean"></div>
+    <div class="m-item" onclick="openLb(this,'#masonry')"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=900&q=85" alt="Infinity pool"></div>
+    <div class="m-item" onclick="openLb(this,'#masonry')"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=85" alt="Pool dusk"></div>
   </div>
 </section>
 
-<!-- ======= PULL QUOTE ======= -->
+<!-- QUOTE -->
 <section class="quote-section">
-  <p class="q-text reveal">"We came for a week and left a different kind of quiet. Not the quiet of nothingness — the quiet of being exactly where you are meant to be."</p>
-  <p class="q-attr reveal reveal-d1">— A guest, February 2025</p>
+  <p class="q-text reveal" data-i18n="idx.quote.text">"We came for a week and left a different kind of quiet — not the quiet of nothingness, but of being exactly where you are meant to be."</p>
+  <p class="q-attr reveal reveal-d1" data-i18n="idx.quote.attr">— A guest, February 2025</p>
 </section>
 
-<!-- ======= AMENITIES ======= -->
-<section class="amenities-section">
+<!-- AMENITIES -->
+<section class="amen-section">
   <div class="amen-hd">
-    <span class="label">Included with every stay</span>
-    <h2>Everything you need,<br>nothing you don't</h2>
+    <span class="label" data-i18n="idx.amen.label">Included with every stay</span>
+    <h2 data-i18n="idx.amen.h2">Everything you need, nothing you don't</h2>
   </div>
   <div class="amen-grid">
     <div class="amen-item reveal">
-      <svg class="amen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-        <path d="M3 12h18M3 6l9-3 9 3M3 18l9 3 9-3"/>
-      </svg>
-      <h4>Private Beach Access</h4>
-      <p>A private path leads directly to our stretch of Atlantic coastline — no crowds, no shared facilities.</p>
+      <svg class="amen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 12h18M3 6l9-3 9 3M3 18l9 3 9-3"/></svg>
+      <h4 data-i18n="amen1.title">Private Beach Access</h4><p data-i18n="amen1.desc">A private path to our stretch of Atlantic coastline.</p>
     </div>
     <div class="amen-item reveal reveal-d1">
-      <svg class="amen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-        <circle cx="12" cy="12" r="3"/>
-        <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
-      </svg>
-      <h4>Infinity Pool</h4>
-      <p>Heated year-round, the 22-metre pool appears to pour directly into the Atlantic below.</p>
+      <svg class="amen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+      <h4 data-i18n="amen2.title">Infinity Pool</h4><p data-i18n="amen2.desc">Heated year-round, 22 metres, pouring into the Atlantic.</p>
     </div>
     <div class="amen-item reveal reveal-d2">
-      <svg class="amen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-      </svg>
-      <h4>Wellness & Spa</h4>
-      <p>Private sauna, in-villa massage, Reiki, and daily yoga sessions with our resident instructor.</p>
+      <svg class="amen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <h4 data-i18n="amen3.title">Wellness & Spa</h4><p data-i18n="amen3.desc">Private sauna, in-villa massage, Reiki, daily yoga.</p>
     </div>
     <div class="amen-item reveal reveal-d3">
-      <svg class="amen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-        <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
-        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
-        <line x1="6" y1="1" x2="6" y2="4"/>
-        <line x1="10" y1="1" x2="10" y2="4"/>
-        <line x1="14" y1="1" x2="14" y2="4"/>
-      </svg>
-      <h4>Private Chef Option</h4>
-      <p>Arrange a private chef for the duration of your stay. Menus built around local Bahian produce and the sea.</p>
+      <svg class="amen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+      <h4 data-i18n="amen4.title">Private Chef Option</h4><p data-i18n="amen4.desc">Menus built around local produce and the sea.</p>
     </div>
   </div>
 </section>
 
-<!-- ======= LOCATION ======= -->
-<section class="location-section" id="location">
-  <div class="loc-visual">
-    <img src="https://images.unsplash.com/photo-1598135753163-6167c1a1ad65?auto=format&fit=crop&w=1200&q=85" alt="Trancoso Bahia coastline">
-  </div>
+<!-- LOCATION -->
+<section class="loc-section" id="location">
+  <div class="loc-visual"><img src="https://images.unsplash.com/photo-1598135753163-6167c1a1ad65?auto=format&fit=crop&w=1200&q=85" alt="Pipa coastline"></div>
   <div class="loc-content">
     <div class="loc-inner">
-      <span class="label">Getting here</span>
-      <h2>Trancoso,<br>Bahia</h2>
-      <p>Trancoso sits at the southern end of the Costa do Descobrimento — a stretch of coast where deep red cliffs meet dense Atlantic Forest and a sea so clear it shows its own floor. It is one of Brazil's most fiercely protected and quietly celebrated places.</p>
+      <span class="label" data-i18n="idx.loc.label">Getting here</span>
+      <h2 data-i18n="idx.loc.h2">Pipa, Rio Grande do Norte</h2>
+      <p data-i18n="idx.loc.body">Pipa sits on a sweep of Atlantic coast in northeast Brazil, famous for its dramatic red cliffs, pristine beaches, and the resident dolphin colony that patrols the bay.</p>
       <ul class="loc-facts">
-        <li>
-          <strong>Nearest airport</strong>
-          <span>Porto Seguro (PSB) — 50 min by road</span>
-        </li>
-        <li>
-          <strong>From São Paulo</strong>
-          <span>2h direct flight to Porto Seguro</span>
-        </li>
-        <li>
-          <strong>From Rio de Janeiro</strong>
-          <span>1h45 direct flight to Porto Seguro</span>
-        </li>
-        <li>
-          <strong>Airport transfer</strong>
-          <span>Private transfer included with every stay</span>
-        </li>
-        <li>
-          <strong>Beach access</strong>
-          <span>Private cliff path — two minutes from the villa</span>
-        </li>
+        <li><strong data-i18n="loc.f1k">Nearest airport</strong><span data-i18n="loc.f1v">Natal (NAT) — 90 min by road</span></li>
+        <li><strong data-i18n="loc.f2k">From São Paulo</strong><span data-i18n="loc.f2v">3h direct flight to Natal</span></li>
+        <li><strong data-i18n="loc.f3k">From Rio</strong><span data-i18n="loc.f3v">3h direct flight to Natal</span></li>
+        <li><strong data-i18n="loc.f4k">Transfer</strong><span data-i18n="loc.f4v">Private airport transfer included</span></li>
+        <li><strong data-i18n="loc.f5k">Beach access</strong><span data-i18n="loc.f5v">Private cliff path — 2 min from villa</span></li>
       </ul>
-      <a href="#book" class="btn btn-primary">Plan your trip</a>
+      <a href="reserve.html" class="btn btn-primary" data-i18n="idx.cta1">Reserve Your Stay</a>
     </div>
   </div>
 </section>
 
-<!-- ======= BOOK ======= -->
+<!-- BOOK CTA -->
 <section class="book-section" id="book">
   <div class="book-photo"></div>
   <div class="book-content">
-    <span class="label">Enquiries & Reservations</span>
-    <h2>Ready to leave<br>the world <em>behind?</em></h2>
-    <p>Casa da Falésia is available for exclusive full-villa rental. We accommodate up to 10 guests and welcome stays of three nights or more. Reach us directly for availability, tailored pricing, and to discuss your stay.</p>
+    <span class="label" data-i18n="idx.book.label">Enquiries & Reservations</span>
+    <h2 data-i18n-html="idx.book.h2">Ready to leave the world <em>behind?</em></h2>
+    <p data-i18n="idx.book.body">Casa da Falésia is available for exclusive full-villa rental. We accommodate up to 10 guests and welcome stays of three nights or more.</p>
     <div class="book-btns">
-      <a href="mailto:hello@casadafalesia.com" class="btn btn-primary">Send an Enquiry</a>
-      <a href="#" class="btn btn-outline-dark">WhatsApp Us</a>
+      <a href="reserve.html" class="btn btn-primary" data-i18n="idx.book.cta1">Send an Enquiry</a>
+      <a href="contact.html" class="btn btn-outline" data-i18n="idx.book.cta2">WhatsApp Us</a>
     </div>
-    <p class="pricing-note">From <strong>R$&nbsp;6.500</strong> per night · Exclusive full-villa rental · Minimum 3 nights</p>
+    <p class="pricing-note" data-i18n-html="idx.book.price">From <strong>R$&nbsp;5,500</strong> per night · Full-villa rental · Minimum 3 nights</p>
   </div>
 </section>
 
-<!-- ======= FOOTER ======= -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <h3>Casa da Falésia</h3>
-      <p>A private beachfront villa in Trancoso, Bahia — built for those who need to truly escape.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Explore</h4>
-      <ul>
-        <li><a href="#villa">The Villa</a></li>
-        <li><a href="#suites">Suites</a></li>
-        <li><a href="#activities">Sport & Wellness</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#location">Location</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Stay</h4>
-      <ul>
-        <li><a href="#book">Book a stay</a></li>
-        <li><a href="#book">Rates</a></li>
-        <li><a href="#book">Enquiries</a></li>
-        <li><a href="#">FAQs</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="mailto:hello@casadafalesia.com">hello@casadafalesia.com</a></li>
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">WhatsApp</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2025 Casa da Falésia · All rights reserved</p>
-    <div class="socials">
-      <a href="#">Instagram</a>
-      <a href="#">WhatsApp</a>
-      <a href="#">Email</a>
-    </div>
-  </div>
-</footer>
-
-<!-- LIGHTBOX -->
-<div class="lb" id="lb" onclick="closeLb()">
-  <div class="lb-close">×</div>
-  <img src="" alt="" id="lbImg">
-</div>
+<footer id="footer"></footer>
+<div class="lb" id="lb"></div>
 
 <script>
-  // ── NAVBAR ──────────────────────────────────────
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 72);
-  });
-
-  function toggleNav() {
-    document.getElementById('navLinks').classList.toggle('open');
-  }
-  document.querySelectorAll('.nav-links a').forEach(a =>
-    a.addEventListener('click', () =>
-      document.getElementById('navLinks').classList.remove('open')
-    )
-  );
-
-  // ── HERO PARALLAX ───────────────────────────────
+  // Hero parallax
   const heroBg = document.getElementById('heroBg');
   window.addEventListener('scroll', () => {
-    if (window.scrollY < window.innerHeight) {
-      heroBg.style.transform = `translateY(${window.scrollY * 0.38}px)`;
-    }
+    if (window.scrollY < window.innerHeight) heroBg.style.transform = `translateY(${window.scrollY * 0.38}px)`;
   });
-
-  // ── REVEAL ON SCROLL ────────────────────────────
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('up'); });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  // ── SUITES DRAG SCROLL ──────────────────────────
+  // Suites drag
   const rail = document.getElementById('suitesRail');
-  let drag = false, sx, sl;
-  rail.addEventListener('mousedown', e => {
-    drag = true; rail.classList.add('active');
-    sx = e.pageX - rail.offsetLeft; sl = rail.scrollLeft;
-  });
-  ['mouseleave','mouseup'].forEach(ev =>
-    rail.addEventListener(ev, () => { drag = false; rail.classList.remove('active'); })
-  );
-  rail.addEventListener('mousemove', e => {
-    if (!drag) return;
-    e.preventDefault();
-    rail.scrollLeft = sl - (e.pageX - rail.offsetLeft - sx) * 1.4;
-  });
-
-  function slideSuites(dir) {
-    rail.scrollBy({ left: dir * 390, behavior: 'smooth' });
-  }
-
-  // ── LIGHTBOX ────────────────────────────────────
-  function openLb(el) {
-    const src = el.querySelector('img').src.replace(/w=\d+/, 'w=2000');
-    document.getElementById('lbImg').src = src;
-    document.getElementById('lb').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeLb() {
-    document.getElementById('lb').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+  let drag=false, sx, sl;
+  rail.addEventListener('mousedown', e => { drag=true; rail.classList.add('active'); sx=e.pageX-rail.offsetLeft; sl=rail.scrollLeft; });
+  ['mouseleave','mouseup'].forEach(ev => rail.addEventListener(ev,()=>{ drag=false; rail.classList.remove('active'); }));
+  rail.addEventListener('mousemove', e => { if(!drag) return; e.preventDefault(); rail.scrollLeft=sl-(e.pageX-rail.offsetLeft-sx)*1.4; });
+  function slideSuites(d) { rail.scrollBy({left:d*390,behavior:'smooth'}); }
 </script>
-
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

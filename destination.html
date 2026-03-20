@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pipa — Casa da Falésia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/shared.css">
+  <style>
+    /* ── ABOUT ── */
+    .about-section { display:grid; grid-template-columns:1fr 1fr; min-height:78vh; }
+    .about-visual { overflow:hidden; }
+    .about-visual img { width:100%; height:100%; object-fit:cover; transition:transform 0.9s; }
+    .about-visual:hover img { transform:scale(1.04); }
+    .about-text { background:var(--cream); padding:100px 80px; display:flex; align-items:center; }
+    .about-inner { max-width:460px; }
+    .about-inner h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,3.5vw,52px); font-weight:300; line-height:1.1; color:var(--dark); margin-bottom:26px; }
+    .about-inner p { font-size:15px; font-weight:300; line-height:1.85; color:var(--warm-gray); margin-bottom:18px; }
+
+    /* ── BEACHES ── */
+    .beaches-section { padding:120px 80px; background:var(--dark); }
+    .beaches-section h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,3.5vw,52px); font-weight:300; color:var(--sand); margin-bottom:56px; }
+    .beach-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; }
+    .beach-card { position:relative; height:440px; overflow:hidden; cursor:pointer; }
+    .beach-card img { width:100%; height:100%; object-fit:cover; transition:transform 0.75s; }
+    .beach-card:hover img { transform:scale(1.06); }
+    .beach-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.05) 55%); }
+    .beach-copy { position:absolute; bottom:36px; left:36px; right:36px; }
+    .beach-copy h3 { font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:300; color:var(--white); margin-bottom:10px; }
+    .beach-copy p { font-size:13px; font-weight:300; color:rgba(255,255,255,0.65); line-height:1.6; }
+
+    /* ── CLIMATE ── */
+    .climate-section { display:grid; grid-template-columns:1fr 1fr; }
+    .climate-vis { position:relative; overflow:hidden; min-height:60vh; }
+    .climate-vis img { width:100%; height:100%; object-fit:cover; }
+    .climate-content { background:var(--sand); padding:100px 80px; display:flex; align-items:center; }
+    .climate-inner { max-width:460px; }
+    .climate-inner h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(32px,3vw,46px); font-weight:300; line-height:1.1; color:var(--dark); margin-bottom:24px; }
+    .climate-inner p { font-size:14px; font-weight:300; line-height:1.85; color:var(--warm-gray); margin-bottom:18px; }
+    .season-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:36px; }
+    .season-card { background:rgba(255,255,255,0.5); padding:20px; }
+    .season-card h4 { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:400; color:var(--dark); margin-bottom:6px; }
+    .season-card p { font-size:12px; font-weight:300; line-height:1.6; color:var(--warm-gray); }
+    .season-dot { width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:6px; }
+    .dot-high { background:var(--terracotta); }
+    .dot-mid { background:var(--ocean); }
+    .dot-low { background:var(--forest); }
+
+    /* ── HOW TO GET THERE ── */
+    .how-section { padding:120px 80px; background:var(--cream); }
+    .how-section h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,3.5vw,52px); font-weight:300; color:var(--dark); margin-bottom:56px; }
+    .transport-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--light-gray); }
+    .transport-card { background:var(--white); padding:48px 40px; }
+    .transport-icon { width:40px; height:40px; color:var(--terracotta); margin-bottom:20px; }
+    .transport-card h3 { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:400; color:var(--dark); margin-bottom:12px; }
+    .transport-card p { font-size:13px; font-weight:300; line-height:1.75; color:var(--warm-gray); }
+    .transport-card ul { list-style:none; margin-top:16px; }
+    .transport-card ul li { font-size:13px; font-weight:300; color:var(--warm-gray); padding:8px 0; border-bottom:1px solid var(--light-gray); display:flex; gap:10px; align-items:flex-start; }
+    .transport-card ul li::before { content:'→'; color:var(--terracotta); flex-shrink:0; }
+
+    /* ── CTA ── */
+    .dest-cta { background:var(--forest); padding:120px 80px; text-align:center; }
+    .dest-cta h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,4vw,56px); font-weight:300; font-style:italic; color:var(--sand); margin-bottom:20px; }
+    .dest-cta p { font-size:15px; font-weight:300; color:rgba(255,255,255,0.5); margin-bottom:40px; }
+
+    @media (max-width:1100px) {
+      .about-section { grid-template-columns:1fr; }
+      .about-visual { min-height:360px; }
+      .about-text { padding:64px 28px; }
+      .beaches-section { padding:80px 28px; }
+      .beach-grid { grid-template-columns:1fr; }
+      .beach-card { height:340px; }
+      .climate-section { grid-template-columns:1fr; }
+      .climate-vis { min-height:340px; }
+      .climate-content { padding:60px 28px; }
+      .season-grid { grid-template-columns:1fr; }
+      .how-section { padding:80px 28px; }
+      .transport-grid { grid-template-columns:1fr; gap:2px; }
+      .dest-cta { padding:80px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav" class="light"></nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1598135753163-6167c1a1ad65?auto=format&fit=crop&w=2000&q=80')"></div>
+  <div class="page-hero-content">
+    <span class="label" data-i18n="dest.hero.label">The Destination</span>
+    <h1 data-i18n="dest.hero.h1">Pipa</h1>
+    <p data-i18n="dest.hero.sub">A small village perched above dramatic Atlantic cliffs in northeast Brazil — known for dolphins, surfers, bohemian culture, and one of the world's great sunsets.</p>
+  </div>
+</div>
+
+<!-- ABOUT PIPA -->
+<section class="about-section">
+  <div class="about-visual">
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=85" alt="Pipa beach">
+  </div>
+  <div class="about-text">
+    <div class="about-inner">
+      <span class="label" data-i18n="dest.about.label">The place</span>
+      <h2 data-i18n="dest.about.h2">Why Pipa?</h2>
+      <p data-i18n="dest.about.p1">Pipa is one of those rare places that has somehow resisted the pull of mass tourism while becoming quietly beloved by those who know. It sits on the southern coast of Rio Grande do Norte, about 90km from Natal, where red clay cliffs drop straight into the Atlantic and a sheltered bay is home to a resident population of spinner dolphins.</p>
+      <p data-i18n="dest.about.p2">The village itself is small, bohemian, and surprisingly refined — good restaurants, artisan shops, a handful of exceptional properties. But it is the landscape that keeps people returning: the cliffs, the beaches, the light.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div style="background:var(--dark); display:grid; grid-template-columns:repeat(3,1fr); padding:48px 80px; gap:0;">
+  <div style="text-align:center; padding:0 32px; border-right:1px solid rgba(255,255,255,0.08);">
+    <div style="font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:300; color:var(--sand);">90<span style="font-size:22px; color:var(--terracotta);">km</span></div>
+    <div style="font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:rgba(255,255,255,0.35);">From Natal</div>
+  </div>
+  <div style="text-align:center; padding:0 32px; border-right:1px solid rgba(255,255,255,0.08);">
+    <div style="font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:300; color:var(--sand);">4</div>
+    <div style="font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:rgba(255,255,255,0.35);">Beaches</div>
+  </div>
+  <div style="text-align:center; padding:0 32px;">
+    <div style="font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:300; color:var(--sand);">28<span style="font-size:22px; color:var(--terracotta);">°C</span></div>
+    <div style="font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:rgba(255,255,255,0.35);">Average temperature</div>
+  </div>
+</div>
+
+<!-- BEACHES -->
+<section class="beaches-section">
+  <span class="label" style="color:var(--terracotta)" data-i18n="dest.beaches.label">The beaches</span>
+  <h2 data-i18n="dest.beaches.h2">Beaches of Pipa</h2>
+  <div class="beach-grid">
+    <div class="beach-card reveal">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80" alt="Praia da Pipa">
+      <div class="beach-overlay"></div>
+      <div class="beach-copy">
+        <h3 data-i18n="b1.name">Praia da Pipa</h3>
+        <p data-i18n="b1.desc">The main beach, framed by cliffs and calm enough for swimming. The bay is where the dolphins congregate each morning.</p>
+      </div>
+    </div>
+    <div class="beach-card reveal reveal-d1">
+      <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=900&q=80" alt="Praia do Amor">
+      <div class="beach-overlay"></div>
+      <div class="beach-copy">
+        <h3 data-i18n="b2.name">Praia do Amor</h3>
+        <p data-i18n="b2.desc">A small, sheltered cove directly below the cliff — the most dramatic approach in Pipa, reached by a steep path.</p>
+      </div>
+    </div>
+    <div class="beach-card reveal">
+      <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80" alt="Praia do Madeiro">
+      <div class="beach-overlay"></div>
+      <div class="beach-copy">
+        <h3 data-i18n="b3.name">Praia do Madeiro</h3>
+        <p data-i18n="b3.desc">The long, wilder beach to the south. Excellent surf and the quietest spot on the coast on weekday mornings.</p>
+      </div>
+    </div>
+    <div class="beach-card reveal reveal-d1">
+      <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=900&q=80" alt="Baía dos Golfinhos">
+      <div class="beach-overlay"></div>
+      <div class="beach-copy">
+        <h3 data-i18n="b4.name">Baía dos Golfinhos</h3>
+        <p data-i18n="b4.desc">The ecological reserve bay where spinner dolphins swim each morning — a remarkable and protected encounter.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIMATE -->
+<section class="climate-section">
+  <div class="climate-vis">
+    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1000&q=85" alt="Pipa sunrise yoga">
+  </div>
+  <div class="climate-content">
+    <div class="climate-inner">
+      <span class="label" data-i18n="dest.climate.label">When to come</span>
+      <h2 data-i18n="dest.climate.h2">Climate & best time</h2>
+      <p data-i18n="dest.climate.p1">Northeast Brazil has one of the most reliable climates in the world. Pipa enjoys sun year-round, with the dry season running from September through February — the most popular period for good reason.</p>
+      <p data-i18n="dest.climate.p2">The rainy season (April–July) brings shorter showers and lush green cliffs, and the beaches are often emptier. The trade winds peak from August to December, making it prime kiteboarding season.</p>
+      <div class="season-grid">
+        <div class="season-card">
+          <h4><span class="season-dot dot-high"></span>Sep–Feb</h4>
+          <p>Dry season · Best weather · Peak tourism. Hot, sunny days and warm evenings.</p>
+        </div>
+        <div class="season-card">
+          <h4><span class="season-dot dot-mid"></span>Mar–Apr</h4>
+          <p>Shoulder season · Quieter · Occasional rain. Lush vegetation, good for kite.</p>
+        </div>
+        <div class="season-card">
+          <h4><span class="season-dot dot-low"></span>May–Jul</h4>
+          <p>Green season · Low crowd · Daily showers. Most affordable rates, coolest air.</p>
+        </div>
+        <div class="season-card">
+          <h4><span class="season-dot dot-high"></span>Aug–Sep</h4>
+          <p>Wind season · Trade winds peak · Great kite. Very sunny with excellent swells.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO GET THERE -->
+<section class="how-section">
+  <span class="label" data-i18n="dest.how.label">Getting here</span>
+  <h2 data-i18n="dest.how.h2">How to reach Pipa</h2>
+  <div class="transport-grid">
+    <div class="transport-card reveal">
+      <svg class="transport-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.26h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.71a16 16 0 0 0 6 6l1.27-.81a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.02z"/>
+      </svg>
+      <h3>By Air</h3>
+      <p>Fly to Natal — Aeroporto Internacional Governador Aluízio Alves (NAT).</p>
+      <ul>
+        <li>São Paulo (GRU/CGH) — 3h direct (LATAM, Azul, Gol)</li>
+        <li>Rio de Janeiro (GIG/SDU) — 3h direct</li>
+        <li>Brasília — 2h30 direct</li>
+        <li>International via São Paulo or Fortaleza</li>
+      </ul>
+    </div>
+    <div class="transport-card reveal reveal-d1">
+      <svg class="transport-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+        <rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+      </svg>
+      <h3>Natal → Pipa</h3>
+      <p>The airport is approximately 90km north of Pipa. Your options:</p>
+      <ul>
+        <li>Private transfer (included with your stay) — 90 min, direct, comfortable</li>
+        <li>Pre-booked taxi service — approx. R$150–220</li>
+        <li>Shared van service — approx. 2h, R$40–60</li>
+      </ul>
+    </div>
+    <div class="transport-card reveal reveal-d2">
+      <svg class="transport-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+        <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+      </svg>
+      <h3>International</h3>
+      <p>Flying from outside Brazil? The most common routes:</p>
+      <ul>
+        <li>Lisbon (LIS) → Natal — 7h30 direct (TAP)</li>
+        <li>Paris (CDG) → São Paulo → Natal</li>
+        <li>London (LHR) → São Paulo → Natal</li>
+        <li>Miami (MIA) → São Paulo → Natal</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATION CTA -->
+<div class="dest-cta">
+  <h2>Ready to discover Pipa?</h2>
+  <p>Reserve Casa da Falésia and we'll handle the rest — private transfer from the airport, local recommendations, and a welcome you won't forget.</p>
+  <a href="reserve.html" class="btn btn-outline-white" data-i18n="nav.book">Book a Stay</a>
+</div>
+
+<footer id="footer"></footer>
+<div class="lb" id="lb"></div>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

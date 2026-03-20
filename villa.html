@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Villa — Casa da Falésia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/shared.css">
+  <style>
+    /* ── INTRO ── */
+    .villa-intro { display: grid; grid-template-columns: 1fr 1fr; min-height: 72vh; }
+    .vi-visual { overflow: hidden; position: relative; }
+    .vi-visual img { width:100%; height:100%; object-fit:cover; transition: transform 0.9s; }
+    .vi-visual:hover img { transform: scale(1.04); }
+    .vi-text { background: var(--cream); display:flex; align-items:center; padding: 88px 80px; }
+    .vi-inner { max-width: 460px; }
+    .vi-inner h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(34px,3.5vw,52px); font-weight:300; line-height:1.12; color:var(--dark); margin-bottom:24px; }
+    .vi-inner p { font-size:15px; font-weight:300; line-height:1.85; color:var(--warm-gray); margin-bottom:16px; }
+    .vi-inner p:last-of-type { margin-bottom:40px; }
+
+    /* ── SUITES ── */
+    .suites-section { padding: 120px 80px; background: var(--cream); }
+    .suites-section h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,3.8vw,54px); font-weight:300; color:var(--dark); margin-bottom:64px; }
+    .suite-detail { display:grid; grid-template-columns:1fr 1fr; gap:0; margin-bottom:80px; background:var(--white); overflow:hidden; }
+    .suite-detail:nth-child(even) { direction: rtl; }
+    .suite-detail:nth-child(even) > * { direction: ltr; }
+    .sd-gallery { position:relative; overflow:hidden; min-height:480px; }
+    .sd-main-img { width:100%; height:100%; object-fit:cover; transition: transform 0.8s; }
+    .sd-main-img:hover { transform: scale(1.04); }
+    .sd-thumbs { position:absolute; bottom:0; left:0; right:0; display:flex; gap:2px; background:rgba(0,0,0,0.4); padding:8px; }
+    .sd-thumb { flex:1; height:56px; overflow:hidden; cursor:pointer; opacity:0.7; transition:opacity 0.3s; }
+    .sd-thumb:hover, .sd-thumb.active { opacity:1; }
+    .sd-thumb img { width:100%; height:100%; object-fit:cover; }
+    .sd-info { padding:52px 56px; display:flex; flex-direction:column; justify-content:center; }
+    .suite-num-label { font-size:10px; letter-spacing:0.3em; text-transform:uppercase; color:var(--terracotta); margin-bottom:16px; }
+    .sd-info h3 { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,2.8vw,40px); font-weight:300; color:var(--dark); margin-bottom:16px; }
+    .sd-info p { font-size:14px; font-weight:300; line-height:1.8; color:var(--warm-gray); margin-bottom:28px; }
+    .sd-specs { display:grid; grid-template-columns:1fr 1fr; gap:12px 24px; margin-bottom:32px; }
+    .sd-spec { font-size:12px; color:var(--warm-gray); display:flex; align-items:center; gap:8px; }
+    .sd-spec::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--terracotta); flex-shrink:0; }
+    .sd-tags { display:flex; flex-wrap:wrap; gap:6px; }
+    .sd-tag { font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--warm-gray); border:1px solid var(--light-gray); padding:4px 10px; border-radius:2px; }
+
+    /* ── PROPERTY GALLERY ── */
+    .prop-gallery { padding: 120px 80px; background: var(--dark); }
+    .prop-gallery h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,3.5vw,52px); font-weight:300; color:var(--sand); margin-bottom:8px; }
+    .prop-gallery > p { font-size:14px; font-weight:300; color:rgba(255,255,255,0.4); margin-bottom:48px; }
+    .pg-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+    .pg-item { overflow:hidden; cursor:pointer; position:relative; }
+    .pg-item img { width:100%; height:100%; object-fit:cover; transition:transform 0.6s; }
+    .pg-item:hover img { transform:scale(1.06); }
+    .pg-item:nth-child(1) { grid-column: span 2; height:460px; }
+    .pg-item:nth-child(2) { height:460px; }
+    .pg-item:nth-child(3), .pg-item:nth-child(4), .pg-item:nth-child(5) { height:300px; }
+    .pg-item:nth-child(6) { grid-column: span 2; height:300px; }
+    .pg-item:nth-child(7) { height:300px; }
+    .pg-item:nth-child(8), .pg-item:nth-child(9) { height:260px; }
+    .pg-item:nth-child(10) { height:260px; }
+
+    /* ── BOOK BAR ── */
+    .book-bar { background:var(--terracotta); padding:48px 80px; display:flex; align-items:center; justify-content:space-between; gap:32px; }
+    .book-bar h3 { font-family:'Cormorant Garamond',serif; font-size:clamp(26px,2.5vw,36px); font-weight:300; color:var(--white); }
+    .book-bar p { font-size:13px; color:rgba(255,255,255,0.75); margin-top:6px; }
+    .btn-white { padding:15px 40px; background:var(--white); color:var(--terracotta); font-size:11px; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; border-radius:2px; transition:all 0.3s; flex-shrink:0; display:inline-block; }
+    .btn-white:hover { background:var(--dark); color:var(--white); }
+
+    @media (max-width:1100px) {
+      .villa-intro { grid-template-columns:1fr; }
+      .vi-visual { min-height:380px; }
+      .vi-text { padding:60px 28px; }
+      .suites-section { padding:80px 28px; }
+      .suite-detail { grid-template-columns:1fr; direction:ltr !important; }
+      .sd-gallery { min-height:340px; }
+      .sd-info { padding:36px 28px; }
+      .prop-gallery { padding:80px 28px; }
+      .pg-grid { grid-template-columns:1fr 1fr; }
+      .pg-item { grid-column:span 1 !important; height:220px !important; }
+      .book-bar { flex-direction:column; text-align:center; padding:40px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav" class="light"></nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=2000&q=80')"></div>
+  <div class="page-hero-content">
+    <span class="label" data-i18n="villa.hero.label">The Property</span>
+    <h1 data-i18n="villa.hero.h1">Five suites, one horizon</h1>
+    <p data-i18n="villa.hero.sub">Each suite is 62 m², individually designed, and oriented toward the Atlantic. The entire villa is yours — never shared with other guests.</p>
+  </div>
+</div>
+
+<!-- EXCLUSIVE USE INTRO -->
+<section class="villa-intro">
+  <div class="vi-visual">
+    <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1200&q=85" alt="Villa pool exclusive">
+  </div>
+  <div class="vi-text">
+    <div class="vi-inner">
+      <span class="label" data-i18n="villa.intro.label">Exclusive use</span>
+      <h2 data-i18n-html="villa.intro.h2">Booking the villa means booking <em>all of it</em></h2>
+      <p data-i18n="villa.intro.body">Casa da Falésia operates exclusively as a whole-villa rental. When you stay here, every room, every terrace, every inch of the clifftop is yours. No other guests, no shared spaces, complete privacy.</p>
+      <p>Five individually designed suites — each oriented toward the Atlantic, each with its own character and particular relationship to the land, the light, and the sea.</p>
+      <a href="reserve.html" class="btn btn-primary" data-i18n="nav.book">Book a Stay</a>
+    </div>
+  </div>
+</section>
+
+<!-- SUITE DETAILS -->
+<section class="suites-section" id="suites">
+  <span class="label" data-i18n="idx.suites.label">Accommodation</span>
+  <h2 data-i18n="idx.suites.h2">Five suites, one horizon</h2>
+
+  <!-- Suite A -->
+  <div class="suite-detail reveal" id="suite-a">
+    <div class="sd-gallery">
+      <img class="sd-main-img" id="sa-main" src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1000&q=85" alt="Falésia Suite">
+      <div class="sd-thumbs">
+        <div class="sd-thumb active" onclick="switchImg('sa-main',this,'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=200&q=70" alt=""></div>
+        <div class="sd-thumb" onclick="switchImg('sa-main',this,'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=200&q=70" alt=""></div>
+        <div class="sd-thumb" onclick="switchImg('sa-main',this,'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=200&q=70" alt=""></div>
+      </div>
+    </div>
+    <div class="sd-info">
+      <div class="suite-num-label">Suite A</div>
+      <h3 data-i18n="s1.name">Falésia Suite</h3>
+      <p data-i18n="s1.desc">Our clifftop master suite with a private terrace directly above the waterline. Fall asleep to the sound of the Atlantic below.</p>
+      <p>The largest suite on the property, with floor-to-ceiling glass on the ocean side that opens fully onto a private wraparound terrace. Raw stone walls, linen bedding, and a freestanding soaking tub facing the sea.</p>
+      <div class="sd-specs">
+        <span class="sd-spec">62 m²</span>
+        <span class="sd-spec">Ocean-facing terrace</span>
+        <span class="sd-spec">King bed</span>
+        <span class="sd-spec">Freestanding soaking tub</span>
+        <span class="sd-spec">Rain shower + outdoor shower</span>
+        <span class="sd-spec">Direct cliff access</span>
+      </div>
+      <div class="sd-tags">
+        <span class="sd-tag" data-i18n="suite.tag.62">62 m²</span>
+        <span class="sd-tag" data-i18n="suite.tag.king">King bed</span>
+        <span class="sd-tag" data-i18n="suite.tag.terrace">Cliff terrace</span>
+        <span class="sd-tag" data-i18n="suite.tag.tub">Soaking tub</span>
+        <span class="sd-tag" data-i18n="suite.tag.outdoor">Outdoor shower</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Suite B -->
+  <div class="suite-detail reveal" id="suite-b">
+    <div class="sd-gallery">
+      <img class="sd-main-img" id="sb-main" src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1000&q=85" alt="Brisa Suite">
+      <div class="sd-thumbs">
+        <div class="sd-thumb active" onclick="switchImg('sb-main',this,'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=200&q=70" alt=""></div>
+        <div class="sd-thumb" onclick="switchImg('sb-main',this,'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=200&q=70" alt=""></div>
+        <div class="sd-thumb" onclick="switchImg('sb-main',this,'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=200&q=70" alt=""></div>
+      </div>
+    </div>
+    <div class="sd-info">
+      <div class="suite-num-label">Suite B</div>
+      <h3 data-i18n="s2.name">Brisa Suite</h3>
+      <p data-i18n="s2.desc">Oriented east for extraordinary sunrise light, washed in white linen and ocean breeze from the moment you wake.</p>
+      <p>A suite defined by lightness — white-washed walls, gauze curtains catching the morning air, and a private deck where breakfast arrives with the dawn. The most romantic suite on the property.</p>
+      <div class="sd-specs">
+        <span class="sd-spec">62 m²</span>
+        <span class="sd-spec">East-facing, sunrise view</span>
+        <span class="sd-spec">King bed</span>
+        <span class="sd-spec">Private breakfast deck</span>
+        <span class="sd-spec">Rain shower</span>
+        <span class="sd-spec">Freestanding bath</span>
+      </div>
+      <div class="sd-tags">
+        <span class="sd-tag" data-i18n="suite.tag.62">62 m²</span>
+        <span class="sd-tag" data-i18n="suite.tag.king">King bed</span>
+        <span class="sd-tag" data-i18n="suite.tag.sunrise">Sunrise view</span>
+        <span class="sd-tag" data-i18n="suite.tag.ensuite">Ensuite</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Suite C -->
+  <div class="suite-detail reveal" id="suite-c">
+    <div class="sd-gallery">
+      <img class="sd-main-img" id="sc-main" src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1000&q=85" alt="Jardim Suite">
+      <div class="sd-thumbs">
+        <div class="sd-thumb active" onclick="switchImg('sc-main',this,'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=200&q=70" alt=""></div>
+        <div class="sd-thumb" onclick="switchImg('sc-main',this,'https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=200&q=70" alt=""></div>
+        <div class="sd-thumb" onclick="switchImg('sc-main',this,'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=200&q=70" alt=""></div>
+      </div>
+    </div>
+    <div class="sd-info">
+      <div class="suite-num-label">Suite C</div>
+      <h3 data-i18n="s3.name">Jardim Suite</h3>
+      <p data-i18n="s3.desc">Surrounded by native Atlantic Forest on three sides — cool, fragrant, and deeply restorative.</p>
+      <p>The most grounded suite on the property. Sliding panels open onto a private garden enclosed by native forest, with an outdoor shower among the vegetation. The air is different here — cooler, filled with birdsong.</p>
+      <div class="sd-specs">
+        <span class="sd-spec">62 m²</span>
+        <span class="sd-spec">Private forest garden</span>
+        <span class="sd-spec">King bed</span>
+        <span class="sd-spec">Outdoor garden shower</span>
+        <span class="sd-spec">Ensuite bathroom</span>
+        <span class="sd-spec">Direct garden access</span>
+      </div>
+      <div class="sd-tags">
+        <span class="sd-tag" data-i18n="suite.tag.62">62 m²</span>
+        <span class="sd-tag" data-i18n="suite.tag.king">King bed</span>
+        <span class="sd-tag" data-i18n="suite.tag.garden">Garden</span>
+        <span class="sd-tag" data-i18n="suite.tag.outdoor">Outdoor shower</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Suite D -->
+  <div class="suite-detail reveal" id="suite-d">
+    <div class="sd-gallery">
+      <img class="sd-main-img" id="sd-main" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=85" alt="Maré Suite">
+      <div class="sd-thumbs">
+        <div class="sd-thumb active" onclick="switchImg('sd-main',this,'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=200&q=70" alt=""></div>
+        <div class="sd-thumb" onclick="switchImg('sd-main',this,'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=200&q=70" alt=""></div>
+        <div class="sd-thumb" onclick="switchImg('sd-main',this,'https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=200&q=70" alt=""></div>
+      </div>
+    </div>
+    <div class="sd-info">
+      <div class="suite-num-label">Suite D</div>
+      <h3 data-i18n="s4.name">Maré Suite</h3>
+      <p data-i18n="s4.desc">Pool-level and low-slung, this suite steps directly onto the infinity pool deck with its unbroken sea view.</p>
+      <p>Step from the bedroom directly onto the pool terrace. The Maré Suite feels like living outdoors — a room defined more by what's outside it than within. A favourite for those who want to swim before breakfast.</p>
+      <div class="sd-specs">
+        <span class="sd-spec">62 m²</span>
+        <span class="sd-spec">Direct pool access</span>
+        <span class="sd-spec">King bed</span>
+        <span class="sd-spec">Terrace day bed</span>
+        <span class="sd-spec">Ensuite bathroom</span>
+        <span class="sd-spec">Ocean view</span>
+      </div>
+      <div class="sd-tags">
+        <span class="sd-tag" data-i18n="suite.tag.62">62 m²</span>
+        <span class="sd-tag" data-i18n="suite.tag.king">King bed</span>
+        <span class="sd-tag" data-i18n="suite.tag.pool">Pool level</span>
+        <span class="sd-tag" data-i18n="suite.tag.daybed">Day bed</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Suite E -->
+  <div class="suite-detail reveal" id="suite-e">
+    <div class="sd-gallery">
+      <img class="sd-main-img" id="se-main" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1000&q=85" alt="Canto Suite">
+      <div class="sd-thumbs">
+        <div class="sd-thumb active" onclick="switchImg('se-main',this,'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=200&q=70" alt=""></div>
+        <div class="sd-thumb" onclick="switchImg('se-main',this,'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=200&q=70" alt=""></div>
+        <div class="sd-thumb" onclick="switchImg('se-main',this,'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=200&q=70" alt=""></div>
+      </div>
+    </div>
+    <div class="sd-info">
+      <div class="suite-num-label">Suite E</div>
+      <h3 data-i18n="s5.name">Canto Suite</h3>
+      <p data-i18n="s5.desc">Tucked into the north corner — the most secluded suite on the property, a true nest for complete solitude.</p>
+      <p>The Canto Suite sees the sun from two angles — morning light from the east, afternoon gold from the north. Deeper into the villa than the other suites, it is the quietest, most private, most contemplative room we have.</p>
+      <div class="sd-specs">
+        <span class="sd-spec">62 m²</span>
+        <span class="sd-spec">Double aspect views</span>
+        <span class="sd-spec">King bed</span>
+        <span class="sd-spec">Freestanding soaking tub</span>
+        <span class="sd-spec">Private nook terrace</span>
+        <span class="sd-spec">Most secluded suite</span>
+      </div>
+      <div class="sd-tags">
+        <span class="sd-tag" data-i18n="suite.tag.62">62 m²</span>
+        <span class="sd-tag" data-i18n="suite.tag.king">King bed</span>
+        <span class="sd-tag" data-i18n="suite.tag.aspect">Double aspect</span>
+        <span class="sd-tag" data-i18n="suite.tag.tub">Soaking tub</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROPERTY GALLERY -->
+<section class="prop-gallery" id="gallery">
+  <span class="label" style="color:var(--terracotta)" data-i18n="villa.gallery.label">Property gallery</span>
+  <h2 data-i18n="villa.gallery.h2">Inside Casa da Falésia</h2>
+  <p>Click any image to view full screen — use arrow keys to navigate.</p>
+  <div class="pg-grid" id="pgGrid">
+    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1200&q=85" alt="Infinity pool"></div>
+    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=900&q=85" alt="Villa pool"></div>
+    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=900&q=85" alt="Terrace"></div>
+    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=85" alt="Living area"></div>
+    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=900&q=85" alt="Suite A"></div>
+    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1200&q=85" alt="Suite B"></div>
+    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=900&q=85" alt="Suite C"></div>
+    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=85" alt="Suite D pool"></div>
+    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=900&q=85" alt="Suite E"></div>
+    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=85" alt="Beach view"></div>
+  </div>
+</section>
+
+<!-- BOOK BAR -->
+<div class="book-bar">
+  <div>
+    <h3>Ready to experience Casa da Falésia?</h3>
+    <p data-i18n="idx.book.price">From <strong>R$&nbsp;5,500</strong> per night · Full-villa · Minimum 3 nights</p>
+  </div>
+  <a href="reserve.html" class="btn-white" data-i18n="nav.book">Book a Stay</a>
+</div>
+
+<footer id="footer"></footer>
+<div class="lb" id="lb"></div>
+
+<script>
+function switchImg(mainId, thumb, src) {
+  document.getElementById(mainId).src = src;
+  // Update active thumb
+  const parent = thumb.closest('.sd-thumbs');
+  parent.querySelectorAll('.sd-thumb').forEach(t => t.classList.remove('active'));
+  thumb.classList.add('active');
+}
+</script>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

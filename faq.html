@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — Casa da Falésia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/shared.css">
+  <style>
+    .faq-wrap { display: grid; grid-template-columns: 1fr 2fr; gap: 0; min-height: 80vh; }
+
+    /* ── SIDEBAR ── */
+    .faq-sidebar { background: var(--dark); padding: 80px 56px; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+    .faq-sidebar h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px,2.5vw,40px); font-weight: 300; color: var(--sand); margin-bottom: 40px; }
+    .faq-nav { list-style: none; }
+    .faq-nav li { margin-bottom: 0; }
+    .faq-nav li a { display: block; font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.45); padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); transition: color 0.3s; }
+    .faq-nav li a:hover { color: var(--sand); }
+    .faq-categories { margin-top: 48px; }
+    .faq-categories h4 { font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 16px; }
+    .faq-cat-btn { display: block; width: 100%; text-align: left; background: none; border: none; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.35); padding: 10px 0; cursor: pointer; transition: color 0.3s; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .faq-cat-btn:hover, .faq-cat-btn.active { color: var(--terracotta); }
+
+    /* ── FAQ LIST ── */
+    .faq-list { padding: 80px 80px 120px; background: var(--cream); }
+    .faq-category { margin-bottom: 72px; }
+    .faq-category h3 { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px,2vw,30px); font-weight: 300; color: var(--dark); margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid var(--light-gray); }
+
+    .faq-item { border-bottom: 1px solid var(--light-gray); }
+    .faq-q {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 0; cursor: pointer; gap: 20px;
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(18px,1.8vw,22px); font-weight: 400; color: var(--dark);
+      transition: color 0.3s;
+    }
+    .faq-q:hover { color: var(--terracotta); }
+    .faq-icon { width: 24px; height: 24px; flex-shrink: 0; position: relative; transition: transform 0.4s; }
+    .faq-icon::before, .faq-icon::after { content: ''; position: absolute; background: currentColor; border-radius: 1px; transition: all 0.4s; }
+    .faq-icon::before { width: 14px; height: 1.5px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .faq-icon::after  { width: 1.5px; height: 14px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--terracotta); }
+    .faq-item.open .faq-q { color: var(--terracotta); }
+
+    .faq-a {
+      max-height: 0; overflow: hidden; transition: max-height 0.45s ease, padding 0.3s ease;
+      font-size: 14px; font-weight: 300; color: var(--warm-gray); line-height: 1.85;
+    }
+    .faq-item.open .faq-a { max-height: 400px; padding-bottom: 24px; }
+
+    /* ── CTA ── */
+    .faq-cta { background: var(--sand); padding: 80px; }
+    .faq-cta-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+    .faq-cta h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px,3.5vw,48px); font-weight: 300; color: var(--dark); margin-bottom: 16px; }
+    .faq-cta p { font-size: 15px; font-weight: 300; color: var(--warm-gray); line-height: 1.75; margin-bottom: 36px; }
+    .faq-cta-btns { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+    @media (max-width: 1100px) {
+      .faq-wrap { grid-template-columns: 1fr; }
+      .faq-sidebar { position: static; height: auto; padding: 48px 28px; }
+      .faq-list { padding: 60px 28px 80px; }
+      .faq-cta { padding: 60px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav" class="light"></nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=2000&q=80')"></div>
+  <div class="page-hero-content">
+    <span class="label" data-i18n="faq.hero.label">Questions</span>
+    <h1 data-i18n="faq.hero.h1">Frequently Asked Questions</h1>
+    <p>Everything you need to know before booking Casa da Falésia.</p>
+  </div>
+</div>
+
+<div class="faq-wrap">
+  <!-- SIDEBAR NAV -->
+  <div class="faq-sidebar">
+    <h2>Find your answer</h2>
+    <div class="faq-categories">
+      <h4>Categories</h4>
+      <button class="faq-cat-btn active" onclick="filterFaq('all', this)">All questions</button>
+      <button class="faq-cat-btn" onclick="filterFaq('booking', this)">Booking & Rates</button>
+      <button class="faq-cat-btn" onclick="filterFaq('property', this)">The Property</button>
+      <button class="faq-cat-btn" onclick="filterFaq('activities', this)">Activities</button>
+      <button class="faq-cat-btn" onclick="filterFaq('getting-here', this)">Getting Here</button>
+    </div>
+    <div style="margin-top:48px; padding:24px; border:1px solid rgba(255,255,255,0.08);">
+      <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.4); line-height:1.7;">Still have a question?</p>
+      <a href="contact.html" class="btn btn-outline-white" style="margin-top:16px; display:inline-block; padding:12px 28px; font-size:10px;" data-i18n="nav.contact">Contact us</a>
+    </div>
+  </div>
+
+  <!-- FAQ ITEMS -->
+  <div class="faq-list">
+
+    <!-- BOOKING -->
+    <div class="faq-category" data-cat="booking">
+      <h3>Booking & Rates</h3>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span data-i18n="faq.q1">Can I rent individual suites?</span><div class="faq-icon"></div></div>
+        <div class="faq-a" data-i18n="faq.a1">No — Casa da Falésia is only available as a whole-villa rental. All five suites, the pool, the terraces, and the full property are reserved exclusively for your group. This ensures complete privacy.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span data-i18n="faq.q2">What is the minimum stay?</span><div class="faq-icon"></div></div>
+        <div class="faq-a" data-i18n="faq.a2">The minimum stay is 3 nights. During peak periods (New Year, Carnival, school holidays) a 5-night minimum may apply.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span data-i18n="faq.q4">Is the price per suite or the full villa?</span><div class="faq-icon"></div></div>
+        <div class="faq-a" data-i18n="faq.a4">The quoted price is always for the full villa. Whether you are two people or ten, you rent the entire property.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span data-i18n="faq.q8">What is the cancellation policy?</span><div class="faq-icon"></div></div>
+        <div class="faq-a" data-i18n="faq.a8">A 30% deposit secures your booking. The balance is due 60 days before arrival. Cancellations more than 60 days before arrival receive a full refund of the deposit. Cancellations within 60 days are non-refundable, though we always try to rebook the dates.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>How do I confirm my booking?</span><div class="faq-icon"></div></div>
+        <div class="faq-a">Use our <a href="reserve.html" style="color:var(--terracotta);">reservation page</a> to submit an enquiry with your preferred dates. We respond within 24 hours with availability confirmation and a payment link for the deposit. The booking is confirmed once the deposit is received.</div>
+      </div>
+    </div>
+
+    <!-- PROPERTY -->
+    <div class="faq-category" data-cat="property">
+      <h3>The Property</h3>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span data-i18n="faq.q3">How many guests can the villa accommodate?</span><div class="faq-icon"></div></div>
+        <div class="faq-a" data-i18n="faq.a3">Up to 10 guests across the five suites. Children are welcome — please mention ages when enquiring so we can prepare appropriately.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span data-i18n="faq.q5">What is included in the rate?</span><div class="faq-icon"></div></div>
+        <div class="faq-a" data-i18n="faq.a5">Daily housekeeping, linen and towels, use of all sporting equipment (SUP boards, snorkels, beach bikes), pool and sauna, Wi-Fi, and a private airport transfer on arrival and departure. A private chef can be arranged separately.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>Is there a pool?</span><div class="faq-icon"></div></div>
+        <div class="faq-a">Yes — a 22-metre infinity pool overlooking the Atlantic, heated year-round. It is available to all guests at all times and opens directly from the main living terrace.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>Is a private chef available?</span><div class="faq-icon"></div></div>
+        <div class="faq-a">Yes. We work with two exceptional local chefs who can be engaged for the full duration of your stay or for specific meals. Menus are built around seasonal Bahian produce and freshly caught seafood. Please enquire when booking.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>Is the villa pet-friendly?</span><div class="faq-icon"></div></div>
+        <div class="faq-a">We welcome well-behaved dogs by prior arrangement. Please let us know when enquiring so we can prepare the property appropriately. Cats and other animals can also be discussed — just ask.</div>
+      </div>
+    </div>
+
+    <!-- ACTIVITIES -->
+    <div class="faq-category" data-cat="activities">
+      <h3>Activities</h3>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span data-i18n="faq.q7">Can we arrange activities during our stay?</span><div class="faq-icon"></div></div>
+        <div class="faq-a" data-i18n="faq.a7">Yes. Our villa manager can organise kiteboarding lessons, private yoga sessions, guided dolphin-watching excursions, boat trips, massage and Reiki, and much more. Just let us know when you enquire.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>Is kiteboarding suitable for beginners?</span><div class="faq-icon"></div></div>
+        <div class="faq-a">Absolutely. Pipa's trade winds are remarkably consistent and the bay conditions are well-suited to beginners. We work with certified IKO instructors who run personalised lessons from beginner to advanced. Equipment is provided for all levels.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>Can we see dolphins from the villa?</span><div class="faq-icon"></div></div>
+        <div class="faq-a">Spinner dolphins are resident in the bay year-round and are often visible from the cliff terrace and beach in the early morning. We also arrange guided boat excursions to the Baía dos Golfinhos ecological reserve for a closer encounter.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>Is there good surfing near the villa?</span><div class="faq-icon"></div></div>
+        <div class="faq-a">Yes. Praia do Madeiro (10 min walk) has consistent Atlantic swells and suits intermediate to advanced surfers. Board rental and local guides are available through our villa team.</div>
+      </div>
+    </div>
+
+    <!-- GETTING HERE -->
+    <div class="faq-category" data-cat="getting-here">
+      <h3>Getting Here</h3>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span data-i18n="faq.q6">How do I get to Pipa?</span><div class="faq-icon"></div></div>
+        <div class="faq-a" data-i18n="faq.a6">Fly to Natal (Aeroporto Internacional Governador Aluízio Alves, NAT). Direct flights operate from São Paulo (3h), Rio de Janeiro (3h), and other Brazilian cities. From Natal it is approximately 90 minutes by private car — we arrange this transfer for all guests.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>Is the private transfer really included?</span><div class="faq-icon"></div></div>
+        <div class="faq-a">Yes, for all bookings of 3 nights or more. One arrival transfer from Natal airport to the villa and one departure transfer are included in the rate. Additional transfers (e.g. day trips) can be arranged at cost.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>Do I need a car once at the villa?</span><div class="faq-icon"></div></div>
+        <div class="faq-a">Not necessarily. The villa has direct beach access and the main village of Pipa (restaurants, shops, nightlife) is a short walk or tuk-tuk ride away. If you plan to explore further along the coast or visit Natal, a rental car is recommended. We can arrange this.</div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><span>Flying from Europe or North America?</span><div class="faq-icon"></div></div>
+        <div class="faq-a">The most common connections are via São Paulo (GRU) or Lisbon (LIS). TAP Air Portugal operates a direct Lisbon–Natal route (approx. 7h30). From the US, connecting through São Paulo or Miami is typical. Our team is happy to advise on the best routing for your origin.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="faq-cta">
+  <div class="faq-cta-inner">
+    <h2>Ready to book?</h2>
+    <p>Check availability for your dates and get a personalised quote — usually within 24 hours. Or reach us directly if you have a question that isn't answered here.</p>
+    <div class="faq-cta-btns">
+      <a href="reserve.html" class="btn btn-primary" data-i18n="nav.book">Book a Stay</a>
+      <a href="contact.html" class="btn btn-outline" data-i18n="nav.contact">Contact us</a>
+    </div>
+  </div>
+</div>
+
+<footer id="footer"></footer>
+<div class="lb" id="lb"></div>
+
+<script>
+function toggleFaq(item) {
+  const wasOpen = item.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+function filterFaq(cat, btn) {
+  document.querySelectorAll('.faq-cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.faq-category').forEach(c => {
+    if (cat === 'all' || c.dataset.cat === cat) {
+      c.style.display = '';
+    } else {
+      c.style.display = 'none';
+    }
+  });
+}
+</script>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
