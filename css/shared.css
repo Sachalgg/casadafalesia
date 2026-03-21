@@ -3,17 +3,17 @@
    ============================================================ */
 
 :root {
-  --cream: #FAF8F3;
-  --sand: #E8D5B0;
-  --sand-dark: #D4BC8A;
-  --terracotta: #C4795A;
-  --terracotta-dark: #A85F42;
+  --cream: #F5F0E8;
+  --sand: #E2CFA6;
+  --sand-dark: #CEB882;
+  --terracotta: #B87050;
+  --terracotta-dark: #9A5C3C;
   --forest: #3A5740;
   --ocean: #2A6B7C;
-  --dark: #1A1917;
-  --warm-gray: #6B6860;
-  --light-gray: #D4D0C8;
-  --white: #FFFFFF;
+  --dark: #26211A;
+  --warm-gray: #6E6860;
+  --light-gray: #D6D0C4;
+  --white: #FDFAF5;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
