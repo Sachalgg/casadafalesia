@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Aboreto&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/shared.css">
   <style>
+
     /* ── HERO ── */
     .hero {
       position: relative; height: 100vh; min-height: 680px;
@@ -23,220 +24,426 @@
     }
     .hero-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(15,14,12,0.82) 0%, rgba(15,14,12,0.22) 55%, transparent 100%);
+      background: linear-gradient(to top, rgba(10,9,7,0.88) 0%, rgba(10,9,7,0.18) 52%, transparent 100%);
     }
-    .hero-content { position: relative; z-index: 2; padding: 0 80px 88px; }
+    .hero-content { position: relative; z-index: 2; padding: 0 88px 100px; max-width: 860px; }
     .hero-eyebrow {
-      font-size: 10px; font-weight: 400; letter-spacing: 0.32em;
-      text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 20px;
+      font-family: 'Aboreto', cursive;
+      font-size: 9px; font-weight: 400; letter-spacing: 0.38em;
+      text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 24px;
     }
     .hero h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(58px, 8vw, 108px); font-weight: 300;
-      line-height: 0.95; letter-spacing: -0.02em; color: var(--white); margin-bottom: 28px;
+      font-size: clamp(64px, 9vw, 120px); font-weight: 300;
+      line-height: 0.92; letter-spacing: -0.02em; color: var(--white); margin-bottom: 32px;
     }
     .hero h1 em { font-style: italic; }
     .hero-tagline {
-      font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.7);
-      line-height: 1.75; max-width: 460px; margin-bottom: 44px;
+      font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.62);
+      line-height: 1.85; max-width: 440px; margin-bottom: 52px;
     }
-    .hero-actions { display: flex; align-items: center; gap: 32px; }
+    .hero-actions { display: flex; align-items: center; gap: 36px; }
     .btn-ghost-hero {
-      color: rgba(255,255,255,0.72); font-size: 13px; font-weight: 300;
+      color: rgba(255,255,255,0.65); font-size: 12px; font-weight: 300;
       display: inline-flex; align-items: center; gap: 10px; transition: color 0.3s;
+      letter-spacing: 0.05em;
     }
     .btn-ghost-hero svg { width: 18px; height: 18px; transition: transform 0.3s; }
     .btn-ghost-hero:hover { color: var(--white); }
-    .btn-ghost-hero:hover svg { transform: translateX(5px); }
+    .btn-ghost-hero:hover svg { transform: translateX(6px); }
     .scroll-cue {
-      position: absolute; right: 60px; bottom: 52px; z-index: 2;
-      display: flex; flex-direction: column; align-items: center; gap: 10px;
-      color: rgba(255,255,255,0.4); font-size: 9px; letter-spacing: 0.28em;
+      position: absolute; right: 56px; bottom: 52px; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      color: rgba(255,255,255,0.32); font-size: 8px; letter-spacing: 0.3em;
       text-transform: uppercase; writing-mode: vertical-lr;
     }
-    .scroll-cue::after { content: ''; width: 1px; height: 56px; background: rgba(255,255,255,0.28); }
+    .scroll-cue::after { content: ''; width: 1px; height: 64px; background: rgba(255,255,255,0.22); }
 
-    /* ── INTRO SPLIT ── */
-    .section-intro { display: grid; grid-template-columns: 55% 45%; }
-    .intro-visual { position: relative; overflow: hidden; min-height: 78vh; }
-    .intro-visual img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s ease; }
-    .intro-visual:hover img { transform: scale(1.04); }
-    .intro-text { background: var(--cream); display: flex; align-items: center; padding: 100px 80px 100px 72px; }
-    .intro-inner { max-width: 420px; }
-    .intro-inner h2 {
-      font-family: 'Cormorant Garamond', serif; font-size: clamp(36px,3.2vw,50px);
-      font-weight: 300; line-height: 1.15; color: var(--dark); margin-bottom: 26px;
+    /* ── INTRO ── */
+    .section-intro {
+      display: grid; grid-template-columns: 58% 42%;
     }
-    .intro-inner p { font-size: 15px; font-weight: 300; line-height: 1.85; color: var(--warm-gray); margin-bottom: 16px; }
-    .intro-inner p:last-of-type { margin-bottom: 38px; }
+    .intro-visual { position: relative; overflow: hidden; min-height: 88vh; }
+    .intro-visual img {
+      width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s ease;
+      border-radius: 0 0 8px 0; display: block;
+    }
+    .intro-visual:hover img { transform: scale(1.03); }
+    .intro-text {
+      background: var(--cream);
+      display: flex; align-items: center;
+      padding: 120px 88px 120px 80px;
+    }
+    .intro-inner { max-width: 400px; }
+    .intro-inner h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 3.8vw, 58px);
+      font-weight: 300; font-style: italic;
+      line-height: 1.1; color: var(--dark); margin-bottom: 30px;
+    }
+    .intro-inner p { font-size: 15px; font-weight: 300; line-height: 1.95; color: var(--warm-gray); margin-bottom: 18px; }
+    .intro-inner p:last-of-type { margin-bottom: 44px; }
 
-    /* ── STATS ── */
-    .stats-bar { background: var(--dark); display: grid; grid-template-columns: repeat(4,1fr); padding: 56px 80px; }
-    .stat { text-align: center; padding: 0 28px; border-right: 1px solid rgba(255,255,255,0.08); }
-    .stat:last-child { border-right: none; }
-    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 60px; font-weight: 300; color: var(--sand); line-height: 1; margin-bottom: 10px; }
-    .stat-num span { font-size: 26px; color: var(--terracotta); }
-    .stat-lbl { font-size: 10px; font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+    /* ── STATS — floating, not a dark bar ── */
+    .stats-float {
+      background: var(--cream);
+      padding: 112px 88px;
+      display: flex; gap: 0;
+      align-items: flex-end;
+      justify-content: space-between;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .stat-f {
+      flex: 1;
+      padding: 0 32px;
+    }
+    .stat-f:first-child { padding-left: 0; }
+    .stat-f:last-child { padding-right: 0; }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(72px, 7vw, 104px);
+      font-weight: 300; line-height: 0.9;
+      color: var(--dark); margin-bottom: 14px;
+      letter-spacing: -0.03em;
+    }
+    .stat-num sup { font-size: 0.32em; color: var(--terracotta); vertical-align: super; letter-spacing: 0; }
+    .stat-lbl {
+      font-family: 'Aboreto', cursive;
+      font-size: 9px; font-weight: 400;
+      letter-spacing: 0.26em; text-transform: uppercase;
+      color: var(--warm-gray);
+    }
 
     /* ── VILLA ── */
-    .villa-section { padding: 128px 80px; background: var(--cream); }
-    .villa-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 72px; }
-    .villa-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px,3.8vw,56px); font-weight: 300; line-height: 1.1; color: var(--dark); }
-    .villa-header p { font-size: 15px; font-weight: 300; line-height: 1.85; color: var(--warm-gray); }
-    .villa-grid { display: grid; grid-template-columns: 3fr 2fr; grid-template-rows: 420px 300px; gap: 14px; }
-    .villa-img { overflow: hidden; position: relative; }
-    .villa-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+    .villa-section { padding: 0; background: var(--dark); }
+    .villa-header-wrap {
+      padding: 120px 88px 72px;
+    }
+    .villa-header-wrap .label { color: var(--terracotta); }
+    .villa-header-wrap h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 5.5vw, 80px);
+      font-weight: 300; font-style: italic;
+      line-height: 1.0; color: var(--sand);
+      max-width: 820px;
+    }
+    .villa-header-wrap p {
+      font-size: 15px; font-weight: 300; line-height: 1.9;
+      color: rgba(255,255,255,0.42); max-width: 520px;
+      margin-top: 24px;
+    }
+    /* Asymmetric image mosaic */
+    .villa-mosaic {
+      display: grid;
+      grid-template-columns: 1.55fr 1fr 0.9fr;
+      grid-template-rows: 520px 300px;
+      gap: 8px; padding: 0 8px 8px;
+    }
+    .villa-img { overflow: hidden; position: relative; border-radius: 8px; }
+    .villa-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s ease; display: block; }
     .villa-img:hover img { transform: scale(1.04); }
-    .villa-img:first-child { grid-row: 1 / 3; }
-    .villa-caption { position: absolute; bottom: 18px; left: 18px; background: rgba(250,248,243,0.88); padding: 6px 14px; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dark); backdrop-filter: blur(6px); }
+    .villa-img:first-child { grid-row: 1 / 3; border-radius: 8px; }
+    .villa-img:nth-child(2) { border-radius: 8px; }
+    .villa-img:nth-child(3) { border-radius: 8px; }
+    .villa-img:nth-child(4) { grid-column: span 2; border-radius: 8px; }
+    .villa-caption {
+      position: absolute; bottom: 16px; left: 16px;
+      background: rgba(10,9,7,0.55); padding: 5px 12px;
+      font-family: 'Aboreto', cursive;
+      font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,255,255,0.8); backdrop-filter: blur(6px);
+      border-radius: 4px;
+    }
 
     /* ── SUITES ── */
-    .suites-section { padding: 120px 0 120px 80px; overflow: hidden; background: var(--cream); }
-    .suites-top { display: flex; align-items: flex-end; justify-content: space-between; padding-right: 80px; margin-bottom: 52px; }
-    .suites-top h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px,3.8vw,54px); font-weight: 300; line-height: 1.1; color: var(--dark); }
+    .suites-section { padding: 140px 0 140px 88px; overflow: hidden; background: var(--cream); }
+    .suites-top { display: flex; align-items: flex-end; justify-content: space-between; padding-right: 88px; margin-bottom: 60px; }
+    .suites-top h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(38px, 4vw, 58px); font-weight: 300; font-style: italic;
+      line-height: 1.05; color: var(--dark);
+    }
     .suite-arrows { display: flex; gap: 8px; }
-    .arr-btn { width: 46px; height: 46px; border: 1px solid var(--light-gray); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 2px; transition: all 0.3s; }
+    .arr-btn {
+      width: 48px; height: 48px;
+      border: 1px solid var(--light-gray);
+      background: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 8px; transition: all 0.3s;
+    }
     .arr-btn:hover { background: var(--dark); border-color: var(--dark); color: var(--white); }
     .arr-btn svg { width: 18px; height: 18px; }
-    .suites-rail { display: flex; gap: 20px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; cursor: grab; padding-right: 80px; }
+    .suites-rail {
+      display: flex; gap: 20px; overflow-x: auto;
+      scrollbar-width: none; -ms-overflow-style: none;
+      cursor: grab; padding-right: 88px;
+    }
     .suites-rail::-webkit-scrollbar { display: none; }
     .suites-rail.active { cursor: grabbing; }
-    .suite-card { flex: 0 0 370px; overflow: hidden; background: var(--white); transition: transform 0.35s ease; }
-    .suite-card:hover { transform: translateY(-6px); }
-    .suite-img { height: 270px; overflow: hidden; position: relative; }
-    .suite-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.65s ease; }
+    .suite-card {
+      flex: 0 0 380px; overflow: hidden; border-radius: 8px;
+      background: var(--white); transition: transform 0.4s ease;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.06);
+    }
+    .suite-card:hover { transform: translateY(-8px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+    .suite-img { height: 280px; overflow: hidden; position: relative; }
+    .suite-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
     .suite-card:hover .suite-img img { transform: scale(1.06); }
-    .suite-badge { position: absolute; top: 18px; left: 18px; font-size: 10px; letter-spacing: 0.12em; color: rgba(255,255,255,0.9); background: rgba(0,0,0,0.22); padding: 4px 10px; backdrop-filter: blur(4px); }
-    .suite-body { padding: 26px 28px 32px; }
-    .suite-body h3 { font-family: 'Cormorant Garamond', serif; font-size: 25px; font-weight: 400; color: var(--dark); margin-bottom: 8px; }
-    .suite-body p { font-size: 13px; font-weight: 300; color: var(--warm-gray); line-height: 1.7; margin-bottom: 18px; }
+    .suite-badge {
+      position: absolute; top: 18px; left: 18px;
+      font-family: 'Aboreto', cursive;
+      font-size: 9px; letter-spacing: 0.2em; color: rgba(255,255,255,0.9);
+      background: rgba(0,0,0,0.28); padding: 5px 12px;
+      backdrop-filter: blur(4px); border-radius: 4px;
+    }
+    .suite-body { padding: 30px 32px 36px; }
+    .suite-body h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 27px; font-weight: 400; font-style: italic;
+      color: var(--dark); margin-bottom: 10px;
+    }
+    .suite-body p { font-size: 13px; font-weight: 300; color: var(--warm-gray); line-height: 1.75; margin-bottom: 20px; }
     .suite-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .suite-tag { font-size: 9px; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--warm-gray); border: 1px solid var(--light-gray); padding: 4px 9px; border-radius: 2px; }
+    .suite-tag {
+      font-size: 9px; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--warm-gray); border: 1px solid var(--light-gray);
+      padding: 4px 10px; border-radius: 20px;
+    }
 
-    /* ── ACTIVITIES ── */
-    .activities-section { background: var(--dark); }
-    .act-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: end; padding: 104px 80px 64px; }
-    .act-intro h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px,4vw,60px); font-weight: 300; line-height: 1.05; color: var(--sand); }
-    .act-intro p { font-size: 14px; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.45); }
-    .act-grid { display: grid; grid-template-columns: repeat(3,1fr); grid-template-rows: 380px 380px; }
-    .act-item { position: relative; overflow: hidden; }
-    .act-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.75s ease; }
-    .act-item:hover img { transform: scale(1.08); }
-    .act-dim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.08) 55%); transition: background 0.4s; }
-    .act-item:hover .act-dim { background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.18) 60%); }
-    .act-copy { position: absolute; bottom: 28px; left: 26px; right: 26px; }
-    .act-copy h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--white); margin-bottom: 4px; }
-    .act-copy p { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.6; max-height: 0; overflow: hidden; transition: max-height 0.4s, opacity 0.4s; opacity: 0; }
-    .act-item:hover .act-copy p { max-height: 60px; opacity: 1; }
+    /* ── ACTIVITIES — editorial horizontal scroll ── */
+    .activities-section { background: var(--dark); padding: 140px 0 140px 88px; overflow: hidden; }
+    .act-head { padding-right: 88px; margin-bottom: 64px; display: flex; align-items: flex-end; justify-content: space-between; }
+    .act-head h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(42px, 4.5vw, 66px);
+      font-weight: 300; font-style: italic;
+      line-height: 1.0; color: var(--sand);
+    }
+    .act-head p { font-size: 14px; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.38); max-width: 320px; text-align: right; }
+    .act-rail {
+      display: flex; gap: 16px; overflow-x: auto;
+      scrollbar-width: none; -ms-overflow-style: none;
+      cursor: grab; padding-right: 88px;
+    }
+    .act-rail::-webkit-scrollbar { display: none; }
+    .act-card {
+      flex-shrink: 0; position: relative; overflow: hidden;
+      border-radius: 8px; cursor: pointer;
+    }
+    .act-card:nth-child(odd) { width: 320px; height: 460px; }
+    .act-card:nth-child(even) { width: 240px; height: 460px; align-self: flex-end; margin-top: 48px; }
+    .act-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; display: block; }
+    .act-card:hover img { transform: scale(1.07); }
+    .act-dim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.0) 52%); }
+    .act-copy { position: absolute; bottom: 24px; left: 24px; right: 24px; }
+    .act-copy h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px; font-weight: 300; font-style: italic;
+      color: var(--white); margin-bottom: 5px;
+    }
+    .act-copy p { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.55); line-height: 1.6; }
 
-    /* ── EXP STRIP ── */
-    .exp-strip { display: grid; grid-template-columns: repeat(3,1fr); }
-    .exp-panel { position: relative; height: 500px; overflow: hidden; }
-    .exp-panel img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+    /* ── EXPERIENCE STRIP — asymmetric ── */
+    .exp-strip {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      grid-template-rows: 320px 320px;
+      gap: 8px;
+    }
+    .exp-panel { position: relative; overflow: hidden; border-radius: 8px; }
+    .exp-panel:first-child { grid-row: span 2; border-radius: 8px; }
+    .exp-panel img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s ease; display: block; }
     .exp-panel:hover img { transform: scale(1.05); }
-    .exp-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%); }
-    .exp-text { position: absolute; bottom: 32px; left: 32px; }
-    .exp-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; font-style: italic; color: var(--white); line-height: 1.2; }
+    .exp-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%); }
+    .exp-text { position: absolute; bottom: 28px; left: 28px; }
+    .exp-text h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px; font-weight: 300; font-style: italic;
+      color: var(--white); line-height: 1.2;
+    }
+    .exp-wrap { padding: 8px; background: var(--dark); }
 
     /* ── GALLERY ── */
-    .gallery-section { padding: 128px 80px; background: var(--cream); }
-    .gallery-hd { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 52px; }
-    .gallery-hd h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px,3.5vw,52px); font-weight: 300; color: var(--dark); }
-    .gallery-hd p { font-size: 13px; font-weight: 300; color: var(--warm-gray); max-width: 240px; line-height: 1.7; text-align: right; }
-    .masonry { display: grid; grid-template-columns: repeat(12,1fr); gap: 12px; }
-    .m-item { overflow: hidden; cursor: pointer; }
-    .m-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+    .gallery-section { padding: 160px 88px; background: var(--cream); }
+    .gallery-hd { margin-bottom: 64px; }
+    .gallery-hd h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 4vw, 60px); font-weight: 300; font-style: italic;
+      color: var(--dark); margin-top: 14px;
+    }
+    .gallery-hd p { font-size: 13px; font-weight: 300; color: var(--warm-gray); margin-top: 14px; max-width: 340px; line-height: 1.75; }
+    .masonry { display: grid; grid-template-columns: repeat(12,1fr); gap: 10px; }
+    .m-item { overflow: hidden; cursor: pointer; border-radius: 8px; }
+    .m-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s; display: block; }
     .m-item:hover img { transform: scale(1.06); }
-    .m-item:nth-child(1) { grid-column: span 5; height: 520px; grid-row: span 2; }
-    .m-item:nth-child(2) { grid-column: span 4; height: 252px; }
-    .m-item:nth-child(3) { grid-column: span 3; height: 252px; }
-    .m-item:nth-child(4) { grid-column: span 4; height: 256px; }
-    .m-item:nth-child(5) { grid-column: span 3; height: 256px; }
-    .m-item:nth-child(6) { grid-column: span 4; height: 290px; }
-    .m-item:nth-child(7) { grid-column: span 4; height: 290px; }
-    .m-item:nth-child(8) { grid-column: span 4; height: 290px; }
+    .m-item:nth-child(1) { grid-column: span 5; height: 540px; grid-row: span 2; }
+    .m-item:nth-child(2) { grid-column: span 4; height: 262px; }
+    .m-item:nth-child(3) { grid-column: span 3; height: 262px; }
+    .m-item:nth-child(4) { grid-column: span 4; height: 266px; }
+    .m-item:nth-child(5) { grid-column: span 3; height: 266px; }
+    .m-item:nth-child(6) { grid-column: span 5; height: 310px; }
+    .m-item:nth-child(7) { grid-column: span 4; height: 310px; }
+    .m-item:nth-child(8) { grid-column: span 3; height: 310px; }
 
-    /* ── QUOTE ── */
-    .quote-section { position: relative; padding: 148px 80px; background: var(--forest); text-align: center; overflow: hidden; }
-    .quote-section::before { content: '\201C'; position: absolute; top: -60px; left: 50%; transform: translateX(-50%); font-family: 'Cormorant Garamond', serif; font-size: 400px; font-weight: 300; color: rgba(255,255,255,0.04); line-height: 1; pointer-events: none; }
-    .q-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(24px,3.2vw,44px); font-weight: 300; font-style: italic; line-height: 1.45; color: var(--sand); max-width: 860px; margin: 0 auto 32px; }
-    .q-attr { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+    /* ── QUOTE — near full screen, immersive ── */
+    .quote-section {
+      position: relative; min-height: 88vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 120px 88px; overflow: hidden;
+      background: var(--dark);
+    }
+    .quote-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1598135753163-6167c1a1ad65?auto=format&fit=crop&w=2000&q=80');
+      background-size: cover; background-position: center;
+      opacity: 0.12;
+    }
+    .quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(160px, 22vw, 320px);
+      font-weight: 300; line-height: 0.8;
+      color: rgba(255,255,255,0.04);
+      position: absolute; top: 80px; left: 72px;
+      pointer-events: none; user-select: none;
+    }
+    .q-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 3.8vw, 56px);
+      font-weight: 300; font-style: italic;
+      line-height: 1.42; color: var(--sand);
+      max-width: 900px; text-align: center;
+      position: relative; z-index: 1;
+      margin-bottom: 40px;
+    }
+    .q-attr {
+      font-family: 'Aboreto', cursive;
+      font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+      position: relative; z-index: 1;
+    }
 
-    /* ── AMENITIES ── */
-    .amen-section { padding: 120px 80px; background: var(--sand); }
-    .amen-hd { margin-bottom: 60px; }
-    .amen-hd h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px,3.5vw,50px); font-weight: 300; color: var(--dark); margin-top: 14px; }
-    .amen-grid { display: grid; grid-template-columns: repeat(4,1fr); }
-    .amen-item { padding-right: 40px; border-right: 1px solid rgba(0,0,0,0.1); margin-right: 0; }
-    .amen-item:last-child { border-right: none; padding-right: 0; }
-    .amen-icon { width: 34px; height: 34px; margin-bottom: 16px; color: var(--terracotta); }
-    .amen-item h4 { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-weight: 400; color: var(--dark); margin-bottom: 8px; }
-    .amen-item p { font-size: 13px; font-weight: 300; line-height: 1.7; color: var(--warm-gray); }
+    /* ── AMENITIES — editorial dark list ── */
+    .amen-section { background: #161412; padding: 140px 88px; }
+    .amen-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 120px; align-items: start; }
+    .amen-left {}
+    .amen-left h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(38px, 4vw, 58px); font-weight: 300; font-style: italic;
+      color: var(--sand); line-height: 1.1; margin-top: 16px;
+    }
+    .amen-left p { font-size: 14px; font-weight: 300; line-height: 1.9; color: rgba(255,255,255,0.35); margin-top: 24px; }
+    .amen-right { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .amen-item {
+      padding: 36px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .amen-item:nth-child(odd) { padding-right: 48px; border-right: 1px solid rgba(255,255,255,0.05); }
+    .amen-item:nth-child(even) { padding-left: 48px; }
+    .amen-item:nth-last-child(-n+2) { border-bottom: none; }
+    .amen-icon { width: 28px; height: 28px; margin-bottom: 18px; color: var(--terracotta); }
+    .amen-item h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 400; font-style: italic;
+      color: rgba(255,255,255,0.82); margin-bottom: 8px;
+    }
+    .amen-item p { font-size: 12px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.32); }
 
     /* ── LOCATION ── */
     .loc-section { display: grid; grid-template-columns: 1fr 1fr; }
-    .loc-visual { position: relative; min-height: 70vh; overflow: hidden; }
-    .loc-visual img { width: 100%; height: 100%; object-fit: cover; }
-    .loc-content { background: var(--cream); padding: 100px 80px; display: flex; align-items: center; }
+    .loc-visual { position: relative; min-height: 80vh; overflow: hidden; }
+    .loc-visual img { width: 100%; height: 100%; object-fit: cover; border-radius: 0 8px 8px 0; display: block; }
+    .loc-content { background: var(--cream); padding: 120px 80px 120px 88px; display: flex; align-items: center; }
     .loc-inner { max-width: 440px; }
-    .loc-inner h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px,3vw,50px); font-weight: 300; line-height: 1.1; color: var(--dark); margin-bottom: 22px; }
-    .loc-inner > p { font-size: 14px; font-weight: 300; line-height: 1.85; color: var(--warm-gray); margin-bottom: 36px; }
-    .loc-facts { list-style: none; margin-bottom: 44px; border-top: 1px solid rgba(0,0,0,0.08); }
-    .loc-facts li { display: grid; grid-template-columns: 140px 1fr; gap: 12px; font-size: 13px; color: var(--warm-gray); padding: 13px 0; border-bottom: 1px solid rgba(0,0,0,0.08); }
+    .loc-inner h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 3.2vw, 52px); font-weight: 300; font-style: italic;
+      line-height: 1.1; color: var(--dark); margin-bottom: 24px;
+    }
+    .loc-inner > p { font-size: 14px; font-weight: 300; line-height: 1.9; color: var(--warm-gray); margin-bottom: 40px; }
+    .loc-facts { list-style: none; margin-bottom: 48px; border-top: 1px solid rgba(0,0,0,0.08); }
+    .loc-facts li { display: grid; grid-template-columns: 140px 1fr; gap: 12px; font-size: 13px; color: var(--warm-gray); padding: 14px 0; border-bottom: 1px solid rgba(0,0,0,0.08); }
     .loc-facts li strong { font-weight: 500; color: var(--dark); }
 
-    /* ── BOOK CTA ── */
-    .book-section { position: relative; padding: 172px 80px; text-align: center; overflow: hidden; }
-    .book-photo { position: absolute; inset: 0; background-image: url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=2000&q=80'); background-size: cover; background-position: center; opacity: 0.12; }
-    .book-content { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
-    .book-content h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(42px,5vw,72px); font-weight: 300; line-height: 1.05; color: var(--dark); margin-bottom: 22px; }
-    .book-content p { font-size: 15px; font-weight: 300; line-height: 1.8; color: var(--warm-gray); margin-bottom: 48px; }
+    /* ── BOOK CTA — full bleed dramatic ── */
+    .book-section {
+      position: relative;
+      min-height: 90vh;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; background: var(--dark);
+    }
+    .book-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=2000&q=80');
+      background-size: cover; background-position: center;
+      opacity: 0.28;
+    }
+    .book-content {
+      position: relative; z-index: 1;
+      max-width: 780px; text-align: center;
+      padding: 0 40px;
+    }
+    .book-content h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 7vw, 96px);
+      font-weight: 300; font-style: italic;
+      line-height: 1.0; color: var(--sand); margin-bottom: 28px;
+    }
+    .book-content p { font-size: 15px; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.48); margin-bottom: 52px; max-width: 520px; margin-left: auto; margin-right: auto; }
     .book-btns { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
-    .pricing-note { margin-top: 32px; font-size: 12px; color: var(--warm-gray); }
-    .pricing-note strong { font-weight: 500; color: var(--dark); }
+    .pricing-note { margin-top: 36px; font-size: 12px; color: rgba(255,255,255,0.28); }
+    .pricing-note strong { font-weight: 500; color: rgba(255,255,255,0.5); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1100px) {
-      .hero-content { padding: 0 28px 68px; }
-      .scroll-cue { right: 28px; bottom: 28px; }
+      .hero-content { padding: 0 32px 72px; }
+      .scroll-cue { right: 24px; bottom: 28px; }
       .section-intro { grid-template-columns: 1fr; }
-      .intro-visual { min-height: 400px; }
-      .intro-text { padding: 60px 28px; }
-      .stats-bar { grid-template-columns: repeat(2,1fr); padding: 44px 28px; }
-      .stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 24px; }
-      .stat:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.08); }
-      .stat:nth-child(3), .stat:nth-child(4) { border-bottom: none; }
-      .villa-section { padding: 80px 28px; }
-      .villa-header { grid-template-columns: 1fr; gap: 20px; }
-      .villa-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 300px 220px; }
-      .villa-img:first-child { grid-row: auto; }
-      .suites-section { padding: 80px 0 80px 28px; }
-      .suites-top { padding-right: 28px; }
-      .suites-rail { padding-right: 28px; }
-      .suite-card { flex: 0 0 310px; }
-      .act-intro { grid-template-columns: 1fr; padding: 80px 28px 48px; gap: 20px; }
-      .act-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-      .act-item { height: 300px; }
-      .exp-strip { grid-template-columns: 1fr; }
-      .exp-panel { height: 360px; }
-      .gallery-section { padding: 80px 28px; }
+      .intro-visual { min-height: 420px; }
+      .intro-visual img { border-radius: 0; }
+      .intro-text { padding: 72px 32px; }
+      .stats-float { flex-wrap: wrap; padding: 80px 32px; gap: 40px; }
+      .stat-f { flex: 1 1 40%; padding: 0; }
+      .villa-header-wrap { padding: 80px 32px 52px; }
+      .villa-mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: auto; padding: 0 5px 5px; }
+      .villa-img:first-child { grid-row: auto; grid-column: span 2; height: 320px; }
+      .villa-img { height: 240px; }
+      .villa-img:nth-child(4) { grid-column: span 1; }
+      .suites-section { padding: 96px 0 96px 32px; }
+      .suites-top { padding-right: 32px; }
+      .suites-rail { padding-right: 32px; }
+      .suite-card { flex: 0 0 320px; }
+      .activities-section { padding: 96px 0 96px 32px; }
+      .act-head { padding-right: 32px; flex-direction: column; align-items: flex-start; gap: 20px; }
+      .act-head p { text-align: left; }
+      .act-rail { padding-right: 32px; }
+      .act-card:nth-child(odd), .act-card:nth-child(even) { width: 260px; height: 380px; margin-top: 0; }
+      .exp-strip { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .exp-panel:first-child { grid-row: auto; height: 360px; }
+      .exp-panel { height: 280px; }
+      .gallery-section { padding: 100px 32px; }
       .masonry { grid-template-columns: 1fr 1fr; }
       .m-item { grid-column: span 1 !important; height: 220px !important; grid-row: span 1 !important; }
       .m-item:nth-child(1) { height: 300px !important; }
-      .quote-section { padding: 100px 28px; }
-      .amen-section { padding: 80px 28px; }
-      .amen-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
-      .amen-item { border-right: none; padding-right: 0; }
+      .quote-section { padding: 100px 32px; min-height: 60vh; }
+      .q-text { font-size: clamp(24px, 5vw, 38px); }
+      .amen-section { padding: 100px 32px; }
+      .amen-layout { grid-template-columns: 1fr; gap: 56px; }
+      .amen-right { grid-template-columns: 1fr; }
+      .amen-item:nth-child(odd) { padding-right: 0; border-right: none; }
+      .amen-item:nth-child(even) { padding-left: 0; }
       .loc-section { grid-template-columns: 1fr; }
       .loc-visual { min-height: 360px; }
-      .loc-content { padding: 60px 28px; }
-      .book-section { padding: 100px 28px; }
+      .loc-visual img { border-radius: 0; }
+      .loc-content { padding: 72px 32px; }
+      .book-section { min-height: 70vh; }
+      .book-content { padding: 0 24px; }
     }
     @media (max-width: 640px) {
-      .hero h1 { font-size: 44px; }
-      .hero-actions { flex-direction: column; align-items: flex-start; gap: 18px; }
-      .act-grid { grid-template-columns: 1fr; }
-      .amen-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 52px; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .stat-f { flex: 1 1 100%; }
+      .amen-right { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -269,54 +476,60 @@
     <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1400&q=85" alt="Villa with pool and ocean view">
   </div>
   <div class="intro-text">
-    <div class="intro-inner">
+    <div class="intro-inner reveal">
       <span class="label" data-i18n="idx.intro.label">A sanctuary apart</span>
-      <h2 data-i18n-html="idx.intro.title">Where silence is <em>the point</em></h2>
+      <h2 data-i18n-html="idx.intro.title">Where silence<br>is the point</h2>
       <p data-i18n="idx.intro.p1">Perched on the red cliffs of Pipa above a deserted stretch of Atlantic coast, Casa da Falésia is an architect-designed retreat — one of Brazil's most extraordinary and quietly guarded destinations.</p>
-      <p data-i18n="idx.intro.p2">Five ocean-facing suites, an infinity pool that dissolves into the sea, direct beach access, and as many or as few activities as you need. This is where you remember who you are.</p>
+      <p data-i18n="idx.intro.p2">Five ocean-facing suites, an infinity pool that dissolves into the sea, direct beach access. This is where you remember who you are.</p>
       <a href="villa.html" class="text-link" data-i18n="idx.intro.link">Explore the villa →</a>
     </div>
   </div>
 </section>
 
-<!-- STATS BAR -->
-<div class="stats-bar">
-  <div class="stat reveal">
-    <div class="stat-num">500<span>m²</span></div>
+<!-- STATS — floating, airy -->
+<div class="stats-float">
+  <div class="stat-f reveal">
+    <div class="stat-num">500<sup>m²</sup></div>
     <div class="stat-lbl" data-i18n="stat.villa">Private villa</div>
   </div>
-  <div class="stat reveal reveal-d1">
+  <div class="stat-f reveal reveal-d1">
     <div class="stat-num">5</div>
     <div class="stat-lbl" data-i18n="stat.suites">Ocean suites</div>
   </div>
-  <div class="stat reveal reveal-d2">
+  <div class="stat-f reveal reveal-d2">
     <div class="stat-num">10</div>
     <div class="stat-lbl" data-i18n="stat.guests">Guests max.</div>
   </div>
-  <div class="stat reveal reveal-d3">
+  <div class="stat-f reveal reveal-d3">
     <div class="stat-num">∞</div>
     <div class="stat-lbl" data-i18n="stat.sea">Metres of Atlantic</div>
   </div>
 </div>
 
 <!-- THE VILLA -->
-<section class="villa-section" id="villa">
-  <div class="villa-header reveal">
-    <h2 data-i18n="idx.villa.h2">Designed to dissolve into the landscape</h2>
-    <p data-i18n="idx.villa.body">Brazilian architect Rodrigo Alcântara drew from the land itself — raw laterite stone, reclaimed timber, open-air volumes. The result is a villa that recedes so the ocean takes centre stage.</p>
-  </div>
-  <div class="villa-grid">
-    <div class="villa-img reveal">
-      <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1400&q=85" alt="Infinity pool with Atlantic view">
-      <div class="villa-caption" data-i18n="idx.villa.cap1">Infinity pool · Atlantic view</div>
+<section id="villa">
+  <div class="villa-section">
+    <div class="villa-header-wrap reveal">
+      <span class="label" data-i18n="idx.villa.label">Architecture</span>
+      <h2 data-i18n="idx.villa.h2">Designed to dissolve<br>into the landscape</h2>
+      <p data-i18n="idx.villa.body">Brazilian architect Rodrigo Alcântara drew from the land itself — raw laterite stone, reclaimed timber, open-air volumes. The result is a villa that recedes so the ocean takes centre stage.</p>
     </div>
-    <div class="villa-img reveal reveal-d1">
-      <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=85" alt="Living pavilion">
-      <div class="villa-caption" data-i18n="idx.villa.cap2">Open living pavilion</div>
-    </div>
-    <div class="villa-img reveal reveal-d2">
-      <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=900&q=85" alt="Clifftop terrace">
-      <div class="villa-caption" data-i18n="idx.villa.cap3">Clifftop terrace</div>
+    <div class="villa-mosaic">
+      <div class="villa-img reveal">
+        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1400&q=85" alt="Infinity pool with Atlantic view">
+        <div class="villa-caption" data-i18n="idx.villa.cap1">Infinity pool · Atlantic view</div>
+      </div>
+      <div class="villa-img reveal reveal-d1">
+        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=85" alt="Living pavilion">
+        <div class="villa-caption" data-i18n="idx.villa.cap2">Open living pavilion</div>
+      </div>
+      <div class="villa-img reveal reveal-d2">
+        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=900&q=85" alt="Clifftop terrace">
+        <div class="villa-caption" data-i18n="idx.villa.cap3">Clifftop terrace</div>
+      </div>
+      <div class="villa-img reveal reveal-d3">
+        <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1200&q=85" alt="Pool">
+      </div>
     </div>
   </div>
 </section>
@@ -340,57 +553,60 @@
   <div class="suites-rail" id="suitesRail">
     <div class="suite-card">
       <div class="suite-img"><span class="suite-badge">Suite A</span><img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=85" alt="Falésia Suite"></div>
-      <div class="suite-body"><h3 data-i18n="s1.name">Falésia Suite</h3><p data-i18n="s1.desc">Our clifftop master suite...</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.terrace">Cliff terrace</span><span class="suite-tag" data-i18n="suite.tag.ensuite">Ensuite</span></div></div>
+      <div class="suite-body"><h3 data-i18n="s1.name">Falésia Suite</h3><p data-i18n="s1.desc">Our clifftop master suite with a private terrace directly above the waterline.</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.terrace">Cliff terrace</span><span class="suite-tag" data-i18n="suite.tag.ensuite">Ensuite</span></div></div>
     </div>
     <div class="suite-card">
       <div class="suite-img"><span class="suite-badge">Suite B</span><img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=85" alt="Brisa Suite"></div>
-      <div class="suite-body"><h3 data-i18n="s2.name">Brisa Suite</h3><p data-i18n="s2.desc">Oriented east for extraordinary sunrise light...</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.sunrise">Sunrise view</span><span class="suite-tag" data-i18n="suite.tag.ensuite">Ensuite</span></div></div>
+      <div class="suite-body"><h3 data-i18n="s2.name">Brisa Suite</h3><p data-i18n="s2.desc">Oriented east for extraordinary sunrise light, washed in white linen and ocean breeze.</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.sunrise">Sunrise view</span><span class="suite-tag" data-i18n="suite.tag.ensuite">Ensuite</span></div></div>
     </div>
     <div class="suite-card">
       <div class="suite-img"><span class="suite-badge">Suite C</span><img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=85" alt="Jardim Suite"></div>
-      <div class="suite-body"><h3 data-i18n="s3.name">Jardim Suite</h3><p data-i18n="s3.desc">Surrounded by native Atlantic Forest...</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.garden">Garden</span><span class="suite-tag" data-i18n="suite.tag.outdoor">Outdoor shower</span></div></div>
+      <div class="suite-body"><h3 data-i18n="s3.name">Jardim Suite</h3><p data-i18n="s3.desc">Surrounded by native Atlantic Forest on three sides — cool, fragrant, deeply restorative.</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.garden">Garden</span><span class="suite-tag" data-i18n="suite.tag.outdoor">Outdoor shower</span></div></div>
     </div>
     <div class="suite-card">
       <div class="suite-img"><span class="suite-badge">Suite D</span><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=85" alt="Maré Suite"></div>
-      <div class="suite-body"><h3 data-i18n="s4.name">Maré Suite</h3><p data-i18n="s4.desc">Pool-level, opening directly onto the deck...</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.pool">Pool level</span><span class="suite-tag" data-i18n="suite.tag.daybed">Day bed</span></div></div>
+      <div class="suite-body"><h3 data-i18n="s4.name">Maré Suite</h3><p data-i18n="s4.desc">Pool-level, opening directly onto the deck. Step from bed into the Atlantic light.</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.pool">Pool level</span><span class="suite-tag" data-i18n="suite.tag.daybed">Day bed</span></div></div>
     </div>
     <div class="suite-card">
       <div class="suite-img"><span class="suite-badge">Suite E</span><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=85" alt="Canto Suite"></div>
-      <div class="suite-body"><h3 data-i18n="s5.name">Canto Suite</h3><p data-i18n="s5.desc">Tucked into the north corner, total solitude...</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.aspect">Double aspect</span><span class="suite-tag" data-i18n="suite.tag.tub">Soaking tub</span></div></div>
+      <div class="suite-body"><h3 data-i18n="s5.name">Canto Suite</h3><p data-i18n="s5.desc">Tucked into the north corner — the most private, most contemplative room on the property.</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.aspect">Double aspect</span><span class="suite-tag" data-i18n="suite.tag.tub">Soaking tub</span></div></div>
     </div>
   </div>
 </section>
 
-<!-- ACTIVITIES -->
+<!-- ACTIVITIES — editorial horizontal scroll -->
 <section class="activities-section" id="activities">
-  <div class="act-intro">
+  <div class="act-head">
     <div>
       <span class="label" style="color:var(--terracotta)" data-i18n="idx.act.label">Sport & Wellness</span>
       <h2 data-i18n="idx.act.h2">Move. Breathe. Be alive.</h2>
     </div>
     <p data-i18n="idx.act.body">The coast here is one of Brazil's great natural playgrounds — steady trade winds for kiteboarding, long empty beaches for running, and Atlantic waters as clear as glass.</p>
   </div>
-  <div class="act-grid">
-    <div class="act-item"><img src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?auto=format&fit=crop&w=800&q=80" alt="Kiteboarding"><div class="act-dim"></div><div class="act-copy"><h3 data-i18n="act1.name">Kiteboarding</h3><p data-i18n="act1.desc">The trade winds here are legendary.</p></div></div>
-    <div class="act-item"><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80" alt="Yoga"><div class="act-dim"></div><div class="act-copy"><h3 data-i18n="act2.name">Sunrise Yoga</h3><p data-i18n="act2.desc">Daily sessions on the cliff terrace.</p></div></div>
-    <div class="act-item"><img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=800&q=80" alt="SUP"><div class="act-dim"></div><div class="act-copy"><h3 data-i18n="act3.name">Paddleboard & SUP</h3><p data-i18n="act3.desc">Explore sea caves and lagoons.</p></div></div>
-    <div class="act-item"><img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=800&q=80" alt="Running"><div class="act-dim"></div><div class="act-copy"><h3 data-i18n="act4.name">Beach Running</h3><p data-i18n="act4.desc">Eight kilometres of undeveloped coastline.</p></div></div>
-    <div class="act-item"><img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=800&q=80" alt="Swimming"><div class="act-dim"></div><div class="act-copy"><h3 data-i18n="act5.name">Ocean Swimming</h3><p data-i18n="act5.desc">Crystal-clear Atlantic water.</p></div></div>
-    <div class="act-item"><img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=800&q=80" alt="Spa"><div class="act-dim"></div><div class="act-copy"><h3 data-i18n="act6.name">Spa & Recovery</h3><p data-i18n="act6.desc">Massage, Reiki, sauna.</p></div></div>
+  <div class="act-rail">
+    <div class="act-card"><img src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?auto=format&fit=crop&w=700&q=80" alt="Kiteboarding"><div class="act-dim"></div><div class="act-copy"><h3 data-i18n="act1.name">Kiteboarding</h3><p data-i18n="act1.desc">The trade winds here are legendary.</p></div></div>
+    <div class="act-card"><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80" alt="Yoga"><div class="act-dim"></div><div class="act-copy"><h3 data-i18n="act2.name">Sunrise Yoga</h3><p data-i18n="act2.desc">Daily sessions on the cliff terrace.</p></div></div>
+    <div class="act-card"><img src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=700&q=80" alt="SUP"><div class="act-dim"></div><div class="act-copy"><h3 data-i18n="act3.name">Paddleboard & SUP</h3><p data-i18n="act3.desc">Explore sea caves and lagoons.</p></div></div>
+    <div class="act-card"><img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=600&q=80" alt="Running"><div class="act-dim"></div><div class="act-copy"><h3 data-i18n="act4.name">Beach Running</h3><p data-i18n="act4.desc">Eight kilometres of undeveloped coastline.</p></div></div>
+    <div class="act-card"><img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=700&q=80" alt="Swimming"><div class="act-dim"></div><div class="act-copy"><h3 data-i18n="act5.name">Ocean Swimming</h3><p data-i18n="act5.desc">Crystal-clear Atlantic water.</p></div></div>
+    <div class="act-card"><img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=600&q=80" alt="Spa"><div class="act-dim"></div><div class="act-copy"><h3 data-i18n="act6.name">Spa & Recovery</h3><p data-i18n="act6.desc">Massage, Reiki, sauna.</p></div></div>
   </div>
 </section>
 
-<!-- EXPERIENCE STRIP -->
-<div class="exp-strip">
-  <div class="exp-panel"><img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=800&q=80" alt="Beach"><div class="exp-overlay"></div><div class="exp-text"><h3 data-i18n="exp1">Deserted beaches</h3></div></div>
-  <div class="exp-panel"><img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=800&q=80" alt="Coastline"><div class="exp-overlay"></div><div class="exp-text"><h3 data-i18n="exp2">Untouched coastline</h3></div></div>
-  <div class="exp-panel"><img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=800&q=80" alt="Ocean"><div class="exp-overlay"></div><div class="exp-text"><h3 data-i18n="exp3">The open Atlantic</h3></div></div>
+<!-- EXPERIENCE STRIP — asymmetric -->
+<div class="exp-wrap">
+  <div class="exp-strip">
+    <div class="exp-panel"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" alt="Beach"><div class="exp-overlay"></div><div class="exp-text"><h3 data-i18n="exp1">Deserted beaches</h3></div></div>
+    <div class="exp-panel"><img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=800&q=80" alt="Coastline"><div class="exp-overlay"></div><div class="exp-text"><h3 data-i18n="exp2">Untouched coastline</h3></div></div>
+    <div class="exp-panel"><img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=800&q=80" alt="Ocean"><div class="exp-overlay"></div><div class="exp-text"><h3 data-i18n="exp3">The open Atlantic</h3></div></div>
+  </div>
 </div>
 
 <!-- GALLERY -->
 <section class="gallery-section" id="gallery">
   <div class="gallery-hd reveal">
-    <div><span class="label" data-i18n="idx.gallery.label">A glimpse</span><h2 data-i18n="idx.gallery.h2">Life at Casa da Falésia</h2></div>
+    <span class="label" data-i18n="idx.gallery.label">A glimpse</span>
+    <h2 data-i18n="idx.gallery.h2">Life at Casa da Falésia</h2>
     <p data-i18n="idx.gallery.sub">Click any image to view full screen.</p>
   </div>
   <div class="masonry" id="masonry">
@@ -405,43 +621,47 @@
   </div>
 </section>
 
-<!-- QUOTE -->
+<!-- QUOTE — near full screen -->
 <section class="quote-section">
+  <div class="quote-bg"></div>
+  <div class="quote-mark">"</div>
   <p class="q-text reveal" data-i18n="idx.quote.text">"We came for a week and left a different kind of quiet — not the quiet of nothingness, but of being exactly where you are meant to be."</p>
   <p class="q-attr reveal reveal-d1" data-i18n="idx.quote.attr">— A guest, February 2025</p>
 </section>
 
-<!-- AMENITIES -->
+<!-- AMENITIES — dark editorial -->
 <section class="amen-section">
-  <div class="amen-hd">
-    <span class="label" data-i18n="idx.amen.label">Included with every stay</span>
-    <h2 data-i18n="idx.amen.h2">Everything you need, nothing you don't</h2>
-  </div>
-  <div class="amen-grid">
-    <div class="amen-item reveal">
-      <svg class="amen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 12h18M3 6l9-3 9 3M3 18l9 3 9-3"/></svg>
-      <h4 data-i18n="amen1.title">Private Beach Access</h4><p data-i18n="amen1.desc">A private path to our stretch of Atlantic coastline.</p>
+  <div class="amen-layout">
+    <div class="amen-left reveal">
+      <span class="label" style="color:var(--terracotta)" data-i18n="idx.amen.label">Included with every stay</span>
+      <h2 data-i18n="idx.amen.h2">Everything you need, nothing you don't</h2>
+      <p>The rate covers the house, the staff, and the basic rhythm of the day. What you do with the rest of the time is entirely yours.</p>
     </div>
-    <div class="amen-item reveal reveal-d1">
-      <svg class="amen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-      <h4 data-i18n="amen2.title">Infinity Pool</h4><p data-i18n="amen2.desc">Heated year-round, 22 metres, pouring into the Atlantic.</p>
-    </div>
-    <div class="amen-item reveal reveal-d2">
-      <svg class="amen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-      <h4 data-i18n="amen3.title">Wellness & Spa</h4><p data-i18n="amen3.desc">Private sauna, in-villa massage, Reiki, daily yoga.</p>
-    </div>
-    <div class="amen-item reveal reveal-d3">
-      <svg class="amen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-      <h4 data-i18n="amen4.title">Private Chef Option</h4><p data-i18n="amen4.desc">Menus built around local produce and the sea.</p>
+    <div class="amen-right">
+      <div class="amen-item reveal">
+        <svg class="amen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 12h18M3 6l9-3 9 3M3 18l9 3 9-3"/></svg>
+        <h4 data-i18n="amen1.title">Private Beach Access</h4><p data-i18n="amen1.desc">A private path to our stretch of Atlantic coastline.</p>
+      </div>
+      <div class="amen-item reveal reveal-d1">
+        <svg class="amen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        <h4 data-i18n="amen2.title">Infinity Pool</h4><p data-i18n="amen2.desc">Heated year-round, 22 metres, pouring into the Atlantic.</p>
+      </div>
+      <div class="amen-item reveal reveal-d2">
+        <svg class="amen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <h4 data-i18n="amen3.title">Wellness & Spa</h4><p data-i18n="amen3.desc">Private sauna, in-villa massage, Reiki, daily yoga.</p>
+      </div>
+      <div class="amen-item reveal reveal-d3">
+        <svg class="amen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        <h4 data-i18n="amen4.title">Private Chef Option</h4><p data-i18n="amen4.desc">Menus built around local produce and the sea.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- LOCATION -->
 <section class="loc-section" id="location">
-  <div class="loc-visual"><img src="https://images.unsplash.com/photo-1598135753163-6167c1a1ad65?auto=format&fit=crop&w=1200&q=85" alt="Pipa coastline"></div>
   <div class="loc-content">
-    <div class="loc-inner">
+    <div class="loc-inner reveal">
       <span class="label" data-i18n="idx.loc.label">Getting here</span>
       <h2 data-i18n="idx.loc.h2">Pipa, Rio Grande do Norte</h2>
       <p data-i18n="idx.loc.body">Pipa sits on a sweep of Atlantic coast in northeast Brazil, famous for its dramatic red cliffs, pristine beaches, and the resident dolphin colony that patrols the bay.</p>
@@ -455,18 +675,21 @@
       <a href="reserve.html" class="btn btn-primary" data-i18n="idx.cta1">Reserve Your Stay</a>
     </div>
   </div>
+  <div class="loc-visual">
+    <img src="https://images.unsplash.com/photo-1598135753163-6167c1a1ad65?auto=format&fit=crop&w=1200&q=85" alt="Pipa coastline">
+  </div>
 </section>
 
-<!-- BOOK CTA -->
+<!-- BOOK CTA — full bleed -->
 <section class="book-section" id="book">
-  <div class="book-photo"></div>
+  <div class="book-bg"></div>
   <div class="book-content">
-    <span class="label" data-i18n="idx.book.label">Enquiries & Reservations</span>
-    <h2 data-i18n-html="idx.book.h2">Ready to leave the world <em>behind?</em></h2>
+    <span class="label" style="color:var(--terracotta)" data-i18n="idx.book.label">Enquiries & Reservations</span>
+    <h2 data-i18n-html="idx.book.h2">Ready to leave<br>the world behind?</h2>
     <p data-i18n="idx.book.body">Casa da Falésia is available for exclusive full-villa rental. We accommodate up to 10 guests and welcome stays of three nights or more.</p>
     <div class="book-btns">
       <a href="reserve.html" class="btn btn-primary" data-i18n="idx.book.cta1">Send an Enquiry</a>
-      <a href="contact.html" class="btn btn-outline" data-i18n="idx.book.cta2">WhatsApp Us</a>
+      <a href="contact.html" class="btn btn-outline-white" data-i18n="idx.book.cta2">WhatsApp Us</a>
     </div>
     <p class="pricing-note" data-i18n-html="idx.book.price">From <strong>R$&nbsp;5,500</strong> per night · Full-villa rental · Minimum 3 nights</p>
   </div>
@@ -479,15 +702,23 @@
   // Hero parallax
   const heroBg = document.getElementById('heroBg');
   window.addEventListener('scroll', () => {
-    if (window.scrollY < window.innerHeight) heroBg.style.transform = `translateY(${window.scrollY * 0.38}px)`;
+    if (window.scrollY < window.innerHeight) heroBg.style.transform = `translateY(${window.scrollY * 0.35}px)`;
   });
-  // Suites drag
+
+  // Suites drag scroll
   const rail = document.getElementById('suitesRail');
   let drag=false, sx, sl;
   rail.addEventListener('mousedown', e => { drag=true; rail.classList.add('active'); sx=e.pageX-rail.offsetLeft; sl=rail.scrollLeft; });
   ['mouseleave','mouseup'].forEach(ev => rail.addEventListener(ev,()=>{ drag=false; rail.classList.remove('active'); }));
   rail.addEventListener('mousemove', e => { if(!drag) return; e.preventDefault(); rail.scrollLeft=sl-(e.pageX-rail.offsetLeft-sx)*1.4; });
-  function slideSuites(d) { rail.scrollBy({left:d*390,behavior:'smooth'}); }
+  function slideSuites(d) { rail.scrollBy({left:d*400,behavior:'smooth'}); }
+
+  // Activities drag scroll
+  const actRail = document.querySelector('.act-rail');
+  let adrag=false, asx, asl;
+  actRail.addEventListener('mousedown', e => { adrag=true; asx=e.pageX-actRail.offsetLeft; asl=actRail.scrollLeft; });
+  ['mouseleave','mouseup'].forEach(ev => actRail.addEventListener(ev,()=>adrag=false));
+  actRail.addEventListener('mousemove', e => { if(!adrag) return; e.preventDefault(); actRail.scrollLeft=asl-(e.pageX-actRail.offsetLeft-asx)*1.4; });
 </script>
 <script src="js/i18n.js"></script>
 <script src="js/app.js"></script>
