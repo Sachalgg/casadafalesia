@@ -9,47 +9,190 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/shared.css">
   <style>
+
     /* ── INTRO ── */
-    .villa-intro { display: grid; grid-template-columns: 1fr 1fr; min-height: 72vh; }
+    .villa-intro { display: grid; grid-template-columns: 1fr 1fr; min-height: 80vh; }
     .vi-visual { overflow: hidden; position: relative; }
-    .vi-visual img { width:100%; height:100%; object-fit:cover; transition: transform 0.9s; }
-    .vi-visual:hover img { transform: scale(1.04); }
-    .vi-text { background: var(--cream); display:flex; align-items:center; padding: 88px 80px; }
-    .vi-inner { max-width: 460px; }
-    .vi-inner h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(34px,3.5vw,52px); font-weight:300; line-height:1.12; color:var(--dark); margin-bottom:24px; }
-    .vi-inner p { font-size:15px; font-weight:300; line-height:1.85; color:var(--warm-gray); margin-bottom:16px; }
-    .vi-inner p:last-of-type { margin-bottom:40px; }
+    .vi-visual img { width:100%; height:100%; object-fit:cover; transition: transform 1.2s; display:block; }
+    .vi-visual:hover img { transform: scale(1.03); }
+    .vi-text { background: var(--dark); display:flex; align-items:center; padding: 96px 88px; }
+    .vi-inner { max-width: 480px; }
+    .vi-inner h2 {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(36px,3.8vw,56px);
+      font-weight:300;
+      font-style:italic;
+      line-height:1.1;
+      color:var(--sand);
+      margin-bottom:28px;
+    }
+    .vi-inner p { font-size:15px; font-weight:300; line-height:1.9; color:rgba(255,255,255,0.55); margin-bottom:18px; }
+    .vi-inner p:last-of-type { margin-bottom:44px; }
+
+    /* ── EXTERIOR SECTION ── */
+    .exterior-section { background: var(--cream); }
+    .exterior-header { padding: 100px 88px 56px; }
+    .exterior-header h2 {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(36px,4vw,58px);
+      font-weight:300;
+      color:var(--dark);
+      max-width:680px;
+      line-height:1.1;
+    }
+    .exterior-header p {
+      font-size:15px;
+      font-weight:300;
+      line-height:1.85;
+      color:var(--warm-gray);
+      max-width:560px;
+      margin-top:20px;
+    }
+
+    /* Exterior mosaic grid */
+    .ext-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; grid-template-rows: auto auto; gap: 5px; padding: 0 5px 5px; }
+    .ext-item { overflow: hidden; cursor: pointer; position: relative; }
+    .ext-item img { width:100%; height:100%; object-fit:cover; display:block; transition: transform 0.8s ease; }
+    .ext-item:hover img { transform: scale(1.04); }
+    .ext-item:nth-child(1) { grid-row: span 2; height: 680px; }
+    .ext-item:nth-child(2) { height: 335px; }
+    .ext-item:nth-child(3) { height: 335px; }
+    .ext-item:nth-child(4) { height: 335px; }
+    .ext-item:nth-child(5) { height: 335px; }
+
+    .ext-caption-strip { padding: 32px 88px; display: flex; gap: 56px; border-top: 1px solid var(--light-gray); }
+    .ext-cap { }
+    .ext-cap strong { display:block; font-size:10px; letter-spacing:0.28em; text-transform:uppercase; color:var(--terracotta); margin-bottom:6px; font-weight:500; }
+    .ext-cap span { font-size:13px; font-weight:300; color:var(--warm-gray); line-height:1.6; }
 
     /* ── SUITES ── */
-    .suites-section { padding: 120px 80px; background: var(--cream); }
-    .suites-section h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,3.8vw,54px); font-weight:300; color:var(--dark); margin-bottom:64px; }
-    .suite-detail { display:grid; grid-template-columns:1fr 1fr; gap:0; margin-bottom:80px; background:var(--white); overflow:hidden; }
-    .suite-detail:nth-child(even) { direction: rtl; }
-    .suite-detail:nth-child(even) > * { direction: ltr; }
-    .sd-gallery { position:relative; overflow:hidden; min-height:480px; }
-    .sd-main-img { width:100%; height:100%; object-fit:cover; transition: transform 0.8s; }
-    .sd-main-img:hover { transform: scale(1.04); }
-    .sd-thumbs { position:absolute; bottom:0; left:0; right:0; display:flex; gap:2px; background:rgba(0,0,0,0.4); padding:8px; }
-    .sd-thumb { flex:1; height:56px; overflow:hidden; cursor:pointer; opacity:0.7; transition:opacity 0.3s; }
-    .sd-thumb:hover, .sd-thumb.active { opacity:1; }
-    .sd-thumb img { width:100%; height:100%; object-fit:cover; }
-    .sd-info { padding:52px 56px; display:flex; flex-direction:column; justify-content:center; }
-    .suite-num-label { font-size:10px; letter-spacing:0.3em; text-transform:uppercase; color:var(--terracotta); margin-bottom:16px; }
-    .sd-info h3 { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,2.8vw,40px); font-weight:300; color:var(--dark); margin-bottom:16px; }
-    .sd-info p { font-size:14px; font-weight:300; line-height:1.8; color:var(--warm-gray); margin-bottom:28px; }
-    .sd-specs { display:grid; grid-template-columns:1fr 1fr; gap:12px 24px; margin-bottom:32px; }
-    .sd-spec { font-size:12px; color:var(--warm-gray); display:flex; align-items:center; gap:8px; }
-    .sd-spec::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--terracotta); flex-shrink:0; }
-    .sd-tags { display:flex; flex-wrap:wrap; gap:6px; }
-    .sd-tag { font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--warm-gray); border:1px solid var(--light-gray); padding:4px 10px; border-radius:2px; }
+    .suites-section { padding: 0; background: var(--cream); }
+    .suites-header { padding: 96px 88px 64px; }
+    .suites-header h2 {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(38px,4vw,58px);
+      font-weight:300;
+      color:var(--dark);
+      line-height:1.08;
+    }
+    .suites-header p {
+      font-size:15px; font-weight:300; color:var(--warm-gray); line-height:1.85;
+      max-width:540px; margin-top:18px;
+    }
+
+    /* Suite card */
+    .suite-card { display:grid; grid-template-columns:1.15fr 1fr; min-height:600px; }
+    .suite-card:nth-child(even) { grid-template-columns:1fr 1.15fr; }
+    .suite-card:nth-child(even) .sd-gallery { order:2; }
+    .suite-card:nth-child(even) .sd-info { order:1; }
+    .suite-card + .suite-card { border-top: 1px solid var(--light-gray); }
+
+    /* Gallery with arrows */
+    .sd-gallery { position:relative; overflow:hidden; }
+    .sd-gallery img.sd-main-img {
+      width:100%; height:100%; object-fit:cover; display:block;
+      transition: opacity 0.4s ease;
+    }
+    .sd-arr {
+      position:absolute; top:50%; transform:translateY(-50%);
+      background:rgba(26,25,23,0.55); border:none; cursor:pointer;
+      width:48px; height:48px; display:flex; align-items:center; justify-content:center;
+      color:rgba(255,255,255,0.85); font-size:22px;
+      transition: background 0.3s;
+      backdrop-filter: blur(4px);
+      z-index: 2;
+    }
+    .sd-arr:hover { background:rgba(26,25,23,0.82); }
+    .sd-arr-prev { left:16px; }
+    .sd-arr-next { right:16px; }
+    .sd-dots {
+      position:absolute; bottom:18px; left:50%; transform:translateX(-50%);
+      display:flex; gap:7px; z-index:2;
+    }
+    .sd-dot {
+      width:7px; height:7px; border-radius:50%;
+      background:rgba(255,255,255,0.35); transition:background 0.3s, transform 0.3s;
+      cursor:pointer;
+    }
+    .sd-dot.active { background:var(--white); transform:scale(1.25); }
+
+    /* Suite info panel — dark */
+    .sd-info {
+      background:var(--dark);
+      padding:64px 72px;
+      display:flex; flex-direction:column; justify-content:center;
+    }
+    .suite-letter {
+      font-size:10px; letter-spacing:0.3em; text-transform:uppercase;
+      color:rgba(255,255,255,0.25); margin-bottom:10px;
+    }
+    .sd-info h3 {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(30px,3vw,44px);
+      font-weight:300;
+      font-style:italic;
+      color:var(--sand);
+      margin-bottom:20px;
+      line-height:1.1;
+    }
+    .sd-info p { font-size:14px; font-weight:300; line-height:1.85; color:rgba(255,255,255,0.52); margin-bottom:18px; }
+    .sd-divider { width:32px; height:1px; background:var(--terracotta); margin:24px 0; }
+    .sd-specs {
+      display:flex; flex-wrap:wrap; gap:8px 0; margin-bottom:28px;
+    }
+    .sd-spec {
+      font-size:12px; font-weight:300;
+      color:rgba(255,255,255,0.42);
+      width:50%;
+      display:flex; align-items:center; gap:9px;
+    }
+    .sd-spec::before {
+      content:''; width:4px; height:4px; border-radius:50%;
+      background:var(--terracotta); flex-shrink:0;
+    }
+
+    /* ── EXTERIOR SECTION AFTER SUITES — full-width immersive pull ── */
+    .villa-feel {
+      display:grid; grid-template-columns:1fr 1fr;
+      min-height:560px;
+    }
+    .vf-image { overflow:hidden; position:relative; }
+    .vf-image img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 1.1s; }
+    .vf-image:hover img { transform:scale(1.03); }
+    .vf-text {
+      background:#1D1B18;
+      padding:88px 80px;
+      display:flex; align-items:center;
+    }
+    .vf-inner { max-width:440px; }
+    .vf-inner blockquote {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(28px,2.8vw,40px);
+      font-weight:300;
+      font-style:italic;
+      color:var(--sand);
+      line-height:1.35;
+      margin-bottom:28px;
+    }
+    .vf-inner p {
+      font-size:14px; font-weight:300;
+      color:rgba(255,255,255,0.42); line-height:1.8;
+    }
 
     /* ── PROPERTY GALLERY ── */
-    .prop-gallery { padding: 120px 80px; background: var(--dark); }
-    .prop-gallery h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,3.5vw,52px); font-weight:300; color:var(--sand); margin-bottom:8px; }
-    .prop-gallery > p { font-size:14px; font-weight:300; color:rgba(255,255,255,0.4); margin-bottom:48px; }
-    .pg-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+    .prop-gallery { padding: 120px 88px; background: #111110; }
+    .prop-gallery .pg-head { margin-bottom:52px; }
+    .prop-gallery h2 {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(36px,3.5vw,52px);
+      font-weight:300;
+      color:var(--sand);
+      margin-bottom:10px;
+    }
+    .prop-gallery > .pg-head > p { font-size:13px; font-weight:300; color:rgba(255,255,255,0.3); }
+    .pg-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
     .pg-item { overflow:hidden; cursor:pointer; position:relative; }
-    .pg-item img { width:100%; height:100%; object-fit:cover; transition:transform 0.6s; }
+    .pg-item img { width:100%; height:100%; object-fit:cover; transition:transform 0.7s; display:block; }
     .pg-item:hover img { transform:scale(1.06); }
     .pg-item:nth-child(1) { grid-column: span 2; height:460px; }
     .pg-item:nth-child(2) { height:460px; }
@@ -60,24 +203,49 @@
     .pg-item:nth-child(10) { height:260px; }
 
     /* ── BOOK BAR ── */
-    .book-bar { background:var(--terracotta); padding:48px 80px; display:flex; align-items:center; justify-content:space-between; gap:32px; }
-    .book-bar h3 { font-family:'Cormorant Garamond',serif; font-size:clamp(26px,2.5vw,36px); font-weight:300; color:var(--white); }
-    .book-bar p { font-size:13px; color:rgba(255,255,255,0.75); margin-top:6px; }
-    .btn-white { padding:15px 40px; background:var(--white); color:var(--terracotta); font-size:11px; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; border-radius:2px; transition:all 0.3s; flex-shrink:0; display:inline-block; }
+    .book-bar {
+      padding:64px 88px;
+      background:var(--terracotta);
+      display:flex; align-items:center; justify-content:space-between; gap:32px;
+    }
+    .book-bar h3 {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(28px,2.8vw,40px);
+      font-weight:300; font-style:italic;
+      color:var(--white);
+    }
+    .book-bar p { font-size:13px; color:rgba(255,255,255,0.7); margin-top:7px; }
+    .btn-white {
+      padding:15px 40px; background:var(--white); color:var(--terracotta);
+      font-size:11px; font-weight:500; letter-spacing:0.15em; text-transform:uppercase;
+      border-radius:2px; transition:all 0.3s; flex-shrink:0; display:inline-block;
+    }
     .btn-white:hover { background:var(--dark); color:var(--white); }
 
     @media (max-width:1100px) {
       .villa-intro { grid-template-columns:1fr; }
-      .vi-visual { min-height:380px; }
-      .vi-text { padding:60px 28px; }
-      .suites-section { padding:80px 28px; }
-      .suite-detail { grid-template-columns:1fr; direction:ltr !important; }
-      .sd-gallery { min-height:340px; }
-      .sd-info { padding:36px 28px; }
+      .vi-visual { min-height:400px; }
+      .vi-text { padding:64px 28px; }
+      .exterior-header { padding:72px 28px 44px; }
+      .ext-grid { grid-template-columns:1fr 1fr; grid-template-rows: auto auto auto; padding:0 5px 5px; }
+      .ext-item:nth-child(1) { grid-row:span 1; height:280px; grid-column:span 2; }
+      .ext-item:nth-child(2), .ext-item:nth-child(3),
+      .ext-item:nth-child(4), .ext-item:nth-child(5) { height:200px; }
+      .ext-caption-strip { padding:24px 28px; flex-wrap:wrap; gap:24px; }
+      .suites-header { padding:72px 28px 44px; }
+      .suite-card { grid-template-columns:1fr; min-height:auto; }
+      .suite-card:nth-child(even) { grid-template-columns:1fr; }
+      .suite-card:nth-child(even) .sd-gallery { order:1; }
+      .suite-card:nth-child(even) .sd-info { order:2; }
+      .sd-gallery { min-height:380px; }
+      .sd-info { padding:44px 28px; }
+      .villa-feel { grid-template-columns:1fr; }
+      .vf-image { min-height:380px; }
+      .vf-text { padding:60px 28px; }
       .prop-gallery { padding:80px 28px; }
       .pg-grid { grid-template-columns:1fr 1fr; }
       .pg-item { grid-column:span 1 !important; height:220px !important; }
-      .book-bar { flex-direction:column; text-align:center; padding:40px 28px; }
+      .book-bar { flex-direction:column; text-align:center; padding:48px 28px; }
     }
   </style>
 </head>
@@ -91,231 +259,323 @@
   <div class="page-hero-content">
     <span class="label" data-i18n="villa.hero.label">The Property</span>
     <h1 data-i18n="villa.hero.h1">Five suites, one horizon</h1>
-    <p data-i18n="villa.hero.sub">Each suite is 62 m², individually designed, and oriented toward the Atlantic. The entire villa is yours — never shared with other guests.</p>
+    <p data-i18n="villa.hero.sub">Built into a clifftop above the Atlantic. Raw stone, open air, and total silence — except for the sea below.</p>
   </div>
 </div>
 
-<!-- EXCLUSIVE USE INTRO -->
+<!-- INTRO -->
 <section class="villa-intro">
   <div class="vi-visual">
-    <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1200&q=85" alt="Villa pool exclusive">
+    <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1200&q=85" alt="Villa interior">
   </div>
   <div class="vi-text">
-    <div class="vi-inner">
+    <div class="vi-inner reveal">
       <span class="label" data-i18n="villa.intro.label">Exclusive use</span>
-      <h2 data-i18n-html="villa.intro.h2">Booking the villa means booking <em>all of it</em></h2>
-      <p data-i18n="villa.intro.body">Casa da Falésia operates exclusively as a whole-villa rental. When you stay here, every room, every terrace, every inch of the clifftop is yours. No other guests, no shared spaces, complete privacy.</p>
-      <p>Five individually designed suites — each oriented toward the Atlantic, each with its own character and particular relationship to the land, the light, and the sea.</p>
-      <a href="reserve.html" class="btn btn-primary" data-i18n="nav.book">Book a Stay</a>
+      <h2 data-i18n-html="villa.intro.h2">Entirely yours.<br>No exceptions.</h2>
+      <p data-i18n="villa.intro.body">Casa da Falésia does not rent individual rooms. When you book, you take the whole house — every terrace, every corner of the clifftop, the pool, the kitchen, the fire pit. No other guests, no shared spaces, no lobby, no check-in desk.</p>
+      <p>It is a house first. It happens to sleep ten people extraordinarily well. The staff will cook, clean, and leave you alone whenever you want them to.</p>
+      <a href="reserve.html" class="btn btn-outline-white" data-i18n="nav.book">Book a Stay</a>
     </div>
   </div>
 </section>
 
-<!-- SUITE DETAILS -->
-<section class="suites-section" id="suites">
-  <span class="label" data-i18n="idx.suites.label">Accommodation</span>
-  <h2 data-i18n="idx.suites.h2">Five suites, one horizon</h2>
+<!-- EXTERIOR SECTION -->
+<section class="exterior-section">
+  <div class="exterior-header reveal">
+    <span class="label" data-i18n="villa.ext.label">Outside</span>
+    <h2 data-i18n="villa.ext.h2">The clifftop, the pool, the land</h2>
+    <p data-i18n="villa.ext.body">The outdoor spaces are as considered as the rooms. Raw laterite stone, native cashew trees, an infinity edge that drops to the Atlantic. A place built to blur the line between architecture and landscape.</p>
+  </div>
 
-  <!-- Suite A -->
-  <div class="suite-detail reveal" id="suite-a">
-    <div class="sd-gallery">
-      <img class="sd-main-img" id="sa-main" src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1000&q=85" alt="Falésia Suite">
-      <div class="sd-thumbs">
-        <div class="sd-thumb active" onclick="switchImg('sa-main',this,'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=200&q=70" alt=""></div>
-        <div class="sd-thumb" onclick="switchImg('sa-main',this,'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=200&q=70" alt=""></div>
-        <div class="sd-thumb" onclick="switchImg('sa-main',this,'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=200&q=70" alt=""></div>
+  <div class="ext-grid" id="extGrid">
+    <!-- Large left -->
+    <div class="ext-item" onclick="openLb(this,'#extGrid')">
+      <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1400&q=85" alt="Infinity pool cliff">
+    </div>
+    <!-- Right column top two -->
+    <div class="ext-item" onclick="openLb(this,'#extGrid')">
+      <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=900&q=85" alt="Pool terrace">
+    </div>
+    <div class="ext-item" onclick="openLb(this,'#extGrid')">
+      <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=900&q=85" alt="Terrace at dusk">
+    </div>
+    <!-- Bottom row -->
+    <div class="ext-item" onclick="openLb(this,'#extGrid')">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=85" alt="Cliff view to sea">
+    </div>
+    <div class="ext-item" onclick="openLb(this,'#extGrid')">
+      <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=900&q=85" alt="Garden path">
+    </div>
+  </div>
+
+  <div class="ext-caption-strip">
+    <div class="ext-cap">
+      <strong>Infinity pool</strong>
+      <span>26 m · cliff edge · saltwater</span>
+    </div>
+    <div class="ext-cap">
+      <strong>Terraces</strong>
+      <span>Covered & open · facing Atlantic</span>
+    </div>
+    <div class="ext-cap">
+      <strong>Fire pit</strong>
+      <span>Cliffside · sundown ritual</span>
+    </div>
+    <div class="ext-cap">
+      <strong>Garden</strong>
+      <span>Native Atlantic Forest · private paths</span>
+    </div>
+  </div>
+</section>
+
+<!-- SUITES -->
+<section class="suites-section" id="suites">
+  <div class="suites-header reveal">
+    <span class="label" data-i18n="idx.suites.label">Accommodation</span>
+    <h2 data-i18n="idx.suites.h2">Five suites, five characters</h2>
+    <p>Each suite is 62 m², each is different. Same cliffs, same silence — but the light changes, the relationship to the sea changes, and the feel changes completely.</p>
+  </div>
+
+  <!-- Suite A — Falésia -->
+  <div class="suite-card reveal" id="suite-a">
+    <div class="sd-gallery" data-suite="a">
+      <img class="sd-main-img" id="sa-main" src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1200&q=85" alt="Falésia Suite">
+      <button class="sd-arr sd-arr-prev" onclick="navSuite('a',-1)">&#8592;</button>
+      <button class="sd-arr sd-arr-next" onclick="navSuite('a', 1)">&#8594;</button>
+      <div class="sd-dots">
+        <div class="sd-dot active" onclick="setSuite('a',0)"></div>
+        <div class="sd-dot" onclick="setSuite('a',1)"></div>
+        <div class="sd-dot" onclick="setSuite('a',2)"></div>
       </div>
     </div>
     <div class="sd-info">
-      <div class="suite-num-label">Suite A</div>
-      <h3 data-i18n="s1.name">Falésia Suite</h3>
-      <p data-i18n="s1.desc">Our clifftop master suite with a private terrace directly above the waterline. Fall asleep to the sound of the Atlantic below.</p>
-      <p>The largest suite on the property, with floor-to-ceiling glass on the ocean side that opens fully onto a private wraparound terrace. Raw stone walls, linen bedding, and a freestanding soaking tub facing the sea.</p>
+      <div class="suite-letter">Suite A</div>
+      <h3 data-i18n="s1.name">Falésia</h3>
+      <p data-i18n="s1.desc">The clifftop master. Directly above the waterline — floor-to-ceiling glass, raw stone walls, a freestanding tub facing the Atlantic.</p>
+      <p>Fall asleep to the sound of the sea below. Wake up to nothing but horizon.</p>
+      <div class="sd-divider"></div>
       <div class="sd-specs">
         <span class="sd-spec">62 m²</span>
-        <span class="sd-spec">Ocean-facing terrace</span>
         <span class="sd-spec">King bed</span>
-        <span class="sd-spec">Freestanding soaking tub</span>
-        <span class="sd-spec">Rain shower + outdoor shower</span>
-        <span class="sd-spec">Direct cliff access</span>
-      </div>
-      <div class="sd-tags">
-        <span class="sd-tag" data-i18n="suite.tag.62">62 m²</span>
-        <span class="sd-tag" data-i18n="suite.tag.king">King bed</span>
-        <span class="sd-tag" data-i18n="suite.tag.terrace">Cliff terrace</span>
-        <span class="sd-tag" data-i18n="suite.tag.tub">Soaking tub</span>
-        <span class="sd-tag" data-i18n="suite.tag.outdoor">Outdoor shower</span>
+        <span class="sd-spec">Ocean terrace</span>
+        <span class="sd-spec">Soaking tub</span>
+        <span class="sd-spec">Rain + outdoor shower</span>
+        <span class="sd-spec">Cliff access</span>
       </div>
     </div>
   </div>
 
-  <!-- Suite B -->
-  <div class="suite-detail reveal" id="suite-b">
-    <div class="sd-gallery">
-      <img class="sd-main-img" id="sb-main" src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1000&q=85" alt="Brisa Suite">
-      <div class="sd-thumbs">
-        <div class="sd-thumb active" onclick="switchImg('sb-main',this,'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=200&q=70" alt=""></div>
-        <div class="sd-thumb" onclick="switchImg('sb-main',this,'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=200&q=70" alt=""></div>
-        <div class="sd-thumb" onclick="switchImg('sb-main',this,'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=200&q=70" alt=""></div>
+  <!-- Suite B — Brisa -->
+  <div class="suite-card reveal" id="suite-b">
+    <div class="sd-gallery" data-suite="b">
+      <img class="sd-main-img" id="sb-main" src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1200&q=85" alt="Brisa Suite">
+      <button class="sd-arr sd-arr-prev" onclick="navSuite('b',-1)">&#8592;</button>
+      <button class="sd-arr sd-arr-next" onclick="navSuite('b', 1)">&#8594;</button>
+      <div class="sd-dots">
+        <div class="sd-dot active" onclick="setSuite('b',0)"></div>
+        <div class="sd-dot" onclick="setSuite('b',1)"></div>
+        <div class="sd-dot" onclick="setSuite('b',2)"></div>
       </div>
     </div>
     <div class="sd-info">
-      <div class="suite-num-label">Suite B</div>
-      <h3 data-i18n="s2.name">Brisa Suite</h3>
-      <p data-i18n="s2.desc">Oriented east for extraordinary sunrise light, washed in white linen and ocean breeze from the moment you wake.</p>
-      <p>A suite defined by lightness — white-washed walls, gauze curtains catching the morning air, and a private deck where breakfast arrives with the dawn. The most romantic suite on the property.</p>
+      <div class="suite-letter">Suite B</div>
+      <h3 data-i18n="s2.name">Brisa</h3>
+      <p data-i18n="s2.desc">East-facing. The most luminous suite on the property — white-washed walls, gauze curtains catching the morning air, breakfast arriving with the dawn.</p>
+      <p>The suite for people who wake up early and mean it.</p>
+      <div class="sd-divider"></div>
       <div class="sd-specs">
         <span class="sd-spec">62 m²</span>
-        <span class="sd-spec">East-facing, sunrise view</span>
         <span class="sd-spec">King bed</span>
-        <span class="sd-spec">Private breakfast deck</span>
+        <span class="sd-spec">Sunrise view</span>
+        <span class="sd-spec">Breakfast deck</span>
         <span class="sd-spec">Rain shower</span>
         <span class="sd-spec">Freestanding bath</span>
       </div>
-      <div class="sd-tags">
-        <span class="sd-tag" data-i18n="suite.tag.62">62 m²</span>
-        <span class="sd-tag" data-i18n="suite.tag.king">King bed</span>
-        <span class="sd-tag" data-i18n="suite.tag.sunrise">Sunrise view</span>
-        <span class="sd-tag" data-i18n="suite.tag.ensuite">Ensuite</span>
-      </div>
     </div>
   </div>
 
-  <!-- Suite C -->
-  <div class="suite-detail reveal" id="suite-c">
-    <div class="sd-gallery">
-      <img class="sd-main-img" id="sc-main" src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1000&q=85" alt="Jardim Suite">
-      <div class="sd-thumbs">
-        <div class="sd-thumb active" onclick="switchImg('sc-main',this,'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=200&q=70" alt=""></div>
-        <div class="sd-thumb" onclick="switchImg('sc-main',this,'https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=200&q=70" alt=""></div>
-        <div class="sd-thumb" onclick="switchImg('sc-main',this,'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=200&q=70" alt=""></div>
+  <!-- Suite C — Jardim -->
+  <div class="suite-card reveal" id="suite-c">
+    <div class="sd-gallery" data-suite="c">
+      <img class="sd-main-img" id="sc-main" src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1200&q=85" alt="Jardim Suite">
+      <button class="sd-arr sd-arr-prev" onclick="navSuite('c',-1)">&#8592;</button>
+      <button class="sd-arr sd-arr-next" onclick="navSuite('c', 1)">&#8594;</button>
+      <div class="sd-dots">
+        <div class="sd-dot active" onclick="setSuite('c',0)"></div>
+        <div class="sd-dot" onclick="setSuite('c',1)"></div>
+        <div class="sd-dot" onclick="setSuite('c',2)"></div>
       </div>
     </div>
     <div class="sd-info">
-      <div class="suite-num-label">Suite C</div>
-      <h3 data-i18n="s3.name">Jardim Suite</h3>
-      <p data-i18n="s3.desc">Surrounded by native Atlantic Forest on three sides — cool, fragrant, and deeply restorative.</p>
-      <p>The most grounded suite on the property. Sliding panels open onto a private garden enclosed by native forest, with an outdoor shower among the vegetation. The air is different here — cooler, filled with birdsong.</p>
+      <div class="suite-letter">Suite C</div>
+      <h3 data-i18n="s3.name">Jardim</h3>
+      <p data-i18n="s3.desc">Surrounded by native Mata Atlântica on three sides — cool, fragrant, deeply grounding. Sliding panels open onto a private garden enclosed by old-growth forest.</p>
+      <p>The air here is different. The birds are louder. Sleep comes faster.</p>
+      <div class="sd-divider"></div>
       <div class="sd-specs">
         <span class="sd-spec">62 m²</span>
-        <span class="sd-spec">Private forest garden</span>
         <span class="sd-spec">King bed</span>
-        <span class="sd-spec">Outdoor garden shower</span>
-        <span class="sd-spec">Ensuite bathroom</span>
-        <span class="sd-spec">Direct garden access</span>
-      </div>
-      <div class="sd-tags">
-        <span class="sd-tag" data-i18n="suite.tag.62">62 m²</span>
-        <span class="sd-tag" data-i18n="suite.tag.king">King bed</span>
-        <span class="sd-tag" data-i18n="suite.tag.garden">Garden</span>
-        <span class="sd-tag" data-i18n="suite.tag.outdoor">Outdoor shower</span>
+        <span class="sd-spec">Forest garden</span>
+        <span class="sd-spec">Outdoor shower</span>
+        <span class="sd-spec">Garden access</span>
+        <span class="sd-spec">Ensuite</span>
       </div>
     </div>
   </div>
 
-  <!-- Suite D -->
-  <div class="suite-detail reveal" id="suite-d">
-    <div class="sd-gallery">
-      <img class="sd-main-img" id="sd-main" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=85" alt="Maré Suite">
-      <div class="sd-thumbs">
-        <div class="sd-thumb active" onclick="switchImg('sd-main',this,'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=200&q=70" alt=""></div>
-        <div class="sd-thumb" onclick="switchImg('sd-main',this,'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=200&q=70" alt=""></div>
-        <div class="sd-thumb" onclick="switchImg('sd-main',this,'https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=200&q=70" alt=""></div>
+  <!-- Suite D — Maré -->
+  <div class="suite-card reveal" id="suite-d">
+    <div class="sd-gallery" data-suite="d">
+      <img class="sd-main-img" id="sd-main" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=85" alt="Maré Suite">
+      <button class="sd-arr sd-arr-prev" onclick="navSuite('d',-1)">&#8592;</button>
+      <button class="sd-arr sd-arr-next" onclick="navSuite('d', 1)">&#8594;</button>
+      <div class="sd-dots">
+        <div class="sd-dot active" onclick="setSuite('d',0)"></div>
+        <div class="sd-dot" onclick="setSuite('d',1)"></div>
+        <div class="sd-dot" onclick="setSuite('d',2)"></div>
       </div>
     </div>
     <div class="sd-info">
-      <div class="suite-num-label">Suite D</div>
-      <h3 data-i18n="s4.name">Maré Suite</h3>
-      <p data-i18n="s4.desc">Pool-level and low-slung, this suite steps directly onto the infinity pool deck with its unbroken sea view.</p>
-      <p>Step from the bedroom directly onto the pool terrace. The Maré Suite feels like living outdoors — a room defined more by what's outside it than within. A favourite for those who want to swim before breakfast.</p>
+      <div class="suite-letter">Suite D</div>
+      <h3 data-i18n="s4.name">Maré</h3>
+      <p data-i18n="s4.desc">Pool-level. Step from the bedroom directly onto the deck. The line between inside and outside is almost nothing — a room defined by what's around it more than within it.</p>
+      <p>You will swim before breakfast. There is simply no reason not to.</p>
+      <div class="sd-divider"></div>
       <div class="sd-specs">
         <span class="sd-spec">62 m²</span>
+        <span class="sd-spec">King bed</span>
         <span class="sd-spec">Direct pool access</span>
-        <span class="sd-spec">King bed</span>
         <span class="sd-spec">Terrace day bed</span>
-        <span class="sd-spec">Ensuite bathroom</span>
         <span class="sd-spec">Ocean view</span>
-      </div>
-      <div class="sd-tags">
-        <span class="sd-tag" data-i18n="suite.tag.62">62 m²</span>
-        <span class="sd-tag" data-i18n="suite.tag.king">King bed</span>
-        <span class="sd-tag" data-i18n="suite.tag.pool">Pool level</span>
-        <span class="sd-tag" data-i18n="suite.tag.daybed">Day bed</span>
+        <span class="sd-spec">Ensuite</span>
       </div>
     </div>
   </div>
 
-  <!-- Suite E -->
-  <div class="suite-detail reveal" id="suite-e">
-    <div class="sd-gallery">
-      <img class="sd-main-img" id="se-main" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1000&q=85" alt="Canto Suite">
-      <div class="sd-thumbs">
-        <div class="sd-thumb active" onclick="switchImg('se-main',this,'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=200&q=70" alt=""></div>
-        <div class="sd-thumb" onclick="switchImg('se-main',this,'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=200&q=70" alt=""></div>
-        <div class="sd-thumb" onclick="switchImg('se-main',this,'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1000&q=85')"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=200&q=70" alt=""></div>
+  <!-- Suite E — Canto -->
+  <div class="suite-card reveal" id="suite-e">
+    <div class="sd-gallery" data-suite="e">
+      <img class="sd-main-img" id="se-main" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=85" alt="Canto Suite">
+      <button class="sd-arr sd-arr-prev" onclick="navSuite('e',-1)">&#8592;</button>
+      <button class="sd-arr sd-arr-next" onclick="navSuite('e', 1)">&#8594;</button>
+      <div class="sd-dots">
+        <div class="sd-dot active" onclick="setSuite('e',0)"></div>
+        <div class="sd-dot" onclick="setSuite('e',1)"></div>
+        <div class="sd-dot" onclick="setSuite('e',2)"></div>
       </div>
     </div>
     <div class="sd-info">
-      <div class="suite-num-label">Suite E</div>
-      <h3 data-i18n="s5.name">Canto Suite</h3>
-      <p data-i18n="s5.desc">Tucked into the north corner — the most secluded suite on the property, a true nest for complete solitude.</p>
-      <p>The Canto Suite sees the sun from two angles — morning light from the east, afternoon gold from the north. Deeper into the villa than the other suites, it is the quietest, most private, most contemplative room we have.</p>
+      <div class="suite-letter">Suite E</div>
+      <h3 data-i18n="s5.name">Canto</h3>
+      <p data-i18n="s5.desc">The north corner. The most private, most contemplative room in the house. Double aspect — morning light from the east, afternoon gold from the north.</p>
+      <p>For those who came here to disappear. You will not be disturbed.</p>
+      <div class="sd-divider"></div>
       <div class="sd-specs">
         <span class="sd-spec">62 m²</span>
-        <span class="sd-spec">Double aspect views</span>
         <span class="sd-spec">King bed</span>
-        <span class="sd-spec">Freestanding soaking tub</span>
-        <span class="sd-spec">Private nook terrace</span>
-        <span class="sd-spec">Most secluded suite</span>
-      </div>
-      <div class="sd-tags">
-        <span class="sd-tag" data-i18n="suite.tag.62">62 m²</span>
-        <span class="sd-tag" data-i18n="suite.tag.king">King bed</span>
-        <span class="sd-tag" data-i18n="suite.tag.aspect">Double aspect</span>
-        <span class="sd-tag" data-i18n="suite.tag.tub">Soaking tub</span>
+        <span class="sd-spec">Double aspect</span>
+        <span class="sd-spec">Soaking tub</span>
+        <span class="sd-spec">Private terrace</span>
+        <span class="sd-spec">Most secluded</span>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ATMOSPHERE PULL QUOTE -->
+<div class="villa-feel">
+  <div class="vf-image">
+    <img src="https://images.unsplash.com/photo-1598135753163-6167c1a1ad65?auto=format&fit=crop&w=1200&q=85" alt="Pipa cliffs and sea">
+  </div>
+  <div class="vf-text">
+    <div class="vf-inner">
+      <blockquote>"The house was built to disappear into the landscape — not to compete with it."</blockquote>
+      <p>Raw laterite walls, unpolished concrete, cashew-wood beams. The architecture borrows from the Northeast Brazilian vernacular — low-slung, shaded, porous to the outside air. Nothing here is imported. Everything belongs.</p>
+    </div>
+  </div>
+</div>
+
 <!-- PROPERTY GALLERY -->
 <section class="prop-gallery" id="gallery">
-  <span class="label" style="color:var(--terracotta)" data-i18n="villa.gallery.label">Property gallery</span>
-  <h2 data-i18n="villa.gallery.h2">Inside Casa da Falésia</h2>
-  <p>Click any image to view full screen — use arrow keys to navigate.</p>
+  <div class="pg-head">
+    <span class="label" style="color:var(--terracotta)" data-i18n="villa.gallery.label">Property gallery</span>
+    <h2 data-i18n="villa.gallery.h2">Inside Casa da Falésia</h2>
+    <p>Click any image to view full screen — use arrow keys to navigate.</p>
+  </div>
   <div class="pg-grid" id="pgGrid">
     <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1200&q=85" alt="Infinity pool"></div>
-    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=900&q=85" alt="Villa pool"></div>
+    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=900&q=85" alt="Villa pool terrace"></div>
     <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=900&q=85" alt="Terrace"></div>
     <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=85" alt="Living area"></div>
-    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=900&q=85" alt="Suite A"></div>
-    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1200&q=85" alt="Suite B"></div>
-    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=900&q=85" alt="Suite C"></div>
-    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=85" alt="Suite D pool"></div>
-    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=900&q=85" alt="Suite E"></div>
-    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=85" alt="Beach view"></div>
+    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=900&q=85" alt="Falésia Suite"></div>
+    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1200&q=85" alt="Brisa Suite"></div>
+    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=900&q=85" alt="Jardim Suite"></div>
+    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=85" alt="Maré Suite"></div>
+    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=900&q=85" alt="Canto Suite"></div>
+    <div class="pg-item" onclick="openLb(this,'#pgGrid')"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=85" alt="Pipa beach"></div>
   </div>
 </section>
 
 <!-- BOOK BAR -->
 <div class="book-bar">
   <div>
-    <h3>Ready to experience Casa da Falésia?</h3>
-    <p data-i18n="idx.book.price">From <strong>R$&nbsp;5,500</strong> per night · Full-villa · Minimum 3 nights</p>
+    <h3 data-i18n-html="book.cta.h3">Come stay. The whole house, entirely yours.</h3>
+    <p data-i18n="idx.book.price">From <strong>R$&nbsp;5,500</strong> per night · Full villa · Minimum 3 nights</p>
   </div>
-  <a href="reserve.html" class="btn-white" data-i18n="nav.book">Book a Stay</a>
+  <a href="reserve.html" class="btn-white" data-i18n="nav.book">Check Availability</a>
 </div>
 
 <footer id="footer"></footer>
 <div class="lb" id="lb"></div>
 
 <script>
-function switchImg(mainId, thumb, src) {
-  document.getElementById(mainId).src = src;
-  // Update active thumb
-  const parent = thumb.closest('.sd-thumbs');
-  parent.querySelectorAll('.sd-thumb').forEach(t => t.classList.remove('active'));
-  thumb.classList.add('active');
+const SUITE_IMGS = {
+  a: [
+    'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1200&q=85',
+    'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1200&q=85',
+    'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=85'
+  ],
+  b: [
+    'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1200&q=85',
+    'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1200&q=85',
+    'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=85'
+  ],
+  c: [
+    'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1200&q=85',
+    'https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1200&q=85',
+    'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1200&q=85'
+  ],
+  d: [
+    'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=85',
+    'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1200&q=85',
+    'https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1200&q=85'
+  ],
+  e: [
+    'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=85',
+    'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1200&q=85',
+    'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=85'
+  ]
+};
+
+const suiteIdx = { a:0, b:0, c:0, d:0, e:0 };
+
+function setSuite(id, idx) {
+  const imgs = SUITE_IMGS[id];
+  suiteIdx[id] = idx;
+  const mainEl = document.getElementById('s' + id + '-main');
+  mainEl.style.opacity = '0';
+  setTimeout(() => {
+    mainEl.src = imgs[idx];
+    mainEl.style.opacity = '1';
+  }, 220);
+  document.querySelectorAll('#suite-' + id + ' .sd-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === idx);
+  });
+}
+
+function navSuite(id, dir) {
+  const len = SUITE_IMGS[id].length;
+  setSuite(id, (suiteIdx[id] + dir + len) % len);
 }
 </script>
 <script src="js/i18n.js"></script>

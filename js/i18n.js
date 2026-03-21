@@ -124,6 +124,10 @@ window.T = {
     'villa.intro.body': 'Casa da Falésia operates exclusively as a whole-villa rental. When you stay here, every room, every terrace, every inch of the clifftop is yours. No other guests, no shared spaces, complete privacy.',
     'villa.gallery.label': 'Property gallery',
     'villa.gallery.h2':    'Inside Casa da Falésia',
+    'villa.ext.label':  'Outside',
+    'villa.ext.h2':     'The clifftop, the pool, the land',
+    'villa.ext.body':   'The outdoor spaces are as considered as the rooms. Raw laterite stone, native cashew trees, an infinity edge that drops to the Atlantic. A place built to blur the line between architecture and landscape.',
+    'book.cta.h3':      'Come stay. The whole house, entirely yours.',
 
     /* DESTINATION PAGE */
     'dest.hero.label': 'The Destination',
@@ -320,6 +324,10 @@ window.T = {
     'villa.intro.body': 'A Casa da Falésia funciona exclusivamente como aluguel da villa completa. Quando você se hospeda aqui, cada suíte, cada terraço e cada centímetro da falésia são seus. Sem outros hóspedes, sem espaços compartilhados.',
     'villa.gallery.label': 'Galeria da propriedade',
     'villa.gallery.h2':    'Por dentro da Casa da Falésia',
+    'villa.ext.label':  'Fora',
+    'villa.ext.h2':     'A falésia, a piscina, a natureza',
+    'villa.ext.body':   'Os espaços externos são tão cuidados quanto os quartos. Pedra laterita bruta, cajueiros nativos e uma borda infinita que desce até o Atlântico. Um lugar construído para apagar a fronteira entre arquitetura e paisagem.',
+    'book.cta.h3':      'Venha ficar. A casa inteira, inteiramente sua.',
 
     'dest.hero.label': 'O Destino',
     'dest.hero.h1':    'Pipa',
@@ -512,6 +520,10 @@ window.T = {
     'villa.intro.body': 'Casa da Falésia fonctionne exclusivement en location de villa entière. Lorsque vous séjournez ici, chaque suite, chaque terrasse et chaque centimètre de la falaise vous appartient. Aucun autre hôte, aucun espace partagé.',
     'villa.gallery.label': 'Galerie de la propriété',
     'villa.gallery.h2':    'À l\'intérieur de Casa da Falésia',
+    'villa.ext.label':  'Extérieur',
+    'villa.ext.h2':     'La falaise, la piscine, le paysage',
+    'villa.ext.body':   'Les espaces extérieurs sont aussi soignés que les chambres. Pierre latérite brute, anacardiers natifs et un débordement qui plonge vers l\'Atlantique. Un lieu conçu pour effacer la frontière entre architecture et nature.',
+    'book.cta.h3':      'Venez séjourner. La maison entière, entièrement à vous.',
 
     'dest.hero.label': 'La Destination',
     'dest.hero.h1':    'Pipa',
