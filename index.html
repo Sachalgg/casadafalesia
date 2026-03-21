@@ -24,149 +24,161 @@
     }
     .hero-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(10,9,7,0.88) 0%, rgba(10,9,7,0.18) 52%, transparent 100%);
+      background: linear-gradient(to top, rgba(8,7,5,0.9) 0%, rgba(8,7,5,0.12) 50%, transparent 100%);
     }
-    .hero-content { position: relative; z-index: 2; padding: 0 88px 100px; max-width: 860px; }
+    .hero-content { position: relative; z-index: 2; padding: 0 88px 100px; }
     .hero-eyebrow {
       font-family: 'Aboreto', cursive;
-      font-size: 9px; font-weight: 400; letter-spacing: 0.38em;
-      text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 24px;
+      font-size: 9px; letter-spacing: 0.42em; text-transform: uppercase;
+      color: rgba(255,255,255,0.38); margin-bottom: 28px;
     }
     .hero h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(64px, 9vw, 120px); font-weight: 300;
-      line-height: 0.92; letter-spacing: -0.02em; color: var(--white); margin-bottom: 32px;
+      font-size: clamp(72px, 10vw, 132px); font-weight: 300;
+      line-height: 0.9; letter-spacing: -0.02em; color: var(--white); margin-bottom: 36px;
     }
     .hero h1 em { font-style: italic; }
     .hero-tagline {
-      font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.62);
-      line-height: 1.85; max-width: 440px; margin-bottom: 52px;
+      font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.56);
+      line-height: 1.9; max-width: 400px; margin-bottom: 52px;
     }
     .hero-actions { display: flex; align-items: center; gap: 36px; }
     .btn-ghost-hero {
-      color: rgba(255,255,255,0.65); font-size: 12px; font-weight: 300;
+      color: rgba(255,255,255,0.55); font-size: 12px; font-weight: 300;
       display: inline-flex; align-items: center; gap: 10px; transition: color 0.3s;
-      letter-spacing: 0.05em;
     }
     .btn-ghost-hero svg { width: 18px; height: 18px; transition: transform 0.3s; }
     .btn-ghost-hero:hover { color: var(--white); }
     .btn-ghost-hero:hover svg { transform: translateX(6px); }
     .scroll-cue {
-      position: absolute; right: 56px; bottom: 52px; z-index: 2;
+      position: absolute; right: 52px; bottom: 52px; z-index: 2;
       display: flex; flex-direction: column; align-items: center; gap: 12px;
-      color: rgba(255,255,255,0.32); font-size: 8px; letter-spacing: 0.3em;
+      color: rgba(255,255,255,0.28); font-size: 8px; letter-spacing: 0.3em;
       text-transform: uppercase; writing-mode: vertical-lr;
     }
-    .scroll-cue::after { content: ''; width: 1px; height: 64px; background: rgba(255,255,255,0.22); }
+    .scroll-cue::after { content: ''; width: 1px; height: 72px; background: rgba(255,255,255,0.18); }
 
-    /* ── INTRO ── */
-    .section-intro {
-      display: grid; grid-template-columns: 58% 42%;
-    }
-    .intro-visual { position: relative; overflow: hidden; min-height: 88vh; }
-    .intro-visual img {
-      width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s ease;
-      border-radius: 0 0 8px 0; display: block;
-    }
-    .intro-visual:hover img { transform: scale(1.03); }
-    .intro-text {
+    /* ── MANIFESTO — pure text, nothing else ── */
+    .manifesto {
       background: var(--cream);
-      display: flex; align-items: center;
-      padding: 120px 88px 120px 80px;
+      padding: 160px 88px 140px;
+      position: relative;
     }
-    .intro-inner { max-width: 400px; }
-    .intro-inner h2 {
+    .manifesto-text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(40px, 3.8vw, 58px);
+      font-size: clamp(46px, 6.5vw, 96px);
       font-weight: 300; font-style: italic;
-      line-height: 1.1; color: var(--dark); margin-bottom: 30px;
+      line-height: 1.05; color: var(--dark);
+      max-width: 1100px;
     }
-    .intro-inner p { font-size: 15px; font-weight: 300; line-height: 1.95; color: var(--warm-gray); margin-bottom: 18px; }
-    .intro-inner p:last-of-type { margin-bottom: 44px; }
-
-    /* ── STATS — floating, not a dark bar ── */
-    .stats-float {
-      background: var(--cream);
-      padding: 112px 88px;
-      display: flex; gap: 0;
-      align-items: flex-end;
-      justify-content: space-between;
-      border-top: 1px solid rgba(0,0,0,0.06);
+    .manifesto-detail {
+      position: absolute; right: 88px; bottom: 60px;
+      text-align: right;
     }
-    .stat-f {
-      flex: 1;
-      padding: 0 32px;
-    }
-    .stat-f:first-child { padding-left: 0; }
-    .stat-f:last-child { padding-right: 0; }
-    .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(72px, 7vw, 104px);
-      font-weight: 300; line-height: 0.9;
-      color: var(--dark); margin-bottom: 14px;
-      letter-spacing: -0.03em;
-    }
-    .stat-num sup { font-size: 0.32em; color: var(--terracotta); vertical-align: super; letter-spacing: 0; }
-    .stat-lbl {
+    .manifesto-detail span {
+      display: block;
       font-family: 'Aboreto', cursive;
-      font-size: 9px; font-weight: 400;
-      letter-spacing: 0.26em; text-transform: uppercase;
-      color: var(--warm-gray);
+      font-size: 8px; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--warm-gray); line-height: 2.2;
     }
 
-    /* ── VILLA ── */
-    .villa-section { padding: 0; background: var(--dark); }
-    .villa-header-wrap {
-      padding: 120px 88px 72px;
+    /* ── DRIFT — image floats, text overlaps from below ── */
+    .drift {
+      background: var(--cream);
+      padding-bottom: 0;
+      overflow: hidden;
     }
-    .villa-header-wrap .label { color: var(--terracotta); }
-    .villa-header-wrap h2 {
+    .drift-image-wrap {
+      position: relative;
+      margin-left: 88px;
+      height: 78vh; min-height: 500px;
+    }
+    .drift-image-wrap img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block; border-radius: 8px 0 0 0;
+    }
+    /* Stats float as margin annotations over the image */
+    .drift-stats {
+      position: absolute; left: -60px; bottom: 60px;
+      background: var(--cream);
+      padding: 36px 44px 36px 36px;
+      border-radius: 0 8px 8px 0;
+    }
+    .drift-stat { margin-bottom: 28px; }
+    .drift-stat:last-child { margin-bottom: 0; }
+    .drift-stat-num {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(48px, 5.5vw, 80px);
-      font-weight: 300; font-style: italic;
-      line-height: 1.0; color: var(--sand);
-      max-width: 820px;
+      font-size: 56px; font-weight: 300; line-height: 0.9;
+      color: var(--dark); letter-spacing: -0.03em;
     }
-    .villa-header-wrap p {
-      font-size: 15px; font-weight: 300; line-height: 1.9;
-      color: rgba(255,255,255,0.42); max-width: 520px;
-      margin-top: 24px;
+    .drift-stat-num sup { font-size: 0.32em; color: var(--terracotta); vertical-align: super; }
+    .drift-stat-lbl {
+      font-family: 'Aboreto', cursive;
+      font-size: 8px; letter-spacing: 0.26em; text-transform: uppercase;
+      color: var(--warm-gray); margin-top: 4px;
     }
-    /* Asymmetric image mosaic */
+    /* Text panel that overlaps from below */
+    .drift-text {
+      margin: -48px 0 0 auto;
+      background: var(--cream);
+      padding: 64px 88px 120px;
+      max-width: 560px;
+      position: relative; z-index: 2;
+    }
+    .drift-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 3vw, 46px); font-weight: 300; font-style: italic;
+      line-height: 1.15; color: var(--dark); margin-bottom: 24px;
+    }
+    .drift-text p { font-size: 14px; font-weight: 300; line-height: 1.95; color: var(--warm-gray); margin-bottom: 16px; }
+    .drift-text p:last-of-type { margin-bottom: 40px; }
+
+    /* ── VILLA — dark, edge-to-edge mosaic ── */
+    .villa-section { background: var(--dark); }
+    .villa-text-wrap {
+      padding: 128px 88px 80px;
+    }
+    .villa-text-wrap h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 6.5vw, 92px); font-weight: 300; font-style: italic;
+      line-height: 0.95; color: var(--sand); max-width: 900px;
+    }
+    .villa-text-wrap p {
+      font-size: 14px; font-weight: 300; line-height: 1.9;
+      color: rgba(255,255,255,0.38); max-width: 480px;
+      margin-top: 28px;
+    }
+    /* TRUE edge-to-edge mosaic */
     .villa-mosaic {
       display: grid;
-      grid-template-columns: 1.55fr 1fr 0.9fr;
-      grid-template-rows: 520px 300px;
-      gap: 8px; padding: 0 8px 8px;
+      grid-template-columns: 1.6fr 1fr 0.85fr;
+      grid-template-rows: 540px 280px;
+      gap: 4px; margin-top: 60px;
     }
-    .villa-img { overflow: hidden; position: relative; border-radius: 8px; }
-    .villa-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s ease; display: block; }
+    .villa-img { overflow: hidden; position: relative; }
+    .villa-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s ease; display: block; }
     .villa-img:hover img { transform: scale(1.04); }
-    .villa-img:first-child { grid-row: 1 / 3; border-radius: 8px; }
-    .villa-img:nth-child(2) { border-radius: 8px; }
-    .villa-img:nth-child(3) { border-radius: 8px; }
-    .villa-img:nth-child(4) { grid-column: span 2; border-radius: 8px; }
+    .villa-img:first-child { grid-row: 1 / 3; }
+    .villa-img:nth-child(4) { grid-column: span 2; }
     .villa-caption {
-      position: absolute; bottom: 16px; left: 16px;
-      background: rgba(10,9,7,0.55); padding: 5px 12px;
+      position: absolute; bottom: 14px; left: 14px;
       font-family: 'Aboreto', cursive;
       font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase;
-      color: rgba(255,255,255,0.8); backdrop-filter: blur(6px);
-      border-radius: 4px;
+      color: rgba(255,255,255,0.65); backdrop-filter: blur(6px);
+      background: rgba(8,7,5,0.5); padding: 4px 10px; border-radius: 4px;
     }
 
     /* ── SUITES ── */
-    .suites-section { padding: 140px 0 140px 88px; overflow: hidden; background: var(--cream); }
-    .suites-top { display: flex; align-items: flex-end; justify-content: space-between; padding-right: 88px; margin-bottom: 60px; }
+    .suites-section { padding: 160px 0 160px 88px; overflow: hidden; background: var(--cream); }
+    .suites-top { display: flex; align-items: flex-end; justify-content: space-between; padding-right: 88px; margin-bottom: 64px; }
     .suites-top h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(38px, 4vw, 58px); font-weight: 300; font-style: italic;
-      line-height: 1.05; color: var(--dark);
+      font-size: clamp(40px, 4.5vw, 64px); font-weight: 300; font-style: italic;
+      line-height: 1.0; color: var(--dark);
     }
-    .suite-arrows { display: flex; gap: 8px; }
+    .suite-arrows { display: flex; gap: 8px; flex-shrink: 0; }
     .arr-btn {
-      width: 48px; height: 48px;
-      border: 1px solid var(--light-gray);
+      width: 48px; height: 48px; border: 1px solid var(--light-gray);
       background: none; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       border-radius: 8px; transition: all 0.3s;
@@ -174,8 +186,7 @@
     .arr-btn:hover { background: var(--dark); border-color: var(--dark); color: var(--white); }
     .arr-btn svg { width: 18px; height: 18px; }
     .suites-rail {
-      display: flex; gap: 20px; overflow-x: auto;
-      scrollbar-width: none; -ms-overflow-style: none;
+      display: flex; gap: 20px; overflow-x: auto; scrollbar-width: none;
       cursor: grab; padding-right: 88px;
     }
     .suites-rail::-webkit-scrollbar { display: none; }
@@ -183,267 +194,255 @@
     .suite-card {
       flex: 0 0 380px; overflow: hidden; border-radius: 8px;
       background: var(--white); transition: transform 0.4s ease;
-      box-shadow: 0 2px 24px rgba(0,0,0,0.06);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
     }
-    .suite-card:hover { transform: translateY(-8px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
-    .suite-img { height: 280px; overflow: hidden; position: relative; }
-    .suite-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+    .suite-card:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(0,0,0,0.1); }
+    .suite-img { height: 300px; overflow: hidden; position: relative; }
+    .suite-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
     .suite-card:hover .suite-img img { transform: scale(1.06); }
     .suite-badge {
       position: absolute; top: 18px; left: 18px;
       font-family: 'Aboreto', cursive;
-      font-size: 9px; letter-spacing: 0.2em; color: rgba(255,255,255,0.9);
-      background: rgba(0,0,0,0.28); padding: 5px 12px;
+      font-size: 8px; letter-spacing: 0.22em; color: rgba(255,255,255,0.85);
+      background: rgba(0,0,0,0.3); padding: 5px 12px;
       backdrop-filter: blur(4px); border-radius: 4px;
     }
-    .suite-body { padding: 30px 32px 36px; }
+    .suite-body { padding: 32px 36px 40px; }
     .suite-body h3 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 27px; font-weight: 400; font-style: italic;
+      font-size: 30px; font-weight: 300; font-style: italic;
       color: var(--dark); margin-bottom: 10px;
     }
-    .suite-body p { font-size: 13px; font-weight: 300; color: var(--warm-gray); line-height: 1.75; margin-bottom: 20px; }
+    .suite-body p { font-size: 13px; font-weight: 300; color: var(--warm-gray); line-height: 1.8; margin-bottom: 22px; }
     .suite-tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .suite-tag {
-      font-size: 9px; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase;
+      font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
       color: var(--warm-gray); border: 1px solid var(--light-gray);
-      padding: 4px 10px; border-radius: 20px;
+      padding: 4px 12px; border-radius: 20px;
     }
 
     /* ── ACTIVITIES — editorial horizontal scroll ── */
-    .activities-section { background: var(--dark); padding: 140px 0 140px 88px; overflow: hidden; }
-    .act-head { padding-right: 88px; margin-bottom: 64px; display: flex; align-items: flex-end; justify-content: space-between; }
+    .activities-section { background: #0F0E0C; padding: 160px 0 160px 88px; overflow: hidden; }
+    .act-head { padding-right: 88px; margin-bottom: 72px; }
     .act-head h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(42px, 4.5vw, 66px);
-      font-weight: 300; font-style: italic;
-      line-height: 1.0; color: var(--sand);
+      font-size: clamp(44px, 5.5vw, 80px); font-weight: 300; font-style: italic;
+      line-height: 0.95; color: var(--sand); max-width: 700px;
     }
-    .act-head p { font-size: 14px; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.38); max-width: 320px; text-align: right; }
+    .act-head p { font-size: 14px; font-weight: 300; line-height: 1.9; color: rgba(255,255,255,0.3); max-width: 400px; margin-top: 20px; }
     .act-rail {
-      display: flex; gap: 16px; overflow-x: auto;
-      scrollbar-width: none; -ms-overflow-style: none;
-      cursor: grab; padding-right: 88px;
+      display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none;
+      cursor: grab; padding-right: 88px; align-items: flex-end;
     }
     .act-rail::-webkit-scrollbar { display: none; }
-    .act-card {
-      flex-shrink: 0; position: relative; overflow: hidden;
-      border-radius: 8px; cursor: pointer;
-    }
-    .act-card:nth-child(odd) { width: 320px; height: 460px; }
-    .act-card:nth-child(even) { width: 240px; height: 460px; align-self: flex-end; margin-top: 48px; }
-    .act-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; display: block; }
+    .act-card { flex-shrink: 0; position: relative; overflow: hidden; border-radius: 8px; }
+    .act-card:nth-child(1) { width: 360px; height: 520px; }
+    .act-card:nth-child(2) { width: 260px; height: 420px; }
+    .act-card:nth-child(3) { width: 340px; height: 520px; }
+    .act-card:nth-child(4) { width: 240px; height: 380px; }
+    .act-card:nth-child(5) { width: 340px; height: 480px; }
+    .act-card:nth-child(6) { width: 260px; height: 400px; }
+    .act-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s ease; display: block; }
     .act-card:hover img { transform: scale(1.07); }
-    .act-dim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.0) 52%); }
-    .act-copy { position: absolute; bottom: 24px; left: 24px; right: 24px; }
+    .act-dim { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.0) 48%); }
+    .act-copy { position: absolute; bottom: 26px; left: 26px; right: 26px; }
     .act-copy h3 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 26px; font-weight: 300; font-style: italic;
+      font-size: 28px; font-weight: 300; font-style: italic;
       color: var(--white); margin-bottom: 5px;
     }
-    .act-copy p { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.55); line-height: 1.6; }
+    .act-copy p { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.5); line-height: 1.65; }
 
-    /* ── EXPERIENCE STRIP — asymmetric ── */
-    .exp-strip {
-      display: grid;
-      grid-template-columns: 1.6fr 1fr;
-      grid-template-rows: 320px 320px;
-      gap: 8px;
+    /* ── DISAPPEAR — single full-bleed image, 3 words ── */
+    .disappear {
+      position: relative;
+      height: 88vh; min-height: 560px;
+      overflow: hidden;
     }
-    .exp-panel { position: relative; overflow: hidden; border-radius: 8px; }
-    .exp-panel:first-child { grid-row: span 2; border-radius: 8px; }
-    .exp-panel img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s ease; display: block; }
-    .exp-panel:hover img { transform: scale(1.05); }
-    .exp-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 55%); }
-    .exp-text { position: absolute; bottom: 28px; left: 28px; }
-    .exp-text h3 {
+    .disappear img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .disappear-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(8,7,5,0.12) 0%, rgba(8,7,5,0.55) 100%);
+    }
+    .disappear-text {
+      position: absolute; bottom: 88px; left: 88px;
+    }
+    .disappear-text h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 30px; font-weight: 300; font-style: italic;
-      color: var(--white); line-height: 1.2;
+      font-size: clamp(56px, 7.5vw, 110px); font-weight: 300; font-style: italic;
+      color: var(--white); line-height: 0.95;
     }
-    .exp-wrap { padding: 8px; background: var(--dark); }
+    .disappear-text p {
+      font-family: 'Aboreto', cursive;
+      font-size: 9px; letter-spacing: 0.36em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4); margin-top: 18px;
+    }
 
     /* ── GALLERY ── */
     .gallery-section { padding: 160px 88px; background: var(--cream); }
-    .gallery-hd { margin-bottom: 64px; }
+    .gallery-hd { margin-bottom: 72px; }
     .gallery-hd h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(40px, 4vw, 60px); font-weight: 300; font-style: italic;
+      font-size: clamp(42px, 4.5vw, 64px); font-weight: 300; font-style: italic;
       color: var(--dark); margin-top: 14px;
     }
-    .gallery-hd p { font-size: 13px; font-weight: 300; color: var(--warm-gray); margin-top: 14px; max-width: 340px; line-height: 1.75; }
-    .masonry { display: grid; grid-template-columns: repeat(12,1fr); gap: 10px; }
+    .gallery-hd p { font-size: 12px; font-weight: 300; color: rgba(0,0,0,0.35); margin-top: 12px; letter-spacing: 0.04em; }
+    .masonry { display: grid; grid-template-columns: repeat(12,1fr); gap: 8px; }
     .m-item { overflow: hidden; cursor: pointer; border-radius: 8px; }
-    .m-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s; display: block; }
+    .m-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s; display: block; }
     .m-item:hover img { transform: scale(1.06); }
-    .m-item:nth-child(1) { grid-column: span 5; height: 540px; grid-row: span 2; }
-    .m-item:nth-child(2) { grid-column: span 4; height: 262px; }
-    .m-item:nth-child(3) { grid-column: span 3; height: 262px; }
-    .m-item:nth-child(4) { grid-column: span 4; height: 266px; }
-    .m-item:nth-child(5) { grid-column: span 3; height: 266px; }
-    .m-item:nth-child(6) { grid-column: span 5; height: 310px; }
-    .m-item:nth-child(7) { grid-column: span 4; height: 310px; }
-    .m-item:nth-child(8) { grid-column: span 3; height: 310px; }
+    .m-item:nth-child(1) { grid-column: span 5; height: 560px; grid-row: span 2; }
+    .m-item:nth-child(2) { grid-column: span 4; height: 272px; }
+    .m-item:nth-child(3) { grid-column: span 3; height: 272px; }
+    .m-item:nth-child(4) { grid-column: span 4; height: 276px; }
+    .m-item:nth-child(5) { grid-column: span 3; height: 276px; }
+    .m-item:nth-child(6) { grid-column: span 5; height: 320px; }
+    .m-item:nth-child(7) { grid-column: span 4; height: 320px; }
+    .m-item:nth-child(8) { grid-column: span 3; height: 320px; }
 
-    /* ── QUOTE — near full screen, immersive ── */
+    /* ── QUOTE ── */
     .quote-section {
-      position: relative; min-height: 88vh;
+      position: relative; min-height: 90vh;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      padding: 120px 88px; overflow: hidden;
-      background: var(--dark);
+      padding: 120px 88px; overflow: hidden; background: #0F0E0C;
     }
     .quote-bg {
       position: absolute; inset: 0;
       background-image: url('https://images.unsplash.com/photo-1598135753163-6167c1a1ad65?auto=format&fit=crop&w=2000&q=80');
-      background-size: cover; background-position: center;
-      opacity: 0.12;
+      background-size: cover; background-position: center; opacity: 0.1;
     }
     .quote-mark {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(160px, 22vw, 320px);
-      font-weight: 300; line-height: 0.8;
-      color: rgba(255,255,255,0.04);
-      position: absolute; top: 80px; left: 72px;
+      font-size: clamp(200px, 28vw, 400px); font-weight: 300; line-height: 0.75;
+      color: rgba(255,255,255,0.03); position: absolute; top: 40px; left: 64px;
       pointer-events: none; user-select: none;
     }
     .q-text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(28px, 3.8vw, 56px);
-      font-weight: 300; font-style: italic;
-      line-height: 1.42; color: var(--sand);
-      max-width: 900px; text-align: center;
-      position: relative; z-index: 1;
-      margin-bottom: 40px;
+      font-size: clamp(28px, 4vw, 58px); font-weight: 300; font-style: italic;
+      line-height: 1.42; color: var(--sand); max-width: 920px;
+      text-align: center; position: relative; z-index: 1; margin-bottom: 44px;
     }
     .q-attr {
       font-family: 'Aboreto', cursive;
-      font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
-      color: rgba(255,255,255,0.28);
-      position: relative; z-index: 1;
+      font-size: 9px; letter-spacing: 0.32em; text-transform: uppercase;
+      color: rgba(255,255,255,0.22); position: relative; z-index: 1;
     }
 
-    /* ── AMENITIES — editorial dark list ── */
-    .amen-section { background: #161412; padding: 140px 88px; }
-    .amen-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 120px; align-items: start; }
-    .amen-left {}
+    /* ── AMENITIES — no icons, pure text ── */
+    .amen-section { background: var(--cream); padding: 160px 88px; }
+    .amen-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 140px; align-items: start; }
     .amen-left h2 {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(38px, 4vw, 58px); font-weight: 300; font-style: italic;
-      color: var(--sand); line-height: 1.1; margin-top: 16px;
+      color: var(--dark); line-height: 1.08; margin-top: 14px;
     }
-    .amen-left p { font-size: 14px; font-weight: 300; line-height: 1.9; color: rgba(255,255,255,0.35); margin-top: 24px; }
-    .amen-right { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-    .amen-item {
-      padding: 36px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+    .amen-left p { font-size: 14px; font-weight: 300; line-height: 1.9; color: var(--warm-gray); margin-top: 22px; }
+    .amen-list { list-style: none; }
+    .amen-list li {
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      display: grid; grid-template-columns: 1fr auto;
+      align-items: baseline; gap: 24px;
     }
-    .amen-item:nth-child(odd) { padding-right: 48px; border-right: 1px solid rgba(255,255,255,0.05); }
-    .amen-item:nth-child(even) { padding-left: 48px; }
-    .amen-item:nth-last-child(-n+2) { border-bottom: none; }
-    .amen-icon { width: 28px; height: 28px; margin-bottom: 18px; color: var(--terracotta); }
-    .amen-item h4 {
+    .amen-list li:first-child { border-top: 1px solid rgba(0,0,0,0.07); }
+    .amen-list h4 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 22px; font-weight: 400; font-style: italic;
-      color: rgba(255,255,255,0.82); margin-bottom: 8px;
+      font-size: 24px; font-weight: 400; font-style: italic;
+      color: var(--dark);
     }
-    .amen-item p { font-size: 12px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.32); }
+    .amen-list p { font-size: 12px; font-weight: 300; line-height: 1.7; color: var(--warm-gray); margin-top: 5px; }
+    .amen-list .amen-tag {
+      font-family: 'Aboreto', cursive;
+      font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--terracotta); white-space: nowrap;
+    }
 
     /* ── LOCATION ── */
-    .loc-section { display: grid; grid-template-columns: 1fr 1fr; }
-    .loc-visual { position: relative; min-height: 80vh; overflow: hidden; }
-    .loc-visual img { width: 100%; height: 100%; object-fit: cover; border-radius: 0 8px 8px 0; display: block; }
-    .loc-content { background: var(--cream); padding: 120px 80px 120px 88px; display: flex; align-items: center; }
+    .loc-section { display: grid; grid-template-columns: 1fr 1fr; background: var(--dark); }
+    .loc-content { padding: 120px 80px 120px 88px; display: flex; align-items: center; }
     .loc-inner { max-width: 440px; }
     .loc-inner h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(36px, 3.2vw, 52px); font-weight: 300; font-style: italic;
-      line-height: 1.1; color: var(--dark); margin-bottom: 24px;
+      font-size: clamp(36px, 3.5vw, 52px); font-weight: 300; font-style: italic;
+      line-height: 1.1; color: var(--sand); margin-bottom: 22px;
     }
-    .loc-inner > p { font-size: 14px; font-weight: 300; line-height: 1.9; color: var(--warm-gray); margin-bottom: 40px; }
-    .loc-facts { list-style: none; margin-bottom: 48px; border-top: 1px solid rgba(0,0,0,0.08); }
-    .loc-facts li { display: grid; grid-template-columns: 140px 1fr; gap: 12px; font-size: 13px; color: var(--warm-gray); padding: 14px 0; border-bottom: 1px solid rgba(0,0,0,0.08); }
-    .loc-facts li strong { font-weight: 500; color: var(--dark); }
+    .loc-inner > p { font-size: 14px; font-weight: 300; line-height: 1.9; color: rgba(255,255,255,0.42); margin-bottom: 40px; }
+    .loc-facts { list-style: none; margin-bottom: 48px; border-top: 1px solid rgba(255,255,255,0.07); }
+    .loc-facts li { display: grid; grid-template-columns: 150px 1fr; gap: 12px; font-size: 13px; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .loc-facts li strong { font-weight: 400; color: rgba(255,255,255,0.6); }
+    .loc-facts li span { color: rgba(255,255,255,0.32); font-weight: 300; }
+    .loc-visual { position: relative; overflow: hidden; }
+    .loc-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-    /* ── BOOK CTA — full bleed dramatic ── */
+    /* ── BOOK CTA ── */
     .book-section {
-      position: relative;
-      min-height: 90vh;
+      position: relative; min-height: 92vh;
       display: flex; align-items: center; justify-content: center;
       overflow: hidden; background: var(--dark);
     }
     .book-bg {
       position: absolute; inset: 0;
       background-image: url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=2000&q=80');
-      background-size: cover; background-position: center;
-      opacity: 0.28;
+      background-size: cover; background-position: center; opacity: 0.25;
     }
     .book-content {
       position: relative; z-index: 1;
-      max-width: 780px; text-align: center;
-      padding: 0 40px;
+      max-width: 820px; text-align: center; padding: 0 40px;
     }
     .book-content h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(52px, 7vw, 96px);
-      font-weight: 300; font-style: italic;
-      line-height: 1.0; color: var(--sand); margin-bottom: 28px;
+      font-size: clamp(56px, 8vw, 112px); font-weight: 300; font-style: italic;
+      line-height: 0.95; color: var(--sand); margin-bottom: 30px;
     }
-    .book-content p { font-size: 15px; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.48); margin-bottom: 52px; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .book-content p { font-size: 15px; font-weight: 300; line-height: 1.9; color: rgba(255,255,255,0.42); margin-bottom: 56px; max-width: 480px; margin-left: auto; margin-right: auto; }
     .book-btns { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
-    .pricing-note { margin-top: 36px; font-size: 12px; color: rgba(255,255,255,0.28); }
-    .pricing-note strong { font-weight: 500; color: rgba(255,255,255,0.5); }
+    .pricing-note { margin-top: 40px; font-size: 11px; color: rgba(255,255,255,0.22); letter-spacing: 0.04em; }
+    .pricing-note strong { color: rgba(255,255,255,0.42); font-weight: 400; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1100px) {
       .hero-content { padding: 0 32px 72px; }
-      .scroll-cue { right: 24px; bottom: 28px; }
-      .section-intro { grid-template-columns: 1fr; }
-      .intro-visual { min-height: 420px; }
-      .intro-visual img { border-radius: 0; }
-      .intro-text { padding: 72px 32px; }
-      .stats-float { flex-wrap: wrap; padding: 80px 32px; gap: 40px; }
-      .stat-f { flex: 1 1 40%; padding: 0; }
-      .villa-header-wrap { padding: 80px 32px 52px; }
-      .villa-mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: auto; padding: 0 5px 5px; }
-      .villa-img:first-child { grid-row: auto; grid-column: span 2; height: 320px; }
+      .manifesto { padding: 100px 32px 90px; }
+      .manifesto-detail { display: none; }
+      .drift-image-wrap { margin-left: 0; height: 56vh; min-height: 320px; }
+      .drift-image-wrap img { border-radius: 0; }
+      .drift-stats { display: none; }
+      .drift-text { margin: 0; padding: 56px 32px 80px; max-width: 100%; }
+      .villa-text-wrap { padding: 80px 32px 56px; }
+      .villa-mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .villa-img:first-child { grid-row: auto; grid-column: span 2; height: 340px; }
       .villa-img { height: 240px; }
       .villa-img:nth-child(4) { grid-column: span 1; }
-      .suites-section { padding: 96px 0 96px 32px; }
+      .suites-section { padding: 100px 0 100px 32px; }
       .suites-top { padding-right: 32px; }
       .suites-rail { padding-right: 32px; }
       .suite-card { flex: 0 0 320px; }
-      .activities-section { padding: 96px 0 96px 32px; }
-      .act-head { padding-right: 32px; flex-direction: column; align-items: flex-start; gap: 20px; }
-      .act-head p { text-align: left; }
+      .activities-section { padding: 100px 0 100px 32px; }
+      .act-head { padding-right: 32px; }
       .act-rail { padding-right: 32px; }
-      .act-card:nth-child(odd), .act-card:nth-child(even) { width: 260px; height: 380px; margin-top: 0; }
-      .exp-strip { grid-template-columns: 1fr; grid-template-rows: auto; }
-      .exp-panel:first-child { grid-row: auto; height: 360px; }
-      .exp-panel { height: 280px; }
+      .act-card:nth-child(n) { width: 260px; height: 400px; }
+      .disappear-text { left: 32px; bottom: 56px; }
       .gallery-section { padding: 100px 32px; }
       .masonry { grid-template-columns: 1fr 1fr; }
       .m-item { grid-column: span 1 !important; height: 220px !important; grid-row: span 1 !important; }
-      .m-item:nth-child(1) { height: 300px !important; }
+      .m-item:nth-child(1) { height: 320px !important; }
       .quote-section { padding: 100px 32px; min-height: 60vh; }
-      .q-text { font-size: clamp(24px, 5vw, 38px); }
       .amen-section { padding: 100px 32px; }
-      .amen-layout { grid-template-columns: 1fr; gap: 56px; }
-      .amen-right { grid-template-columns: 1fr; }
-      .amen-item:nth-child(odd) { padding-right: 0; border-right: none; }
-      .amen-item:nth-child(even) { padding-left: 0; }
+      .amen-layout { grid-template-columns: 1fr; gap: 52px; }
       .loc-section { grid-template-columns: 1fr; }
-      .loc-visual { min-height: 360px; }
-      .loc-visual img { border-radius: 0; }
+      .loc-visual { height: 380px; }
       .loc-content { padding: 72px 32px; }
-      .book-section { min-height: 70vh; }
       .book-content { padding: 0 24px; }
     }
     @media (max-width: 640px) {
-      .hero h1 { font-size: 52px; }
+      .hero h1 { font-size: 56px; }
       .hero-actions { flex-direction: column; align-items: flex-start; gap: 20px; }
-      .stat-f { flex: 1 1 100%; }
-      .amen-right { grid-template-columns: 1fr; }
+      .manifesto-text { font-size: 38px; }
+      .disappear-text h2 { font-size: 48px; }
     }
   </style>
 </head>
@@ -470,64 +469,66 @@
   <div class="scroll-cue">Scroll</div>
 </section>
 
-<!-- INTRO SPLIT -->
-<section class="section-intro">
-  <div class="intro-visual">
-    <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1400&q=85" alt="Villa with pool and ocean view">
-  </div>
-  <div class="intro-text">
-    <div class="intro-inner reveal">
-      <span class="label" data-i18n="idx.intro.label">A sanctuary apart</span>
-      <h2 data-i18n-html="idx.intro.title">Where silence<br>is the point</h2>
-      <p data-i18n="idx.intro.p1">Perched on the red cliffs of Pipa above a deserted stretch of Atlantic coast, Casa da Falésia is an architect-designed retreat — one of Brazil's most extraordinary and quietly guarded destinations.</p>
-      <p data-i18n="idx.intro.p2">Five ocean-facing suites, an infinity pool that dissolves into the sea, direct beach access. This is where you remember who you are.</p>
-      <a href="villa.html" class="text-link" data-i18n="idx.intro.link">Explore the villa →</a>
-    </div>
+<!-- MANIFESTO — pure text, no image -->
+<section class="manifesto">
+  <p class="manifesto-text reveal" data-i18n-html="idx.manifesto">Built into the cliffs above the Atlantic. Five suites. The whole coastline, entirely yours.</p>
+  <div class="manifesto-detail">
+    <span>Pipa, Rio Grande do Norte</span>
+    <span>3° 34′ S · 35° 2′ O</span>
+    <span>Est. 2019</span>
   </div>
 </section>
 
-<!-- STATS — floating, airy -->
-<div class="stats-float">
-  <div class="stat-f reveal">
-    <div class="stat-num">500<sup>m²</sup></div>
-    <div class="stat-lbl" data-i18n="stat.villa">Private villa</div>
+<!-- DRIFT — asymmetric, text overlaps image -->
+<section class="drift">
+  <div class="drift-image-wrap reveal">
+    <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1600&q=85" alt="Villa pool and Atlantic">
+    <div class="drift-stats">
+      <div class="drift-stat">
+        <div class="drift-stat-num">5</div>
+        <div class="drift-stat-lbl" data-i18n="stat.suites">Ocean suites</div>
+      </div>
+      <div class="drift-stat">
+        <div class="drift-stat-num">500<sup>m²</sup></div>
+        <div class="drift-stat-lbl" data-i18n="stat.villa">Private villa</div>
+      </div>
+      <div class="drift-stat">
+        <div class="drift-stat-num">10</div>
+        <div class="drift-stat-lbl" data-i18n="stat.guests">Guests max.</div>
+      </div>
+    </div>
   </div>
-  <div class="stat-f reveal reveal-d1">
-    <div class="stat-num">5</div>
-    <div class="stat-lbl" data-i18n="stat.suites">Ocean suites</div>
+  <div class="drift-text reveal">
+    <span class="label" data-i18n="idx.intro.label">A sanctuary apart</span>
+    <h2 data-i18n-html="idx.intro.title">Where silence<br>is the point</h2>
+    <p data-i18n="idx.intro.p1">Perched on the red cliffs of Pipa above a deserted stretch of Atlantic coast, Casa da Falésia is an architect-designed retreat — one of Brazil's most extraordinary and quietly guarded destinations.</p>
+    <p data-i18n="idx.intro.p2">Five ocean-facing suites, an infinity pool that dissolves into the sea, direct beach access. This is where you remember who you are.</p>
+    <a href="villa.html" class="text-link" data-i18n="idx.intro.link">Explore the villa →</a>
   </div>
-  <div class="stat-f reveal reveal-d2">
-    <div class="stat-num">10</div>
-    <div class="stat-lbl" data-i18n="stat.guests">Guests max.</div>
-  </div>
-  <div class="stat-f reveal reveal-d3">
-    <div class="stat-num">∞</div>
-    <div class="stat-lbl" data-i18n="stat.sea">Metres of Atlantic</div>
-  </div>
-</div>
+</section>
 
-<!-- THE VILLA -->
+<!-- THE VILLA — dark, edge-to-edge -->
 <section id="villa">
   <div class="villa-section">
-    <div class="villa-header-wrap reveal">
+    <div class="villa-text-wrap reveal">
       <span class="label" data-i18n="idx.villa.label">Architecture</span>
-      <h2 data-i18n="idx.villa.h2">Designed to dissolve<br>into the landscape</h2>
-      <p data-i18n="idx.villa.body">Brazilian architect Rodrigo Alcântara drew from the land itself — raw laterite stone, reclaimed timber, open-air volumes. The result is a villa that recedes so the ocean takes centre stage.</p>
+      <h2 data-i18n="idx.villa.h2">Designed to dissolve into the landscape</h2>
+      <p data-i18n="idx.villa.body">Brazilian architect Rodrigo Alcântara drew from the land itself — raw laterite stone, reclaimed timber, open-air volumes that vanish into the cliffs.</p>
     </div>
     <div class="villa-mosaic">
-      <div class="villa-img reveal">
-        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1400&q=85" alt="Infinity pool with Atlantic view">
+      <div class="villa-img">
+        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1400&q=85" alt="Infinity pool">
         <div class="villa-caption" data-i18n="idx.villa.cap1">Infinity pool · Atlantic view</div>
       </div>
-      <div class="villa-img reveal reveal-d1">
+      <div class="villa-img">
         <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=85" alt="Living pavilion">
         <div class="villa-caption" data-i18n="idx.villa.cap2">Open living pavilion</div>
       </div>
-      <div class="villa-img reveal reveal-d2">
-        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=900&q=85" alt="Clifftop terrace">
+      <div class="villa-img">
+        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=900&q=85" alt="Terrace">
         <div class="villa-caption" data-i18n="idx.villa.cap3">Clifftop terrace</div>
       </div>
-      <div class="villa-img reveal reveal-d3">
+      <div class="villa-img">
         <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1200&q=85" alt="Pool">
       </div>
     </div>
@@ -553,34 +554,32 @@
   <div class="suites-rail" id="suitesRail">
     <div class="suite-card">
       <div class="suite-img"><span class="suite-badge">Suite A</span><img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=800&q=85" alt="Falésia Suite"></div>
-      <div class="suite-body"><h3 data-i18n="s1.name">Falésia Suite</h3><p data-i18n="s1.desc">Our clifftop master suite with a private terrace directly above the waterline.</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.terrace">Cliff terrace</span><span class="suite-tag" data-i18n="suite.tag.ensuite">Ensuite</span></div></div>
+      <div class="suite-body"><h3 data-i18n="s1.name">Falésia Suite</h3><p data-i18n="s1.desc">Our clifftop master suite with a private terrace directly above the waterline.</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.terrace">Cliff terrace</span></div></div>
     </div>
     <div class="suite-card">
       <div class="suite-img"><span class="suite-badge">Suite B</span><img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=85" alt="Brisa Suite"></div>
-      <div class="suite-body"><h3 data-i18n="s2.name">Brisa Suite</h3><p data-i18n="s2.desc">Oriented east for extraordinary sunrise light, washed in white linen and ocean breeze.</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.sunrise">Sunrise view</span><span class="suite-tag" data-i18n="suite.tag.ensuite">Ensuite</span></div></div>
+      <div class="suite-body"><h3 data-i18n="s2.name">Brisa Suite</h3><p data-i18n="s2.desc">Oriented east for extraordinary sunrise light, washed in white linen and ocean breeze.</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.sunrise">Sunrise view</span></div></div>
     </div>
     <div class="suite-card">
       <div class="suite-img"><span class="suite-badge">Suite C</span><img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=85" alt="Jardim Suite"></div>
-      <div class="suite-body"><h3 data-i18n="s3.name">Jardim Suite</h3><p data-i18n="s3.desc">Surrounded by native Atlantic Forest on three sides — cool, fragrant, deeply restorative.</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.garden">Garden</span><span class="suite-tag" data-i18n="suite.tag.outdoor">Outdoor shower</span></div></div>
+      <div class="suite-body"><h3 data-i18n="s3.name">Jardim Suite</h3><p data-i18n="s3.desc">Surrounded by native Atlantic Forest on three sides — cool, fragrant, deeply restorative.</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.garden">Garden</span></div></div>
     </div>
     <div class="suite-card">
       <div class="suite-img"><span class="suite-badge">Suite D</span><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=85" alt="Maré Suite"></div>
-      <div class="suite-body"><h3 data-i18n="s4.name">Maré Suite</h3><p data-i18n="s4.desc">Pool-level, opening directly onto the deck. Step from bed into the Atlantic light.</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.pool">Pool level</span><span class="suite-tag" data-i18n="suite.tag.daybed">Day bed</span></div></div>
+      <div class="suite-body"><h3 data-i18n="s4.name">Maré Suite</h3><p data-i18n="s4.desc">Pool-level, opening directly onto the deck. Step from bed into the Atlantic light.</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.pool">Pool level</span></div></div>
     </div>
     <div class="suite-card">
       <div class="suite-img"><span class="suite-badge">Suite E</span><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=85" alt="Canto Suite"></div>
-      <div class="suite-body"><h3 data-i18n="s5.name">Canto Suite</h3><p data-i18n="s5.desc">Tucked into the north corner — the most private, most contemplative room on the property.</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.aspect">Double aspect</span><span class="suite-tag" data-i18n="suite.tag.tub">Soaking tub</span></div></div>
+      <div class="suite-body"><h3 data-i18n="s5.name">Canto Suite</h3><p data-i18n="s5.desc">Tucked into the north corner — the most private, most contemplative room on the property.</p><div class="suite-tags"><span class="suite-tag" data-i18n="suite.tag.62">62 m²</span><span class="suite-tag" data-i18n="suite.tag.king">King bed</span><span class="suite-tag" data-i18n="suite.tag.tub">Soaking tub</span></div></div>
     </div>
   </div>
 </section>
 
-<!-- ACTIVITIES — editorial horizontal scroll -->
+<!-- ACTIVITIES -->
 <section class="activities-section" id="activities">
   <div class="act-head">
-    <div>
-      <span class="label" style="color:var(--terracotta)" data-i18n="idx.act.label">Sport & Wellness</span>
-      <h2 data-i18n="idx.act.h2">Move. Breathe. Be alive.</h2>
-    </div>
+    <span class="label" style="color:var(--terracotta)" data-i18n="idx.act.label">Sport & Wellness</span>
+    <h2 data-i18n="idx.act.h2">Move. Breathe. Be alive.</h2>
     <p data-i18n="idx.act.body">The coast here is one of Brazil's great natural playgrounds — steady trade winds for kiteboarding, long empty beaches for running, and Atlantic waters as clear as glass.</p>
   </div>
   <div class="act-rail">
@@ -593,12 +592,13 @@
   </div>
 </section>
 
-<!-- EXPERIENCE STRIP — asymmetric -->
-<div class="exp-wrap">
-  <div class="exp-strip">
-    <div class="exp-panel"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" alt="Beach"><div class="exp-overlay"></div><div class="exp-text"><h3 data-i18n="exp1">Deserted beaches</h3></div></div>
-    <div class="exp-panel"><img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=800&q=80" alt="Coastline"><div class="exp-overlay"></div><div class="exp-text"><h3 data-i18n="exp2">Untouched coastline</h3></div></div>
-    <div class="exp-panel"><img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=800&q=80" alt="Ocean"><div class="exp-overlay"></div><div class="exp-text"><h3 data-i18n="exp3">The open Atlantic</h3></div></div>
+<!-- DISAPPEAR — one image, near nothing else -->
+<div class="disappear">
+  <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=2400&q=85" alt="Deserted Pipa beach">
+  <div class="disappear-overlay"></div>
+  <div class="disappear-text">
+    <h2 data-i18n-html="idx.disappear.h2">Lose yourself<br><em>here.</em></h2>
+    <p data-i18n="idx.disappear.sub">Pipa · Atlantic Coast · Brazil</p>
   </div>
 </div>
 
@@ -621,7 +621,7 @@
   </div>
 </section>
 
-<!-- QUOTE — near full screen -->
+<!-- QUOTE -->
 <section class="quote-section">
   <div class="quote-bg"></div>
   <div class="quote-mark">"</div>
@@ -629,32 +629,44 @@
   <p class="q-attr reveal reveal-d1" data-i18n="idx.quote.attr">— A guest, February 2025</p>
 </section>
 
-<!-- AMENITIES — dark editorial -->
+<!-- AMENITIES — pure text, no icons -->
 <section class="amen-section">
   <div class="amen-layout">
     <div class="amen-left reveal">
-      <span class="label" style="color:var(--terracotta)" data-i18n="idx.amen.label">Included with every stay</span>
+      <span class="label" data-i18n="idx.amen.label">Included with every stay</span>
       <h2 data-i18n="idx.amen.h2">Everything you need, nothing you don't</h2>
       <p>The rate covers the house, the staff, and the basic rhythm of the day. What you do with the rest of the time is entirely yours.</p>
     </div>
-    <div class="amen-right">
-      <div class="amen-item reveal">
-        <svg class="amen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 12h18M3 6l9-3 9 3M3 18l9 3 9-3"/></svg>
-        <h4 data-i18n="amen1.title">Private Beach Access</h4><p data-i18n="amen1.desc">A private path to our stretch of Atlantic coastline.</p>
-      </div>
-      <div class="amen-item reveal reveal-d1">
-        <svg class="amen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-        <h4 data-i18n="amen2.title">Infinity Pool</h4><p data-i18n="amen2.desc">Heated year-round, 22 metres, pouring into the Atlantic.</p>
-      </div>
-      <div class="amen-item reveal reveal-d2">
-        <svg class="amen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        <h4 data-i18n="amen3.title">Wellness & Spa</h4><p data-i18n="amen3.desc">Private sauna, in-villa massage, Reiki, daily yoga.</p>
-      </div>
-      <div class="amen-item reveal reveal-d3">
-        <svg class="amen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-        <h4 data-i18n="amen4.title">Private Chef Option</h4><p data-i18n="amen4.desc">Menus built around local produce and the sea.</p>
-      </div>
-    </div>
+    <ul class="amen-list">
+      <li class="reveal">
+        <div>
+          <h4 data-i18n="amen1.title">Private Beach Access</h4>
+          <p data-i18n="amen1.desc">A private path to our stretch of Atlantic coastline.</p>
+        </div>
+        <span class="amen-tag">Included</span>
+      </li>
+      <li class="reveal reveal-d1">
+        <div>
+          <h4 data-i18n="amen2.title">Infinity Pool</h4>
+          <p data-i18n="amen2.desc">Heated year-round, 22 metres, pouring into the Atlantic.</p>
+        </div>
+        <span class="amen-tag">Included</span>
+      </li>
+      <li class="reveal reveal-d2">
+        <div>
+          <h4 data-i18n="amen3.title">Wellness & Spa</h4>
+          <p data-i18n="amen3.desc">Private sauna, in-villa massage, Reiki, daily yoga.</p>
+        </div>
+        <span class="amen-tag">Included</span>
+      </li>
+      <li class="reveal reveal-d3">
+        <div>
+          <h4 data-i18n="amen4.title">Private Chef Option</h4>
+          <p data-i18n="amen4.desc">Menus built around local produce and the sea.</p>
+        </div>
+        <span class="amen-tag">On request</span>
+      </li>
+    </ul>
   </div>
 </section>
 
@@ -662,7 +674,7 @@
 <section class="loc-section" id="location">
   <div class="loc-content">
     <div class="loc-inner reveal">
-      <span class="label" data-i18n="idx.loc.label">Getting here</span>
+      <span class="label" style="color:var(--terracotta)" data-i18n="idx.loc.label">Getting here</span>
       <h2 data-i18n="idx.loc.h2">Pipa, Rio Grande do Norte</h2>
       <p data-i18n="idx.loc.body">Pipa sits on a sweep of Atlantic coast in northeast Brazil, famous for its dramatic red cliffs, pristine beaches, and the resident dolphin colony that patrols the bay.</p>
       <ul class="loc-facts">
@@ -680,13 +692,13 @@
   </div>
 </section>
 
-<!-- BOOK CTA — full bleed -->
+<!-- BOOK CTA -->
 <section class="book-section" id="book">
   <div class="book-bg"></div>
   <div class="book-content">
     <span class="label" style="color:var(--terracotta)" data-i18n="idx.book.label">Enquiries & Reservations</span>
     <h2 data-i18n-html="idx.book.h2">Ready to leave<br>the world behind?</h2>
-    <p data-i18n="idx.book.body">Casa da Falésia is available for exclusive full-villa rental. We accommodate up to 10 guests and welcome stays of three nights or more.</p>
+    <p data-i18n="idx.book.body">Casa da Falésia is available for exclusive full-villa rental. Up to 10 guests, minimum 3 nights.</p>
     <div class="book-btns">
       <a href="reserve.html" class="btn btn-primary" data-i18n="idx.book.cta1">Send an Enquiry</a>
       <a href="contact.html" class="btn btn-outline-white" data-i18n="idx.book.cta2">WhatsApp Us</a>
@@ -699,13 +711,11 @@
 <div class="lb" id="lb"></div>
 
 <script>
-  // Hero parallax
   const heroBg = document.getElementById('heroBg');
   window.addEventListener('scroll', () => {
     if (window.scrollY < window.innerHeight) heroBg.style.transform = `translateY(${window.scrollY * 0.35}px)`;
   });
 
-  // Suites drag scroll
   const rail = document.getElementById('suitesRail');
   let drag=false, sx, sl;
   rail.addEventListener('mousedown', e => { drag=true; rail.classList.add('active'); sx=e.pageX-rail.offsetLeft; sl=rail.scrollLeft; });
@@ -713,7 +723,6 @@
   rail.addEventListener('mousemove', e => { if(!drag) return; e.preventDefault(); rail.scrollLeft=sl-(e.pageX-rail.offsetLeft-sx)*1.4; });
   function slideSuites(d) { rail.scrollBy({left:d*400,behavior:'smooth'}); }
 
-  // Activities drag scroll
   const actRail = document.querySelector('.act-rail');
   let adrag=false, asx, asl;
   actRail.addEventListener('mousedown', e => { adrag=true; asx=e.pageX-actRail.offsetLeft; asl=actRail.scrollLeft; });

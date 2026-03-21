@@ -107,6 +107,9 @@ window.T = {
     'idx.book.cta1':   'Send an Enquiry',
     'idx.book.cta2':   'WhatsApp Us',
     'idx.book.price':  'From <strong>R$&nbsp;5,500</strong> per night · Full-villa rental · Minimum 3 nights',
+    'idx.manifesto':       'Built into the cliffs above the Atlantic. Five suites. The whole coastline, entirely yours.',
+    'idx.disappear.h2':    'Lose yourself<br><em>here.</em>',
+    'idx.disappear.sub':   'Pipa · Atlantic Coast · Brazil',
 
     /* FOOTER */
     'footer.tagline': 'A private beachfront villa in Pipa — built for those who need to truly escape.',
@@ -309,6 +312,9 @@ window.T = {
     'idx.book.cta1':   'Enviar Consulta',
     'idx.book.cta2':   'WhatsApp',
     'idx.book.price':  'A partir de <strong>R$&nbsp;5.500</strong> por noite · Villa completa · Mínimo 3 noites',
+    'idx.manifesto':       'Construída sobre as falésias acima do Atlântico. Cinco suítes. Todo o litoral, inteiramente seu.',
+    'idx.disappear.h2':    'Perca-se<br><em>aqui.</em>',
+    'idx.disappear.sub':   'Pipa · Costa Atlântica · Brasil',
 
     'footer.tagline': 'Uma villa privativa à beira-mar em Pipa — para quem precisa verdadeiramente escapar.',
     'footer.h.explore': 'Explorar',
@@ -505,6 +511,9 @@ window.T = {
     'idx.book.cta1':   'Envoyer une demande',
     'idx.book.cta2':   'WhatsApp',
     'idx.book.price':  'À partir de <strong>R$&nbsp;5&nbsp;500</strong> par nuit · Villa entière · Minimum 3 nuits',
+    'idx.manifesto':       'Construite dans les falaises au-dessus de l\'Atlantique. Cinq suites. Tout le littoral, entièrement à vous.',
+    'idx.disappear.h2':    'Perdez-vous<br><em>ici.</em>',
+    'idx.disappear.sub':   'Pipa · Côte Atlantique · Brésil',
 
     'footer.tagline': 'Une villa privée en bord de mer à Pipa — pour ceux qui ont besoin de vraiment s\'évader.',
     'footer.h.explore': 'Explorer',
