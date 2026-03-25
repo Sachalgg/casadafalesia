@@ -238,7 +238,8 @@
         <span class="label" data-i18n="res.form.label">Your details</span>
         <h2 data-i18n="res.form.h2">Complete your enquiry</h2>
         <p class="sub" data-i18n="res.form.sub">Fill in your details and we will confirm availability and send a personalised quote within 24 hours.</p>
-        <form id="enquiryForm" onsubmit="submitForm(event)">
+        <form id="enquiryForm" name="reservation-enquiry" data-netlify="true" onsubmit="submitForm(event)">
+          <input type="hidden" name="form-name" value="reservation-enquiry">
           <div class="form-grid">
             <div class="form-group">
               <label data-i18n="res.name">Full name</label>
@@ -340,29 +341,14 @@ function getSeason(date) {
 
 function getRate(date) { return RATES[getSeason(date)]; }
 
-// Generate realistic blocked dates
+// Fallback blocked dates (shown until real availability loads)
 function makeBlocked() {
-  const blocked = new Set();
-  const y = new Date().getFullYear();
-  [
-    [new Date(y, 3, 8),  new Date(y, 3, 16)],
-    [new Date(y, 5, 20), new Date(y, 6, 4)],
-    [new Date(y, 8, 28), new Date(y, 9, 5)],
-    [new Date(y, 10,14), new Date(y, 10,22)],
-    [new Date(y, 11,20), new Date(y+1, 0, 9)],
-    [new Date(y+1, 1,28),new Date(y+1, 2, 7)],
-    [new Date(y+1, 6, 2),new Date(y+1, 6,16)],
-  ].forEach(([s, e]) => {
-    for (let d = new Date(s); d <= e; d.setDate(d.getDate()+1)) {
-      blocked.add(d.toISOString().slice(0,10));
-    }
-  });
-  return blocked;
+  return new Set();
 }
 
 const Cal = (() => {
   const today = new Date(); today.setHours(0,0,0,0);
-  const blocked = makeBlocked();
+  let blocked = makeBlocked();
   let curYear = today.getFullYear();
   let curMonth = today.getMonth();
   let checkIn = null, checkOut = null;
@@ -515,6 +501,13 @@ const Cal = (() => {
 
   return {
     init() { render(); updateDisplays(); },
+    setBlocked(dateArray) {
+      blocked = new Set(dateArray);
+      // reset selection if it now overlaps blocked dates
+      if (checkIn && isBlocked(checkIn)) { checkIn = null; checkOut = null; }
+      if (checkOut && isBlocked(checkOut)) { checkOut = null; }
+      render(); updateDisplays(); updateSummary();
+    },
     prev() {
       if (curMonth === 0) { curMonth = 11; curYear--; }
       else curMonth--;
@@ -539,31 +532,61 @@ const Cal = (() => {
   };
 })();
 
+// Load real availability from Airbnb iCal proxy
+async function loadAvailability() {
+  try {
+    const res = await fetch('/.netlify/functions/availability');
+    if (!res.ok) return;
+    const data = await res.json();
+    if (Array.isArray(data.blocked)) Cal.setBlocked(data.blocked);
+  } catch (err) {
+    console.warn('Could not load availability:', err);
+  }
+}
+
 // Init on load
-document.addEventListener('DOMContentLoaded', () => Cal.init());
+document.addEventListener('DOMContentLoaded', () => {
+  Cal.init();
+  loadAvailability();
+});
 
 /* ── FORM SUBMIT ── */
-function submitForm(e) {
+async function submitForm(e) {
   e.preventDefault();
+  const btn = e.target.querySelector('[type=submit]');
+  const origText = btn.textContent;
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
   const ci = Cal.getCheckIn();
   const co = Cal.getCheckOut();
-  const name    = document.getElementById('f-name').value;
-  const email   = document.getElementById('f-email').value;
-  const phone   = document.getElementById('f-phone').value;
-  const guests  = document.getElementById('f-guests').value;
-  const notes   = document.getElementById('f-notes').value;
+  const nights = ci && co ? Math.round((co - ci) / 86400000) : null;
+  const total  = document.getElementById('sum-total')?.textContent || '';
 
-  const dateInfo = ci && co
-    ? `Check-in: ${ci.toLocaleDateString('en-GB')}\nCheck-out: ${co.toLocaleDateString('en-GB')}\nNights: ${Math.round((co-ci)/86400000)}`
-    : 'Dates: Not yet selected';
+  const formData = new FormData();
+  formData.append('form-name', 'reservation-enquiry');
+  formData.append('name',     document.getElementById('f-name').value);
+  formData.append('email',    document.getElementById('f-email').value);
+  formData.append('phone',    document.getElementById('f-phone').value);
+  formData.append('guests',   document.getElementById('f-guests').value);
+  formData.append('notes',    document.getElementById('f-notes').value);
+  formData.append('check-in',  ci  ? ci.toLocaleDateString('en-GB',  {day:'numeric',month:'short',year:'numeric'}) : '');
+  formData.append('check-out', co  ? co.toLocaleDateString('en-GB',  {day:'numeric',month:'short',year:'numeric'}) : '');
+  formData.append('nights',   nights ?? '');
+  formData.append('total',    total);
 
-  const body = encodeURIComponent(
-    `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nGuests: ${guests}\n\n${dateInfo}\n\nNotes: ${notes}`
-  );
-  window.location.href = `mailto:hello@casadafalesia.com?subject=Reservation%20Enquiry%20-%20${name}&body=${body}`;
-
-  document.getElementById('successMsg').classList.add('show');
-  document.getElementById('enquiryForm').reset();
+  try {
+    const res = await fetch('/', { method: 'POST', body: formData });
+    if (!res.ok) throw new Error(res.status);
+    document.getElementById('successMsg').classList.add('show');
+    document.getElementById('enquiryForm').reset();
+  } catch (err) {
+    console.error('Submit error:', err);
+    alert('Something went wrong. Please email us directly at hello@casadafalesia.com');
+  } finally {
+    btn.textContent = origText;
+    btn.disabled = false;
+  }
 }
 </script>
 <script src="js/i18n.js"></script>
